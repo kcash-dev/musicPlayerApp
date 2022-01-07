@@ -54,11 +54,15 @@ const AudioControls = ({
       }, [sound]);
   
     const playAudio = async () => {
-        const { sound } = await Audio.Sound.createAsync(sourceSound)
-        setSound(sound)
-
-        await sound.playAsync()
-        setPlaying(true)
+        if (typeof sound === 'object') {
+            setPlaying(true)
+            await sound.playAsync()
+        } else {
+            const { sound } = await Audio.Sound.createAsync(sourceSound)
+            setSound(sound)
+            setPlaying(true)
+            await sound.playAsync()
+        }
     }
   
     const pauseAudio = async () => {
