@@ -30,7 +30,7 @@ const AudioControls = ({
       shouldPlay: true
     })
     const [ sourceSound, setSourceSound ] = useState(songList[0].albums[0].tracks[0].trackUrl)
-
+    const [ i, setI ] = useState(0)
     console.log(sourceSound)
   
     useEffect(() => {
@@ -56,12 +56,9 @@ const AudioControls = ({
     const playAudio = async () => {
         if (typeof sound === 'object') {
             setPlaying(true)
-            await sound.playAsync()
+            play()
         } else {
-            const { sound } = await Audio.Sound.createAsync(sourceSound)
-            setSound(sound)
-            setPlaying(true)
-            await sound.playAsync()
+            loadNewSong()
         }
     }
   
@@ -76,6 +73,24 @@ const AudioControls = ({
           }
         }
       } catch (error) {}
+    }
+
+    const nextSong = async () => {
+        setI(i + 1)
+        setSourceSound(songList[0].albums[0].tracks[i].trackUrl)
+        playAudio()
+    }
+
+
+    const play = async () => {
+        await sound.playAsync()
+    }
+
+    const loadNewSong = async () => {
+        const { sound } = await Audio.Sound.createAsync(sourceSound)
+        setSound(sound)
+        setPlaying(true)
+        await sound.playAsync()
     }
 
     const setPlaying = () => {
@@ -96,8 +111,8 @@ const AudioControls = ({
                 />
             </Animated.View>
             <Animated.View style={[ tailwind(`w-3/6 px-3 absolute left-12`), songTitleContainerTransition ]}>
-                <Animated.Text style={[ tailwind(`font-bold`), songTitleTransition ]}>Eulogy for a Rock Band</Animated.Text>
-                <Animated.Text style={[ tailwind(`text-sm`), authorNameTransition ]}>Weezer</Animated.Text>
+                <Animated.Text style={[ tailwind(`font-bold`), songTitleTransition ]}>{ songList[0].albums[0].tracks[i].trackName }</Animated.Text>
+                <Animated.Text style={[ tailwind(`text-sm`), authorNameTransition ]}>{ songList[0].artistName }</Animated.Text>
             </Animated.View>
             <Animated.View style={[ tailwind(`flex-row items-center justify-evenly absolute right-3`), controlButtonTransition ]}>
                 { isShowing ? 
@@ -136,6 +151,7 @@ const AudioControls = ({
                     style={({ pressed }) => [
                         { opacity: pressed ? 0.5 : 1 }
                     ]}
+                    onPress={nextSong}
                 >
                     <MaterialIcons name="skip-next" size={ nextButtonSize } color="black" />
                 </Pressable>

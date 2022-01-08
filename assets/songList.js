@@ -2,90 +2,90 @@ const songList = [
     {
         artistName: 'Weezer',
         genre: 'Rock',
-        id: 0001,
+        id: Math.floor(Math.random() * 1000),
         albums: [
             {
                 albumName: 'Everything Will Be Alright In The End',
                 albumArt: 'https://i.imgur.com/FEMO9iT.jpg',
-                id: 0001,
+                id: Math.floor(Math.random() * 1000),
                 tracks: [
                     {
                         trackName: 'Ain\'t Got Nobody',
-                        trackUrl: require('./songs/Eulogy.mp3'),
+                        trackUrl: require('./songs/aintGotNobody.mp3'),
                         duration: 0,
-                        id: 0001
+                        id: Math.floor(Math.random() * 1000)
                     },
                     {
                         trackName: 'Back to the Shack',
-                        trackUrl: require('./songs/Eulogy.mp3'),
+                        trackUrl: require('./songs/backToTheShack.mp3'),
                         duration: 0,
-                        id: 0002
+                        id: Math.floor(Math.random() * 1000)
                     },
                     {
                         trackName: 'Eulogy for a Rock Band',
-                        trackUrl: require('./songs/Eulogy.mp3'),
+                        trackUrl: require('./songs/eulogyForARockBand.mp3'),
                         duration: 0,
-                        id: 0003
+                        id: Math.floor(Math.random() * 1000)
                     },
                     {
                         trackName: 'Lonely Girl',
-                        trackUrl: require('./songs/Eulogy.mp3'),
+                        trackUrl: require('./songs/eulogyForARockBand.mp3'),
                         duration: 0,
-                        id: 0004
+                        id: Math.floor(Math.random() * 1000)
                     },
                     {
                         trackName: 'I\ve Had It Up to Here',
-                        trackUrl: require('./songs/Eulogy.mp3'),
+                        trackUrl: require('./songs/eulogyForARockBand.mp3'),
                         duration: 0,
-                        id: 0005
+                        id: Math.floor(Math.random() * 1000)
                     },
                     {
                         trackName: 'The British Are Coming',
-                        trackUrl: require('./songs/Eulogy.mp3'),
+                        trackUrl: require('./songs/eulogyForARockBand.mp3'),
                         duration: 0,
-                        id: 0006
+                        id: Math.floor(Math.random() * 1000)
                     },
                     {
                         trackName: 'Da Vinci',
-                        trackUrl: require('./songs/Eulogy.mp3'),
+                        trackUrl: require('./songs/eulogyForARockBand.mp3'),
                         duration: 0,
-                        id: 0007
+                        id: Math.floor(Math.random() * 1000)
                     },
                     {
                         trackName: 'Go Away',
-                        trackUrl: require('./songs/Eulogy.mp3'),
+                        trackUrl: require('./songs/eulogyForARockBand.mp3'),
                         duration: 0,
-                        id: 0008
+                        id: Math.floor(Math.random() * 1000)
                     },
                     {
                         trackName: 'Cleopatra',
-                        trackUrl: require('./songs/Eulogy.mp3'),
+                        trackUrl: require('./songs/eulogyForARockBand.mp3'),
                         duration: 0,
-                        id: 0009
+                        id: Math.floor(Math.random() * 1000)
                     },
                     {
                         trackName: 'Foolish Father',
-                        trackUrl: require('./songs/Eulogy.mp3'),
+                        trackUrl: require('./songs/eulogyForARockBand.mp3'),
                         duration: 0,
-                        id: 0010
+                        id: Math.floor(Math.random() * 1000)
                     },
                     {
                         trackName: 'I. The Waste Land',
-                        trackUrl: require('./songs/Eulogy.mp3'),
+                        trackUrl: require('./songs/eulogyForARockBand.mp3'),
                         duration: 0,
-                        id: 0011
+                        id: Math.floor(Math.random() * 1000)
                     },
                     {
                         trackName: 'II. Anonymous',
-                        trackUrl: require('./songs/Eulogy.mp3'),
+                        trackUrl: require('./songs/eulogyForARockBand.mp3'),
                         duration: 0,
-                        id: 0012
+                        id: Math.floor(Math.random() * 1000)
                     },
                     {
                         trackName: 'III. Return to Ithaka',
-                        trackUrl: require('./songs/Eulogy.mp3'),
+                        trackUrl: require('./songs/eulogyForARockBand.mp3'),
                         duration: 0,
-                        id: 0013
+                        id: Math.floor(Math.random() * 1000)
                     }
                 ]
             }

@@ -7,6 +7,7 @@ const Stack = createNativeStackNavigator();
 
 //Screens
 import HomeScreen from './src/screens/HomeScreen';
+import AlbumScreen from './src/screens/AlbumScreen';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Home'>
           <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="AlbumScreen" component={ AlbumScreen } options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
