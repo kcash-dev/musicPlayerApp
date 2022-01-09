@@ -1,6 +1,6 @@
 import { NEXT_SONG, PREVIOUS_SONG, PICK_SONG } from "./taskTypes";
 import { songList } from "../../assets/songList";
-const initialState = { songList }
+const initialState = { library: songList }
 
 const taskReducer = (state = initialState, action) => {
     switch(action.type) {

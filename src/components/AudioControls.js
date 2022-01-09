@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useTimeout } from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import Animated, {
     useSharedValue,
@@ -21,9 +21,7 @@ const AudioControls = ({
     playButtonSize,
     nextButtonSize,
     isShowing,
-    isPlaying,
     playButtonMargin,
-    setIsPlaying
 }) => {
     const [ sound, setSound ] = useState();
     const [ status, setStatus ] = useState({
@@ -31,7 +29,8 @@ const AudioControls = ({
     })
     const [ sourceSound, setSourceSound ] = useState(songList[0].albums[0].tracks[0].trackUrl)
     const [ i, setI ] = useState(0)
-    console.log(sourceSound)
+
+    const [ isPlaying, setIsPlaying ] = useState(false)
   
     useEffect(() => {
       Audio.setAudioModeAsync({
@@ -55,30 +54,47 @@ const AudioControls = ({
   
     const playAudio = async () => {
         if (typeof sound === 'object') {
-            setPlaying(true)
             play()
         } else {
             loadNewSong()
+
         }
     }
   
     const pauseAudio = async () => {
-        setPlaying(false)
-      try {
-        const result = await sound.getStatusAsync();
-        if (result.isLoaded) {
-          if (result.isPlaying === true) {
-            setPlaying()
-            sound.pauseAsync();
-          }
-        }
-      } catch (error) {}
+        try {
+            const result = await sound.getStatusAsync();
+            if (result.isLoaded) {
+                if (result.isPlaying === true) {
+        
+                    sound.pauseAsync();
+                }
+            }
+        } catch (error) {}
     }
 
     const nextSong = async () => {
+        if(isPlaying === true) {
+            pauseAudio()
+        }
+        setSourceSound(songList[0].albums[0].tracks[i + 1].trackUrl)
+        const { sound } = await Audio.Sound.createAsync(songList[0].albums[0].tracks[i + 1].trackUrl)
+        setSound(sound)
+        setIsPlaying(true)
+        await sound.playAsync()
         setI(i + 1)
-        setSourceSound(songList[0].albums[0].tracks[i].trackUrl)
-        playAudio()
+    }
+
+    const previousSong = async () => {
+        if(isPlaying === true) {
+            pauseAudio()
+        }
+        setSourceSound(songList[0].albums[0].tracks[i - 1].trackUrl)
+        const { sound } = await Audio.Sound.createAsync(songList[0].albums[0].tracks[i - 1].trackUrl)
+        setSound(sound)
+        setIsPlaying(true)
+        await sound.playAsync()
+        setI(i - 1)
     }
 
 
@@ -86,19 +102,11 @@ const AudioControls = ({
         await sound.playAsync()
     }
 
-    const loadNewSong = async () => {
+    const loadNewSong = async (song) => {
         const { sound } = await Audio.Sound.createAsync(sourceSound)
         setSound(sound)
-        setPlaying(true)
+        setIsPlaying(true)
         await sound.playAsync()
-    }
-
-    const setPlaying = () => {
-        if (isPlaying) {
-            setIsPlaying(false)
-        } else {
-            setIsPlaying(true)
-        }
     }
 
     return (
@@ -120,6 +128,10 @@ const AudioControls = ({
                         style={({ pressed }) => [
                             { opacity: pressed ? 0.5 : 1 }
                         ]}
+                        onPress={() => {
+                            setIsPlaying(false)
+                            previousSong()
+                        }}
                     >
                         <MaterialIcons name="skip-previous" size={32} color="black" />
                     </Pressable>
@@ -132,7 +144,10 @@ const AudioControls = ({
                             style={({ pressed }) => [
                                 { opacity: pressed ? 0.5 : 1 }
                             ]}
-                            onPress={pauseAudio}
+                            onPress={() => {
+                                setIsPlaying(false)
+                                pauseAudio()
+                            }}
                         >
                             <MaterialIcons name="pause-circle-filled" size={ playButtonSize } color="black" />
                         </Pressable> 
@@ -141,7 +156,10 @@ const AudioControls = ({
                             style={({ pressed }) => [
                                 { opacity: pressed ? 0.5 : 1 }
                             ]}
-                            onPress={playAudio}
+                            onPress={() => {
+                                setIsPlaying(true)
+                                playAudio()
+                            }}
                         >
                             <MaterialIcons name="play-circle-filled" size={ playButtonSize } color="black" style={{ marginHorizontal: playButtonMargin }} />
                         </Pressable>
@@ -151,7 +169,10 @@ const AudioControls = ({
                     style={({ pressed }) => [
                         { opacity: pressed ? 0.5 : 1 }
                     ]}
-                    onPress={nextSong}
+                    onPress={() => {
+                        setIsPlaying(false)
+                        nextSong()
+                    }}
                 >
                     <MaterialIcons name="skip-next" size={ nextButtonSize } color="black" />
                 </Pressable>

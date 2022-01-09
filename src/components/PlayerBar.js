@@ -41,7 +41,6 @@ const PlayerBar = ({
 
     const [ expanded, setExpanded ] = useState(false)
     const [ isShowing, setIsShowing ] = useState(false)
-    const [ isPlaying, setIsPlaying ] = useState(false)
     const [ statusBarHeight, setStatusBarHeight ] = useState();
 
     const navigation = useNavigation();
@@ -149,7 +148,7 @@ const PlayerBar = ({
                         imageWidth.value = 250
                         imageHeight.value = 250
                         songTitlePositionY.value = windowHeight * .55
-                        songTitlePositionX.value = windowWidth * .009
+                        songTitlePositionX.value = windowWidth * .0
                         songTitleWidth.value = windowWidth
                         songTitleFontSize.value = 24
                         authorFontSize.value = 16
@@ -189,9 +188,7 @@ const PlayerBar = ({
                     playButtonSize={ playButtonSize.value }
                     nextButtonSize={ nextButtonSize.value }
                     isShowing={ isShowing }
-                    isPlaying={ isPlaying }
                     playButtonMargin={ playButtonMargin.value }
-                    setIsPlaying={ setIsPlaying }
                 />
             </Pressable>
             { isShowing ? 
@@ -207,4 +204,16 @@ const PlayerBar = ({
 
 export default PlayerBar
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    shadow: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.30,
+        shadowRadius: 4.65,
+
+        elevation: 8,
+    }
+})

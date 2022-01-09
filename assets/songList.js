@@ -1,6 +1,7 @@
 const songList = [
     {
         artistName: 'Weezer',
+        artistPicture: 'https://i.imgur.com/QPyGClx.jpg',
         genre: 'Rock',
         id: Math.floor(Math.random() * 1000),
         albums: [
@@ -34,7 +35,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000)
                     },
                     {
-                        trackName: 'I\ve Had It Up to Here',
+                        trackName: 'I\'ve Had It Up to Here',
                         trackUrl: require('./songs/eulogyForARockBand.mp3'),
                         duration: 0,
                         id: Math.floor(Math.random() * 1000)
