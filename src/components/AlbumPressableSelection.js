@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Pressable, Image } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { useNavigation } from '@react-navigation/native'
 
-const PressableSelection = ({ item, artistName, navigationScreen, artistPicture, albumArt, albumName }) => {
+const AlbumPressableSelection = ({ item, artistName, navigationScreen, artistPicture, albumArt, albumName }) => {
     const navigation = useNavigation()
     return (
         <Pressable
@@ -11,7 +11,7 @@ const PressableSelection = ({ item, artistName, navigationScreen, artistPicture,
                 { 
                     opacity: pressed ? 0.7 : 1
                 },
-                tailwind(`w-full px-3`)
+                tailwind(`w-24 h-28`)
             ]}
             onPress={() => navigation.navigate(navigationScreen, { item: item, artistName: artistName })}
         >
@@ -19,15 +19,15 @@ const PressableSelection = ({ item, artistName, navigationScreen, artistPicture,
                 { albumArt ? 
                     <Image 
                         source={{ uri: albumArt }}
-                        style={[{ height: '100%', width: '100%' }, tailwind(`rounded-lg`) ]}
+                        style={[{ height: '90%', width: '100%' }, tailwind(`rounded-lg`) ]}
                         resizeMode='cover'
                     />
                     :
                     <Image 
-                        source={{ uri: artistPicture }}
-                        style={[{ height: '90%', width: '100%' }, tailwind(`rounded-lg`) ]}
-                        resizeMode='cover'
-                    />
+                    source={{ uri: artistPicture }}
+                    style={[{ height: '90%', width: '100%' }, tailwind(`rounded-lg`) ]}
+                    resizeMode='cover'
+                />
                 }
             </View>
             { albumName ? 
@@ -42,7 +42,7 @@ const PressableSelection = ({ item, artistName, navigationScreen, artistPicture,
     )
 }
 
-export default PressableSelection
+export default AlbumPressableSelection
 
 const styles = StyleSheet.create({
     shadow: {

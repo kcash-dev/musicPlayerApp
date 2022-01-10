@@ -9,12 +9,13 @@ const songList = [
                 albumName: 'Everything Will Be Alright In The End',
                 albumArt: 'https://i.imgur.com/FEMO9iT.jpg',
                 albumArtist: 'Weezer',
+                albumYear: '2014',
                 id: Math.floor(Math.random() * 1000),
                 tracks: [
                     {
                         trackName: 'Ain\'t Got Nobody',
                         trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/aintGotNobody.mp3'),
-                        duration: 0,
+                        duration: 201,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 1,
@@ -23,7 +24,7 @@ const songList = [
                     {
                         trackName: 'Back to the Shack',
                         trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/backToTheShack.mp3'),
-                        duration: 0,
+                        duration: 185,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 2,
@@ -32,7 +33,7 @@ const songList = [
                     {
                         trackName: 'Eulogy for a Rock Band',
                         trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/eulogyForARockBand.mp3'),
-                        duration: 0,
+                        duration: 205,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 3,
@@ -41,7 +42,7 @@ const songList = [
                     {
                         trackName: 'Lonely Girl',
                         trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/lonelyGirl.mp3'),
-                        duration: 0,
+                        duration: 170,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 4 ,
@@ -50,7 +51,7 @@ const songList = [
                     {
                         trackName: 'I\'ve Had It Up to Here',
                         trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/iveHadItUpToHere.mp3'),
-                        duration: 0,
+                        duration: 169,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 5,
@@ -59,7 +60,7 @@ const songList = [
                     {
                         trackName: 'The British Are Coming',
                         trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/theBritishAreComing.mp3'),
-                        duration: 0,
+                        duration: 249,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 6,
@@ -68,7 +69,7 @@ const songList = [
                     {
                         trackName: 'Da Vinci',
                         trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/daVinci.mp3'),
-                        duration: 0,
+                        duration: 246,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 7,
@@ -77,7 +78,7 @@ const songList = [
                     {
                         trackName: 'Go Away',
                         trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/goAway.mp3'),
-                        duration: 0,
+                        duration: 194,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 8,
@@ -86,7 +87,7 @@ const songList = [
                     {
                         trackName: 'Cleopatra',
                         trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/cleopatra.mp3'),
-                        duration: 0,
+                        duration: 192,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 9,
@@ -95,7 +96,7 @@ const songList = [
                     {
                         trackName: 'Foolish Father',
                         trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/foolishFather.mp3'),
-                        duration: 0,
+                        duration: 272,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 10,
@@ -104,7 +105,7 @@ const songList = [
                     {
                         trackName: 'I. The Waste Land',
                         trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/theWasteLand.mp3'),
-                        duration: 0,
+                        duration: 116,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 11,
@@ -113,7 +114,7 @@ const songList = [
                     {
                         trackName: 'II. Anonymous',
                         trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/anonymous.mp3'),
-                        duration: 0,
+                        duration: 200,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 12,
@@ -122,7 +123,7 @@ const songList = [
                     {
                         trackName: 'III. Return to Ithaka',
                         trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/returnToIthaka.mp3'),
-                        duration: 0,
+                        duration: 138,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 13,
@@ -134,12 +135,13 @@ const songList = [
                 albumName: 'Van Weezer',
                 albumArt: 'https://i.imgur.com/AaPX1Uy.png',
                 albumArtist: 'Weezer',
+                albumYear: '2021',
                 id: Math.floor(Math.random() * 1000),
                 tracks: [
                     {
                         trackName: 'Hero',
                         trackUrl: require('./songs/weezer/vanWeezer/hero.mp3'),
-                        duration: 0,
+                        duration: 236,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 1,
@@ -148,7 +150,7 @@ const songList = [
                     {
                         trackName: 'All the Good Ones',
                         trackUrl: require('./songs/weezer/vanWeezer/allTheGoodOnes.mp3'),
-                        duration: 0,
+                        duration: 164,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 2,
@@ -157,7 +159,7 @@ const songList = [
                     {
                         trackName: 'The End of the Game',
                         trackUrl: require('./songs/weezer/vanWeezer/theEndOfTheGame.mp3'),
-                        duration: 0,
+                        duration: 182,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 3,
@@ -166,7 +168,7 @@ const songList = [
                     {
                         trackName: 'I Need Some of That',
                         trackUrl: require('./songs/weezer/vanWeezer/iNeedSomeOfThat.mp3'),
-                        duration: 0,
+                        duration: 199,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 4 ,
@@ -175,7 +177,7 @@ const songList = [
                     {
                         trackName: 'Beginning of the End',
                         trackUrl: require('./songs/weezer/vanWeezer/beginningOfTheEnd.mp3'),
-                        duration: 0,
+                        duration: 195,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 5,
@@ -184,7 +186,7 @@ const songList = [
                     {
                         trackName: 'Blue Dream',
                         trackUrl: require('./songs/weezer/vanWeezer/blueDream.mp3'),
-                        duration: 0,
+                        duration: 170,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 6,
@@ -193,7 +195,7 @@ const songList = [
                     {
                         trackName: '1 More Hit',
                         trackUrl: require('./songs/weezer/vanWeezer/oneMoreHit.mp3'),
-                        duration: 0,
+                        duration: 185,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 7,
@@ -202,7 +204,7 @@ const songList = [
                     {
                         trackName: 'Sheila Can Do It',
                         trackUrl: require('./songs/weezer/vanWeezer/sheilaCanDoIt.mp3'),
-                        duration: 0,
+                        duration: 177,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 8,
@@ -211,7 +213,7 @@ const songList = [
                     {
                         trackName: 'She Needs Me',
                         trackUrl: require('./songs/weezer/vanWeezer/sheNeedsMe.mp3'),
-                        duration: 0,
+                        duration: 172,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 9,
@@ -220,7 +222,7 @@ const songList = [
                     {
                         trackName: 'Precious Metal Girl',
                         trackUrl: require('./songs/weezer/vanWeezer/preciousMetalGirl.mp3'),
-                        duration: 0,
+                        duration: 170,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 10,

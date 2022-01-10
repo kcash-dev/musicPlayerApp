@@ -11,12 +11,12 @@ const BackButton = () => {
             style={({ pressed }) => [
                 { 
                     opacity: pressed ? 0.5 : 1 },
-                    tailwind(`absolute top-16 left-6`), 
+                    tailwind(`absolute top-8 left-5`), 
                     { zIndex: 1 }
             ]}
             onPress={() => navigation.pop()}
         >
-            <MaterialIcons name="arrow-back-ios" size={24} color="white" />
+            <MaterialIcons name="arrow-back-ios" size={24} color="black" />
         </Pressable>
     )
 }

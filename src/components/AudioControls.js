@@ -34,12 +34,10 @@ const AudioControls = ({
     const findSong = () => {
         for (let i = 0; i < library.length; i++) {
             for (let j = 0; j < library[i].albums.length; j++) {
-                console.log(library[i].albums[j], "ALBUM")
                 const found = library[i].albums[j].tracks.findIndex(song => {
                     const foundSong = song.trackName === currentSong.trackName
                     return foundSong
                 })
-                console.log(found)
             }
         }
     }

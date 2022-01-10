@@ -9,6 +9,9 @@ const AlbumSongChoice = ({ item }) => {
     const dispatch = useDispatch()
     const pickCurrentSong = (song) => dispatch(pickSong(song))
 
+    let minutes = Math.floor(item.duration / 60)
+    let seconds = item.duration - minutes * 60
+
     return (
         <Pressable
             style={({ pressed }) => [
@@ -23,10 +26,10 @@ const AlbumSongChoice = ({ item }) => {
             <View style={ tailwind(`justify-start flex-row w-10/12 items-center`) }>
                 <View style={ tailwind(`justify-center w-2/3`) }>
                     <Text style={ tailwind(`font-bold`) }>{ item.trackName }</Text>
-                    <Text style={ tailwind(`text-xs italic`) }>{ item.artistName }</Text>
+                    <Text style={ tailwind(`text-xs italic`) }>{ item.trackArtist }</Text>
                 </View>
                 <View style={ tailwind(`justify-center w-1/3`) }>
-                    <Text style={ tailwind(`font-bold text-gray-600`) }>3:14</Text>
+                    <Text style={ tailwind(`font-bold text-gray-600`) }>{ minutes }:{ seconds < 10 ? `0${seconds}` : seconds }</Text>
                 </View>
             </View>
             <View style={ tailwind(`w-1/12`) }>
