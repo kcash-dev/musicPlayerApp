@@ -2,16 +2,13 @@ import React from 'react'
 import { StyleSheet, Text, View, Pressable, Image, SafeAreaView, ImageBackground, Dimensions } from 'react-native'
 import { useSelector } from 'react-redux'
 import tailwind from 'tailwind-rn'
-import Carousel from 'react-native-reanimated-carousel'
 import { useNavigation } from '@react-navigation/native'
 
 //Components
 import PlayerBar from '../components/PlayerBar'
 import BackButton from '../components/BackButton'
-import AlbumPressable from '../components/AlbumPressable'
-
-const windowHeight = Dimensions.get('window').height
-const windowWidth = Dimensions.get('window').width
+import PressableSelection from '../components/PressableSelection'
+import AlbumCarousel from '../components/AlbumCarousel'
 
 const ArtistScreen = ({ route }) => {
     const navigation = useNavigation()
@@ -32,26 +29,9 @@ const ArtistScreen = ({ route }) => {
                         <Text style={ tailwind(`font-bold text-2xl text-white text-opacity-100`) }>{ item.artistName }</Text>
                         <Text style={ tailwind(`italic text-lg text-white text-opacity-100`) }>{ item.genre }</Text>
                     </View>
-
                 </ImageBackground>
             </View>
-            <View>
-                <View style={ tailwind(`px-3 py-3`) }>
-                    <Text style={ tailwind(`text-2xl font-bold`) }>Albums</Text>
-                </View>
-                <Carousel
-                    width={windowWidth}
-                    height={175}
-                    data={ item.albums }
-                    style={ tailwind(`self-center h-full`) }
-                    mode='parallax'
-                    renderItem={({ item }) => (
-                        <View style={ tailwind(`mt-4 h-full`) }>
-                            <AlbumPressable item={ item } artistName={ artistName }/>
-                        </View>
-                    )}
-                />
-            </View>
+            <AlbumCarousel item={ item } artistName={ artistName }/>
             <PlayerBar />
         </SafeAreaView>
     )

@@ -4,7 +4,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import tailwind from 'tailwind-rn';
 
-const ShuffleAlbumButton = () => {
+const ShuffleAlbumButton = ({ album }) => {
     return (
         <Pressable
             style={({ pressed }) => [

@@ -51,4 +51,16 @@ const SearchButton = () => {
 
 export default SearchButton
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    shadow: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.30,
+        shadowRadius: 4.65,
+
+        elevation: 8,
+    }
+})
