@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 import { pickSong } from '../store/taskAction';
+import AlbumMenu from './AlbumMenu';
 
 const AlbumSongChoice = ({ item }) => {
     const dispatch = useDispatch()
     const pickCurrentSong = (song) => dispatch(pickSong(song))
+    const [ menuShowing, setMenuShowing ] = useState(false)
 
     let minutes = Math.floor(item.duration / 60)
     let seconds = item.duration - minutes * 60
@@ -37,10 +39,22 @@ const AlbumSongChoice = ({ item }) => {
                     style={({ pressed }) => [
                         { opacity: pressed ? 0.5 : 1 }
                     ]}
+                    onPress={() => {
+                        if(menuShowing) {
+                            setMenuShowing(false)
+                        } else {
+                            setMenuShowing(true) 
+                        }
+                    }}
                 >
                     <MaterialIcons name="more-vert" size={24} color="black" />
                 </Pressable>
             </View>
+            { menuShowing ?
+                <AlbumMenu />
+                :
+                null
+            }
         </Pressable>
     )
 }

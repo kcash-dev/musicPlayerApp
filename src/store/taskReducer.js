@@ -3,7 +3,8 @@ import { songList } from "../../assets/songList";
 const initialState = { 
     library: songList,
     isPlaying: false,
-    currentSong: null
+    currentSong: null,
+    nextSong: null
 }
 
 const taskReducer = (state = initialState, action) => {

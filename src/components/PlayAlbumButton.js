@@ -8,7 +8,7 @@ const PlayAlbumButton = () => {
         <Pressable
             style={({ pressed }) => [
                 { opacity: pressed ? 0.7 : 1 },
-                tailwind(`flex-row justify-evenly items-center bg-gray-200 rounded-lg w-32 py-2 my-3 mx-10`),
+                tailwind(`flex-row justify-evenly items-center bg-gray-200 rounded-lg w-32 py-2 mb-5 mx-10`),
                 styles.shadow
             ]}
         >
