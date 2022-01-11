@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 import { pickSong } from '../store/taskAction';
 import AlbumMenu from './AlbumMenu';
+import { setSound } from '../store/taskAction';
+import { Audio } from 'expo-av';
 
 const AlbumSongChoice = ({ item }) => {
     const dispatch = useDispatch()

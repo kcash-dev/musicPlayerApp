@@ -1,10 +1,11 @@
-import { NEXT_SONG, PREVIOUS_SONG, PICK_SONG, SET_PLAYING } from "./taskTypes";
+import { NEXT_SONG, PREVIOUS_SONG, PICK_SONG, SET_PLAYING, SET_SOUND } from "./taskTypes";
 import { songList } from "../../assets/songList";
 const initialState = { 
     library: songList,
     isPlaying: false,
     currentSong: null,
-    nextSong: null
+    nextSong: null,
+    playlist: [],
 }
 
 const taskReducer = (state = initialState, action) => {
@@ -17,7 +18,9 @@ const taskReducer = (state = initialState, action) => {
         case PICK_SONG:
             return {
                 ...state,
-                currentSong: action.payload
+                currentSong: action.payload.song,
+                sound: action.payload.sound,
+                isPlaying: true
             }
         case NEXT_SONG:
             return {}

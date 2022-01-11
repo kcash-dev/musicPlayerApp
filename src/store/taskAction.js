@@ -1,4 +1,4 @@
-import { NEXT_SONG, PREVIOUS_SONG, PICK_SONG, SET_PLAYING } from "./taskTypes";
+import { NEXT_SONG, PREVIOUS_SONG, PICK_SONG, SET_PLAYING, SET_SOUND } from "./taskTypes";
 
 export const nextSong = (song) => ({
     type: NEXT_SONG,
@@ -10,9 +10,12 @@ export const previousSong = (song) => ({
     payload: song
 })
 
-export const pickSong = (song) => ({
+export const pickSong = (song, sound) => ({
     type: PICK_SONG,
-    payload: song
+    payload: {
+        song: song,
+        sound: sound
+    }
 })
 
 export const setPlaying = (playStatus) => ({

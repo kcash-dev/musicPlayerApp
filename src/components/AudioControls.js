@@ -21,15 +21,12 @@ const AudioControls = ({
     isShowing,
     playButtonMargin,
 }) => {
-    const [ sound, setSound ] = useState();
     const [ sourceSound, setSourceSound ] = useState()
     const [ i, setI ] = useState(0)
 
     const dispatch = useDispatch()
-    const isPlaying = useSelector(state => state.isPlaying)
-    const currentSong = useSelector(state => state.currentSong)
     const setIsPlaying = (playStatus) => dispatch(setPlaying(playStatus))
-    const library = useSelector(state => state.library)
+    const { isPlaying, currentSong, library, sound } = useSelector(state => state)
 
     const findSong = () => {
         for (let i = 0; i < library.length; i++) {
@@ -57,19 +54,21 @@ const AudioControls = ({
     }, [])
 
     useEffect(() => {
-        setSourceSound(currentSong)
-    }, [ currentSong ])
-
-    useEffect(() => {
         return sound
-          ? () => {
-              console.log('Unloading Sound');
-              sound.unloadAsync(); }
-          : undefined;
-      }, [sound]);
+          ? () => 
+          unloadSound()
+          : 
+          undefined;
+      }, [sound])
+
+    const unloadSound = () => {
+        console.log('Unloading Sound');
+        sound.unloadAsync(); 
+    }
   
     const playAudio = async () => {
-        if (typeof sound === 'object') {
+        if (sourceSound === currentSong.trackUrl) {
+            console.log("playing the current song")
             play()
         } else {
             loadNewSong()
@@ -77,15 +76,7 @@ const AudioControls = ({
     }
   
     const pauseAudio = async () => {
-        try {
-            const result = await sound.getStatusAsync();
-            if (result.isLoaded) {
-                if (result.isPlaying === true) {
-        
-                    sound.pauseAsync();
-                }
-            }
-        } catch (error) {}
+        await sound.pauseAsync()
     }
 
     const nextSong = async () => {
@@ -94,7 +85,6 @@ const AudioControls = ({
         }
         setSourceSound(songList[0].albums[0].tracks[i + 1].trackUrl)
         const { sound } = await Audio.Sound.createAsync(songList[0].albums[0].tracks[i + 1].trackUrl)
-        setSound(sound)
         setIsPlaying(true)
         await sound.playAsync()
         setI(i + 1)
@@ -106,7 +96,6 @@ const AudioControls = ({
         }
         setSourceSound(songList[0].albums[0].tracks[i - 1].trackUrl)
         const { sound } = await Audio.Sound.createAsync(songList[0].albums[0].tracks[i - 1].trackUrl)
-        setSound(sound)
         setIsPlaying(true)
         await sound.playAsync()
         setI(i - 1)
@@ -117,10 +106,10 @@ const AudioControls = ({
         await sound.playAsync()
     }
 
-    const loadNewSong = async (song) => {
-        const { sound } = await Audio.Sound.createAsync(sourceSound.trackUrl)
-        setSound(sound)
-        setIsPlaying(true)
+    const loadNewSong = async () => {
+        setSourceSound(currentSong.trackUrl)
+        const { sound } = await Audio.Sound.createAsync(currentSong.trackUrl)
+        console.log("Loading")
         await sound.playAsync()
     }
 

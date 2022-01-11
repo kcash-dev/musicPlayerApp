@@ -27,6 +27,7 @@ const PlayerBar = ({
     const imageWidth = useSharedValue(50)
     const songTitlePositionY = useSharedValue(windowHeight * -.045)
     const songTitlePositionX = useSharedValue(0)
+    const songTitleAlignment = useSharedValue('')
     const songTitleWidth = useSharedValue(windowWidth * .55)
     const songTitleFontSize = useSharedValue(16)
     const authorNamePositionX = useSharedValue(0)
@@ -100,7 +101,8 @@ const PlayerBar = ({
                 { translateY: withTiming(songTitlePositionY.value, transitionConfig) },
                 { translateX: withTiming(songTitlePositionX.value, transitionConfig) }
             ],
-            width: withTiming(songTitleWidth.value, transitionConfig)
+            width: withTiming(songTitleWidth.value, transitionConfig),
+            alignItems: withTiming(songTitleAlignment.value)
         }
     })
 
@@ -148,13 +150,13 @@ const PlayerBar = ({
                         imageWidth.value = 250
                         imageHeight.value = 250
                         songTitlePositionY.value = windowHeight * .55
-                        songTitlePositionX.value = windowWidth * .0
+                        songTitlePositionX.value = windowWidth * .095
                         songTitleWidth.value = windowWidth
                         songTitleFontSize.value = 24
                         authorFontSize.value = 16
-                        authorNamePositionX.value = windowWidth * .25
+                        authorNamePositionX.value = windowWidth * .185
                         controlButtonsPositionY.value = windowHeight * .70
-                        controlButtonsPositionX.value = windowWidth * .025
+                        controlButtonsPositionX.value = windowWidth * .04
                         playButtonSize.value = 64
                         nextButtonSize.value = 32
                         controlButtonContainerWidth.value = windowWidth
