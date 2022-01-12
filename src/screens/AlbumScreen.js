@@ -34,9 +34,6 @@ const AlbumScreen = ({ route }) => {
     const minutes = Math.floor(remaining / 60)
     const seconds = remaining % 60
 
-    console.log(currentSong)
-
-
     const footer = () => {
         return (
             <View style={ tailwind(`flex-1`) }>
@@ -90,7 +87,7 @@ const AlbumScreen = ({ route }) => {
                         <AlbumSongChoice item={ item } />
                     )}
                     keyExtractor={(item) => item.trackName}
-                    ListFooterComponent={footer}
+                    ListFooterComponent={ footer }
                 />
             </View>
             { currentSong ?

@@ -31,7 +31,7 @@ const PressableSelection = ({ item, artistName, navigationScreen, artistPicture,
                 }
             </View>
             { albumName ? 
-                <View style={ tailwind(`justify-center`) }>
+                <View style={ tailwind(`justify-center mt-3`) }>
                     <Text style={ tailwind(`text-xs font-bold`) }>{ albumName }</Text>
                     <Text style={ tailwind(`text-xs`) }>Album · { artistName }</Text>
                 </View>

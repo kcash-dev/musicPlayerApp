@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { MaterialIcons } from '@expo/vector-icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { pickSong } from '../store/taskAction';
 import AlbumMenu from './AlbumMenu';
-import { setSound } from '../store/taskAction';
-import { Audio } from 'expo-av';
+import { Entypo } from '@expo/vector-icons';
 
 const AlbumSongChoice = ({ item }) => {
     const dispatch = useDispatch()
     const pickCurrentSong = (song) => dispatch(pickSong(song))
+    const { currentSong } = useSelector(state => state)
     const [ menuShowing, setMenuShowing ] = useState(false)
 
     let minutes = Math.floor(item.duration / 60)
@@ -24,6 +24,13 @@ const AlbumSongChoice = ({ item }) => {
             ]}
             onPress={() => pickCurrentSong(item)}
         >
+            { item === currentSong ?
+                <View>
+                    <Entypo name="controller-play" size={24} color="black" />
+                </View>
+                :
+                null
+            }
             <View style={ tailwind(`justify-center items-center w-1/12`) }>
                 <Text style={ tailwind(`font-bold`) }>{ item.trackNumber }</Text>
             </View>

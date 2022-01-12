@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, Pressable } from 'react-native'
+import React, { useState, useEffect, useRef } from 'react'
+import { StyleSheet, ActivityIndicator, View, Pressable, Text } from 'react-native'
 import Animated from 'react-native-reanimated';
 import tailwind from 'tailwind-rn';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Audio } from 'expo-av';
 import { useSelector, useDispatch } from 'react-redux';
-import { setPlaying } from '../store/taskAction'
-
-//Components
-import { songList } from '../../assets/songList';
+import { setPlaying, pickSong } from '../store/taskAction'
 
 const AudioControls = ({ 
     imageTransition,
@@ -21,25 +18,32 @@ const AudioControls = ({
     isShowing,
     playButtonMargin,
 }) => {
-    const [ sourceSound, setSourceSound ] = useState()
-    const [ i, setI ] = useState(0)
+    const [ Loaded, SetLoaded ] = useState(false);
+    const [ Loading, SetLoading ] = useState(false);
+    const [ CurrentSong, SetCurrentSong ] = useState(currentSong)
+    const sound = useRef(new Audio.Sound());
 
     const dispatch = useDispatch()
     const setIsPlaying = (playStatus) => dispatch(setPlaying(playStatus))
-    const { isPlaying, currentSong, library, sound } = useSelector(state => state)
+    const { isPlaying, currentSong, library } = useSelector(state => state)
+    const pickCurrentSong = (song) => dispatch(pickSong(song))
 
-    const findSong = () => {
+    const findAlbum = () => {
         for (let i = 0; i < library.length; i++) {
             for (let j = 0; j < library[i].albums.length; j++) {
-                const found = library[i].albums[j].tracks.findIndex(song => {
-                    const foundSong = song.trackName === currentSong.trackName
-                    return foundSong
-                })
+                for (let k = 0; k < library[i].albums[j].tracks.length; k++) {
+                    if (currentSong === library[i].albums[j].tracks[k]) {
+                        return library[i].albums[j].tracks
+                    }
+                }
             }
         }
     }
 
-    findSong()
+    const foundAlbum = findAlbum()
+    const findIndexOfSong = (songObj) => songObj === currentSong 
+
+    const foundIndex = foundAlbum.findIndex(findIndexOfSong)
 
     useEffect(() => {
       Audio.setAudioModeAsync({
@@ -54,64 +58,74 @@ const AudioControls = ({
     }, [])
 
     useEffect(() => {
-        return sound
-          ? () => 
-          unloadSound()
-          : 
-          undefined;
-      }, [sound])
+        LoadAudio();
 
-    const unloadSound = () => {
-        console.log('Unloading Sound');
-        sound.unloadAsync(); 
-    }
-  
-    const playAudio = async () => {
-        if (sourceSound === currentSong.trackUrl) {
-            console.log("playing the current song")
-            play()
+        return () => Unload();
+    }, [ currentSong ]);
+
+    const Unload = async () => {
+        await sound.current.unloadAsync();
+    };
+
+    const LoadAudio = async () => {
+        SetLoading(true);
+        const checkLoading = await sound.current.getStatusAsync();
+        if (checkLoading.isLoaded === false) {
+        try {
+            const result = await sound.current.loadAsync(currentSong.trackUrl, {}, true);
+            if (result.isLoaded === false) {
+            SetLoading(false);
+            console.log('Error in Loading Audio');
+            } else {
+            SetLoading(false);
+            SetLoaded(true);
+            }
+        } catch (error) {
+            console.log(error);
+            SetLoading(false);
+        }
         } else {
-            loadNewSong()
+        SetLoading(false);
         }
-    }
-  
-    const pauseAudio = async () => {
-        await sound.pauseAsync()
-    }
+    };
 
-    const nextSong = async () => {
-        if(isPlaying === true) {
-            pauseAudio()
+    const PlayAudio = async () => {
+        try {
+        const result = await sound.current.getStatusAsync();
+        if (result.isLoaded) {
+            if (result.isPlaying === false) {
+            sound.current.playAsync();
+            }
         }
-        setSourceSound(songList[0].albums[0].tracks[i + 1].trackUrl)
-        const { sound } = await Audio.Sound.createAsync(songList[0].albums[0].tracks[i + 1].trackUrl)
-        setIsPlaying(true)
-        await sound.playAsync()
-        setI(i + 1)
-    }
+        } catch (error) {}
+    };
 
-    const previousSong = async () => {
-        if(isPlaying === true) {
-            pauseAudio()
+    const PauseAudio = async () => {
+        try {
+        const result = await sound.current.getStatusAsync();
+        if (result.isLoaded) {
+            if (result.isPlaying === true) {
+            sound.current.pauseAsync();
+            }
         }
-        setSourceSound(songList[0].albums[0].tracks[i - 1].trackUrl)
-        const { sound } = await Audio.Sound.createAsync(songList[0].albums[0].tracks[i - 1].trackUrl)
-        setIsPlaying(true)
-        await sound.playAsync()
-        setI(i - 1)
-    }
+        } catch (error) {}
+    };
 
+    const NextSong = () => {
+        if (currentSong.id === foundAlbum[foundAlbum.length - 1].id) {
+          pickCurrentSong(foundAlbum[0]);
+        } else {
+          pickCurrentSong(foundAlbum[foundIndex + 1]);
+        }
+    };
 
-    const play = async () => {
-        await sound.playAsync()
-    }
-
-    const loadNewSong = async () => {
-        setSourceSound(currentSong.trackUrl)
-        const { sound } = await Audio.Sound.createAsync(currentSong.trackUrl)
-        console.log("Loading")
-        await sound.playAsync()
-    }
+    const PrevSong = () => {
+        if (currentSong.id === 0) {
+          pickCurrentSong(foundAlbum[foundAlbum.length - 1]);
+        } else {
+          pickCurrentSong(foundAlbum[foundIndex - 1]);
+        }
+    };
 
     return (
         <Animated.View style={{ flex: 1 }}>
@@ -127,59 +141,73 @@ const AudioControls = ({
                 <Animated.Text style={[ tailwind(`text-sm`), authorNameTransition ]}>{ currentSong.trackArtist }</Animated.Text>
             </Animated.View>
             <Animated.View style={[ tailwind(`flex-row items-center justify-evenly absolute right-3`), controlButtonTransition ]}>
-                { isShowing ? 
-                    <Pressable
-                        style={({ pressed }) => [
-                            { opacity: pressed ? 0.5 : 1 }
-                        ]}
-                        onPress={() => {
-                            setIsPlaying(false)
-                            previousSong()
-                        }}
-                    >
-                        <MaterialIcons name="skip-previous" size={32} color="black" />
-                    </Pressable>
-                :
-                    null
-                }
-                <View>
-                    { isPlaying ?
-                        <Pressable 
-                            style={({ pressed }) => [
-                                { opacity: pressed ? 0.5 : 1 }
-                            ]}
-                            onPress={() => {
-                                setIsPlaying(false)
-                                pauseAudio()
-                            }}
-                        >
-                            <MaterialIcons name="pause-circle-filled" size={ playButtonSize } color="black" />
-                        </Pressable> 
-                        :
-                        <Pressable 
-                            style={({ pressed }) => [
-                                { opacity: pressed ? 0.5 : 1 }
-                            ]}
-                            onPress={() => {
-                                setIsPlaying(true)
-                                playAudio()
-                            }}
-                        >
-                            <MaterialIcons name="play-circle-filled" size={ playButtonSize } color="black" style={{ marginHorizontal: playButtonMargin }} />
-                        </Pressable>
+                { Loading ? (
+                    <ActivityIndicator size={'small'} color={'black'} />
+                ) : (
+                    <>
+                    { Loaded === false ? (
+                        <>
+                            <ActivityIndicator />
+                            <Text>Loading Song</Text>
+                        </>
+                        ) : (
+                            <>
+                                { isShowing ?
+                                    <Pressable
+                                        style={({ pressed }) => [
+                                            { opacity: pressed ? 0.5 : 1 }
+                                        ]}
+                                        onPress={() => {
+                                            PrevSong()
+                                        }}
+                                    >
+                                        <MaterialIcons name="skip-previous" size={32} color="black" />
+                                    </Pressable>
+                                    :
+                                    null
+                                }
+                                <View>
+                                    { isPlaying ?
+                                        <Pressable 
+                                            style={({ pressed }) => [
+                                                { opacity: pressed ? 0.5 : 1 }
+                                            ]}
+                                            onPress={() => {
+                                                setIsPlaying(false)
+                                                PauseAudio()
+                                            }}
+                                        >
+                                            <MaterialIcons name="pause-circle-filled" size={ playButtonSize } color="black" />
+                                        </Pressable> 
+                                        :
+                                        <Pressable 
+                                            style={({ pressed }) => [
+                                                { opacity: pressed ? 0.5 : 1 }
+                                            ]}
+                                            onPress={() => {
+                                                setIsPlaying(true)
+                                                PlayAudio()
+                                            }}
+                                        >
+                                            <MaterialIcons name="play-circle-filled" size={ playButtonSize } color="black" style={{ marginHorizontal: playButtonMargin }} />
+                                        </Pressable>
+                                    }
+                                </View>
+                                <Pressable
+                                    style={({ pressed }) => [
+                                        { opacity: pressed ? 0.5 : 1 }
+                                    ]}
+                                    onPress={() => {
+                                        NextSong()
+                                    }}
+                                >
+                                    <MaterialIcons name="skip-next" size={ nextButtonSize } color="black" />
+                                </Pressable>
+                            </>
+                        )
                     }
-                </View>
-                <Pressable
-                    style={({ pressed }) => [
-                        { opacity: pressed ? 0.5 : 1 }
-                    ]}
-                    onPress={() => {
-                        setIsPlaying(false)
-                        nextSong()
-                    }}
-                >
-                    <MaterialIcons name="skip-next" size={ nextButtonSize } color="black" />
-                </Pressable>
+                    </>
+                )}
             </Animated.View>
         </Animated.View>
     )

@@ -10,12 +10,9 @@ export const previousSong = (song) => ({
     payload: song
 })
 
-export const pickSong = (song, sound) => ({
+export const pickSong = (song) => ({
     type: PICK_SONG,
-    payload: {
-        song: song,
-        sound: sound
-    }
+    payload: song
 })
 
 export const setPlaying = (playStatus) => ({

@@ -11,27 +11,19 @@ const AlbumPressableSelection = ({ item, artistName, navigationScreen, artistPic
                 { 
                     opacity: pressed ? 0.7 : 1
                 },
-                tailwind(`w-24 h-28`)
+                tailwind(`w-36 h-36 my-3`)
             ]}
             onPress={() => navigation.navigate(navigationScreen, { item: item, artistName: artistName })}
         >
             <View style={[ styles.shadow, tailwind(`h-full`) ]}>
-                { albumArt ? 
-                    <Image 
-                        source={{ uri: albumArt }}
-                        style={[{ height: '90%', width: '100%' }, tailwind(`rounded-lg`) ]}
-                        resizeMode='cover'
-                    />
-                    :
-                    <Image 
-                    source={{ uri: artistPicture }}
-                    style={[{ height: '90%', width: '100%' }, tailwind(`rounded-lg`) ]}
+                <Image 
+                    source={{ uri: albumArt }}
+                    style={[{ height: '100%', width: '100%' }, tailwind(`rounded-lg`) ]}
                     resizeMode='cover'
                 />
-                }
             </View>
             { albumName ? 
-                <View style={ tailwind(`justify-center`) }>
+                <View style={ tailwind(`justify-center mt-3`) }>
                     <Text style={ tailwind(`text-xs font-bold`) }>{ albumName }</Text>
                     <Text style={ tailwind(`text-xs`) }>Album · { artistName }</Text>
                 </View>

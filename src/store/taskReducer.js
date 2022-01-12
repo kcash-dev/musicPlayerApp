@@ -18,9 +18,8 @@ const taskReducer = (state = initialState, action) => {
         case PICK_SONG:
             return {
                 ...state,
-                currentSong: action.payload.song,
-                sound: action.payload.sound,
-                isPlaying: true
+                currentSong: action.payload,
+                isPlaying: false
             }
         case NEXT_SONG:
             return {}
