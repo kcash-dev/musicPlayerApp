@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { StyleSheet, Text, View, SafeAreaView, Image, Pressable, TextInput, Dimensions, StatusBar, Platform } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { StyleSheet, View, Pressable, TextInput, Dimensions, StatusBar, Platform } from 'react-native'
 import tailwind from 'tailwind-rn';
 import { MaterialIcons } from '@expo/vector-icons';
 import Animated, { useAnimatedStyle, withTiming, useSharedValue } from 'react-native-reanimated';
@@ -18,9 +18,8 @@ const SearchButton = () => {
         }
     })
 
-
     return (
-        <View style={[ tailwind(`absolute top-8 left-3 self-center flex-row items-center bg-gray-100 rounded-full p-1`), styles.shadow ]}>
+        <View style={[ tailwind(`absolute top-6 left-3 self-center flex-row items-center bg-gray-100 rounded-full p-1`), styles.shadow ]}>
             <Pressable
                 style={({ pressed }) => [
                     { opacity: pressed ? 0.7 : 1 },
