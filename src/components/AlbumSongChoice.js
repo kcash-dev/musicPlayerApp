@@ -29,11 +29,10 @@ const AlbumSongChoice = ({ item }) => {
                     <Entypo name="controller-play" size={24} color="black" />
                 </View>
                 :
-                null
+                <View style={ tailwind(`justify-center items-center w-1/12`) }>
+                    <Text style={ tailwind(`font-bold`) }>{ item.trackNumber }</Text>
+                </View>
             }
-            <View style={ tailwind(`justify-center items-center w-1/12`) }>
-                <Text style={ tailwind(`font-bold`) }>{ item.trackNumber }</Text>
-            </View>
             <View style={ tailwind(`justify-start flex-row w-10/12 items-center`) }>
                 <View style={ tailwind(`justify-center w-2/3`) }>
                     <Text style={ tailwind(`font-bold`) }>{ item.trackName }</Text>

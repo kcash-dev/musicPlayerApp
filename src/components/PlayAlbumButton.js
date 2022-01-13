@@ -2,8 +2,30 @@ import React from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons';
 import tailwind from 'tailwind-rn';
+import { useSelector, useDispatch } from 'react-redux';
+import { setPlaying, pickSong } from '../store/taskAction'
 
 const PlayAlbumButton = () => {
+    const dispatch = useDispatch()
+    const setIsPlaying = (playStatus) => dispatch(setPlaying(playStatus))
+    const { isPlaying, currentSong, library } = useSelector(state => state)
+    const pickCurrentSong = (song) => dispatch(pickSong(song))
+    
+    const findAlbum = () => {
+        for (let i = 0; i < library.length; i++) {
+            for (let j = 0; j < library[i].albums.length; j++) {
+                for (let k = 0; k < library[i].albums[j].tracks.length; k++) {
+                    if (currentSong === library[i].albums[j].tracks[k]) {
+                        return library[i].albums[j].tracks
+                    }
+                }
+            }
+        }
+    }
+
+    const foundAlbum = findAlbum()
+    console.log(foundAlbum)
+
     return (
         <Pressable
             style={({ pressed }) => [

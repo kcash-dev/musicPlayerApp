@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { StyleSheet, Text, View, SafeAreaView, Image, Pressable, TextInput, Dimensions, StatusBar, Platform } from 'react-native'
+import { StyleSheet, Text, View, Pressable, Dimensions, StatusBar, Platform } from 'react-native'
 import tailwind from 'tailwind-rn';
-import { MaterialIcons } from '@expo/vector-icons';
 import Animated, {
     useSharedValue,
     withTiming,
@@ -9,7 +8,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import AudioControls from '../components/AudioControls';
-import * as AuthSession from 'expo-auth-session';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -39,8 +37,6 @@ const PlayerBar = ({
     const playButtonMargin = useSharedValue(0)
     const controlButtonContainerWidth = useSharedValue(windowWidth * .33)
 
-
-    const [ expanded, setExpanded ] = useState(false)
     const [ isShowing, setIsShowing ] = useState(false)
     const [ statusBarHeight, setStatusBarHeight ] = useState();
 
@@ -131,7 +127,7 @@ const PlayerBar = ({
         }
     })
     return (
-        <Animated.View style={[ tailwind(`bg-gray-100 absolute w-full`), playerBarStyles, { height: windowHeight  } ]}>
+        <Animated.View style={[ tailwind(`bg-gray-100 absolute w-full`), playerBarStyles, { height: windowHeight, zIndex: 1  } ]}>
             <Pressable
                 style={({ pressed }) => [
                     {

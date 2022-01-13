@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, SafeAreaView, Image, Pressable, TextInput, Dimensions, StatusBar, Platform } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Dimensions, StatusBar, Platform } from 'react-native'
 import tailwind from 'tailwind-rn';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { useSelector } from 'react-redux';
@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import PlayerBar from '../components/PlayerBar';
 import SearchButton from '../components/SearchButton';
 import MusicSelectionMain from '../components/MusicSelectionMain';
+import UserButton from '../components/UserButton';
 
 const HomeScreen = () => {
     const [ statusBarHeight, setStatusBarHeight ] = useState();
@@ -30,7 +31,8 @@ const HomeScreen = () => {
     return (
         <SafeAreaView style={ tailwind(`flex-1 bg-white h-full`) }>
             <SearchButton />
-            <View style={ tailwind(`my-12`) }>
+            <UserButton />
+            <View style={ tailwind(`mt-20`) }>
                 <Text style={ tailwind(`text-3xl font-bold text-center`) }>Listen Now</Text>
             </View>
             <MusicSelectionMain />
@@ -39,6 +41,7 @@ const HomeScreen = () => {
                 :
                 null
             }
+
         </SafeAreaView>
     )
 }

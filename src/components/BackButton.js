@@ -11,8 +11,7 @@ const BackButton = () => {
             style={({ pressed }) => [
                 { 
                     opacity: pressed ? 0.5 : 1 },
-                    tailwind(`absolute top-8 left-5`), 
-                    { zIndex: 1 }
+                    tailwind(`absolute top-8 left-5`)
             ]}
             onPress={() => navigation.pop()}
         >
