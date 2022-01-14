@@ -2,8 +2,9 @@ import React from 'react'
 import { StyleSheet, Text, View, Pressable, Image } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { useNavigation } from '@react-navigation/native'
+import { MaterialIcons } from '@expo/vector-icons';
 
-const PressableSelection = ({ item, artistName, navigationScreen, artistPicture, albumArt, albumName }) => {
+const PressableSelection = ({ item, artistName, navigationScreen, artistPicture, albumArt, albumName, explicit }) => {
     const navigation = useNavigation()
     return (
         <Pressable
@@ -19,7 +20,7 @@ const PressableSelection = ({ item, artistName, navigationScreen, artistPicture,
                 { albumArt ? 
                     <Image 
                         source={{ uri: albumArt }}
-                        style={[{ height: '100%', width: '100%' }, tailwind(`rounded-lg`) ]}
+                        style={[{ height: '110%', width: '100%' }, tailwind(`rounded-lg`) ]}
                         resizeMode='cover'
                     />
                     :
@@ -31,9 +32,12 @@ const PressableSelection = ({ item, artistName, navigationScreen, artistPicture,
                 }
             </View>
             { albumName ? 
-                <View style={ tailwind(`justify-center mt-3`) }>
+                <View style={ tailwind(`justify-center mt-5`) }>
                     <Text style={ tailwind(`text-xs font-bold`) }>{ albumName }</Text>
-                    <Text style={ tailwind(`text-xs`) }>Album · { artistName }</Text>
+                    <View style={ tailwind(`flex-row justify-start items-center`) }>
+                        { explicit ? <MaterialIcons name="explicit" size={20} color="gray" style={ tailwind(`pr-1`) }/> : null }
+                        <Text style={ tailwind(`text-xs`) }>Album · { artistName }</Text>
+                    </View>
                 </View>
                 :
                 null

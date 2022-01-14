@@ -42,28 +42,29 @@ const MusicSelectionMain = () => {
     getAlbums()
 
     return (
-        <View style={ tailwind(`flex-1`) }>
-            <ScrollView style={{ flex: 1 }}>
-                <View style={ tailwind(`h-full w-full`) }>
-                    <Text style={ tailwind(`text-2xl font-bold px-3 py-2`) }>Quick Picks</Text>
-                    <AlbumCarousel 
-                        item={ albums }
-                    />
-                </View>
-                <View style={ tailwind(`h-full w-full`) }>
-                    <Text style={ tailwind(`text-2xl font-bold px-3 py-2`) }>Rap</Text>
-                    <AlbumCarousel 
-                        item={ rapAlbums }
-                    />
-                </View>
-                <View style={ tailwind(`h-full w-full`) }>
-                    <Text style={ tailwind(`text-2xl font-bold px-3 py-2`) }>Rock</Text>
-                    <AlbumCarousel 
-                        item={ rockAlbums }
-                    />
-                </View>
-            </ScrollView>
-        </View>
+        <ScrollView 
+            style={{ flex: 1, height: windowHeight, zIndex: -1 }}
+            showsVerticalScrollIndicator={ false }     
+        >
+            <View style={[ tailwind(`w-full`), { height: windowHeight * .33 } ]}>
+                <Text style={ tailwind(`text-2xl font-bold px-3 py-2`) }>Quick Picks</Text>
+                <AlbumCarousel 
+                    item={ albums }
+                />
+            </View>
+            <View style={[ tailwind(`w-full`), { height: windowHeight * .33 } ]}>
+                <Text style={ tailwind(`text-2xl font-bold px-3 py-2`) }>Rap</Text>
+                <AlbumCarousel 
+                    item={ rapAlbums }
+                />
+            </View>
+            <View style={[ tailwind(`w-full`), { height: windowHeight * .33 } ]}>
+                <Text style={ tailwind(`text-2xl font-bold px-3 py-2`) }>Rock</Text>
+                <AlbumCarousel 
+                    item={ rockAlbums }
+                />
+            </View>
+        </ScrollView>
     )
 }
 

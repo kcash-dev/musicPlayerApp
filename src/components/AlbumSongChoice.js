@@ -7,7 +7,7 @@ import { pickSong } from '../store/taskAction';
 import AlbumMenu from './AlbumMenu';
 import { Entypo } from '@expo/vector-icons';
 
-const AlbumSongChoice = ({ item }) => {
+const AlbumSongChoice = ({ item, album }) => {
     const dispatch = useDispatch()
     const pickCurrentSong = (song) => dispatch(pickSong(song))
     const { currentSong } = useSelector(state => state)
@@ -36,7 +36,10 @@ const AlbumSongChoice = ({ item }) => {
             <View style={ tailwind(`justify-start flex-row w-10/12 items-center`) }>
                 <View style={ tailwind(`justify-center w-2/3`) }>
                     <Text style={ tailwind(`font-bold`) }>{ item.trackName }</Text>
-                    <Text style={ tailwind(`text-xs italic`) }>{ item.trackArtist }</Text>
+                    <View style={ tailwind(`items-center justify-start flex-row`) }>
+                        { item.explicit ? <MaterialIcons name="explicit" size={20} color="gray" style={ tailwind(`pr-1`) }/> : null }
+                        <Text style={ tailwind(`text-xs italic`) }>{ item.trackArtist } — { album }</Text>
+                    </View>
                 </View>
                 <View style={ tailwind(`justify-center w-1/3`) }>
                     <Text style={ tailwind(`font-bold text-gray-600`) }>{ minutes }:{ seconds < 10 ? `0${seconds}` : seconds }</Text>

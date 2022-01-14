@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, FlatList, SafeAreaView, Image, Pressable } from 'react-native'
 import tailwind from 'tailwind-rn';
 import { useNavigation } from '@react-navigation/native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 //Components
 import PlayerBar from '../components/PlayerBar';
@@ -20,6 +21,7 @@ const AlbumScreen = ({ route }) => {
     const navigation = useNavigation()
 
     const currentSong = useSelector(state => state.currentSong)
+    const album = item.albumName
 
     const getAlbumDuration = () => {
         for (let i = 0; i < item.tracks.length; i++) {
@@ -36,7 +38,7 @@ const AlbumScreen = ({ route }) => {
 
     const footer = () => {
         return (
-            <View style={ tailwind(`flex-1`) }>
+            <View style={ tailwind(`h-full`) }>
                 <Text style={ tailwind(`text-gray-500 text-sm text-center my-1`) }>{ item.tracks.length } { item.tracks.length > 1 ? 'songs' : 'song' }, { hours < 1 ? null : `${hours} hours` }{ minutes } minutes and { seconds < 10 ? `0${seconds}` : seconds } seconds</Text>
                 <View style={ tailwind(`px-3`) }>
                     <Text style={ tailwind(`font-bold text-lg`) }>Other Albums</Text>
@@ -50,14 +52,14 @@ const AlbumScreen = ({ route }) => {
         <SafeAreaView style={ tailwind(`flex-1 bg-white`) }>
             <BackButton />
             <View style={ tailwind(`h-2/6 w-full flex-row rounded-lg mt-5`) }>
-                <View style={[ tailwind(`w-1/3 h-full justify-center mx-5`), styles.shadow ]}>
+                <View style={[ tailwind(`w-2/5 h-full justify-center mx-5`), styles.shadow ]}>
                     <Image
                         source={{ uri: item.albumArt }}
                         style={[{ height: '60%', width: '100%' }, tailwind(`rounded-lg`)]}
                         resizeMode='cover'
                     />
                 </View>
-                <View style={ tailwind(`justify-center w-2/3 flex-shrink`) }>
+                <View style={ tailwind(`justify-center w-3/5 flex-shrink`) }>
                     <Text style={ tailwind(`font-bold text-xl`) }>{ item.albumName }</Text>
                     <Text style={ tailwind(``) }>by 
                         <Pressable 
@@ -70,7 +72,10 @@ const AlbumScreen = ({ route }) => {
                             <Text style={ tailwind(`top-1 left-1 font-bold`) }>{ artistName }</Text>
                         </Pressable>
                     </Text>
-                    <Text style={ tailwind(`font-bold text-gray-400`) }>Album · { item.albumYear }</Text>
+                    <View style={ tailwind(`justify-start items-center flex-row`) }>
+                        { item.explicit ? <MaterialIcons name="explicit" size={24} color="gray" style={ tailwind(`pr-1`) }/> : null }
+                        <Text style={ tailwind(`font-bold text-gray-400`) }>Album · { item.albumYear }</Text>
+                    </View>
                 </View>
             </View>
             <View style={ tailwind(`flex-row items-center justify-evenly`) }>
@@ -84,7 +89,7 @@ const AlbumScreen = ({ route }) => {
                     data={ item.tracks }
                     style={ tailwind(`h-full`) }
                     renderItem={({ item }) => (
-                        <AlbumSongChoice item={ item } />
+                        <AlbumSongChoice item={ item } album={ album }/>
                     )}
                     keyExtractor={(item) => item.trackName}
                     ListFooterComponent={ footer }

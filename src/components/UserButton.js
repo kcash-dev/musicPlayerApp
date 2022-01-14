@@ -62,10 +62,10 @@ const UserButton = () => {
             >
                 <MaterialCommunityIcons name="account" size={32} color="gray" />
             </Pressable>
-            <Animated.View style={[ tailwind(`absolute bg-white bg-opacity-100`), { width: windowWidth + 10, height: windowHeight, right: '-50%', top: '-75%' }, playerBarStyles  ]}>
+            <Animated.View style={[ tailwind(`absolute bg-white bg-opacity-100`), { width: windowWidth + 10, height: windowHeight, right: '-50%', top: '-75%', zIndex: 1, }, playerBarStyles  ]}>
                 <View style={[ tailwind(`bg-white h-1/6 w-full`), styles.shadow ]}>
                     <View style={ tailwind(`flex-row w-full top-4`) }>
-                        <View style={[ tailwind(`justify-center items-center bg-gray-100 rounded-full p-1 h-5/6 w-1/5 mx-5`), styles.shadow, { zIndex: 1 } ]}>
+                        <View style={[ tailwind(`justify-center items-center bg-gray-100 rounded-full p-1 h-5/6 w-1/5 mx-5`), styles.shadow ]}>
                             <Pressable
                                 style={({ pressed }) => [
                                     { opacity: pressed ? 0.5 : 1 }

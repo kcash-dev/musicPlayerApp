@@ -248,6 +248,7 @@ const songList = [
                 albumYear: '2021',
                 id: Math.floor(Math.random() * 1000),
                 genre: 'Rap',
+                explicit: true,
                 tracks: [
                     {
                         trackName: 'Champagne Poetry',
@@ -257,6 +258,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 1,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'Papi\'s Home',
@@ -266,6 +268,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 2,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'Girls Want Girls',
@@ -275,6 +278,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 3,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'Love All',
@@ -284,6 +288,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 4 ,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'Fair Trade',
@@ -293,6 +298,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 5,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'Way 2 Sexy',
@@ -302,6 +308,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 6,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'TSU',
@@ -311,6 +318,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 7,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'N 2 Deep',
@@ -320,6 +328,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 8,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'Pipe Down',
@@ -329,6 +338,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 9,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'Yebba\'s Heartbreak',
@@ -338,6 +348,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 10,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'No Friends in the Industry',
@@ -347,6 +358,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 11,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'Knife Talk',
@@ -356,6 +368,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 12,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: '7AM on Bridle Path',
@@ -365,6 +378,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 13,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'Race My Mind',
@@ -374,6 +388,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 13,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'Fountains',
@@ -383,6 +398,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 13,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'Get Along Better',
@@ -392,6 +408,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 13,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'You Only Live Twice',
@@ -401,6 +418,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 13,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'IMY2',
@@ -410,6 +428,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 13,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'Fucking Fans',
@@ -419,6 +438,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 13,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     },
                     {
                         trackName: 'The Remorse',
@@ -428,6 +448,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 13,
                         trackArt: 'https://i.imgur.com/vuTgMuw.jpg',
+                        explicit: true,
                     }
                 ]
             },

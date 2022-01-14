@@ -16,6 +16,7 @@ const AlbumCarousel = ({ item }) => {
                         artistName={ item.albumArtist } 
                         albumArt={ item.albumArt } 
                         albumName={ item.albumName }
+                        explicit= { item.explicit }
                         navigationScreen="AlbumScreen"
                     />
                 )}

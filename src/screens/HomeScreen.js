@@ -31,7 +31,7 @@ const HomeScreen = () => {
     }, [])
 
     return (
-        <SafeAreaView style={ tailwind(`flex-1 bg-white h-full`) }>
+        <SafeAreaView style={[ tailwind(`bg-white h-full`) ]}>
             <View style={[ tailwind(`bg-white`), styles.shadow ]}>
                 <SearchButton />
                 <UserButton />
@@ -39,9 +39,7 @@ const HomeScreen = () => {
                     <Text style={ tailwind(`text-3xl font-bold text-center pb-3`) }>Listen Now</Text>
                 </View>
             </View>
-            <View style={{ flex: 1 }}>
-                <MusicSelectionMain />
-            </View>
+            <MusicSelectionMain />
             { currentSong ?
                 <PlayerBar />
                 :
