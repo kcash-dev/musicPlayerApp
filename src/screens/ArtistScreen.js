@@ -9,8 +9,7 @@ import BackButton from '../components/BackButton'
 import AlbumCarousel from '../components/AlbumCarousel'
 
 const ArtistScreen = ({ route }) => {
-    const { item } = route.params;
-    const artistName = item.artistName
+    const { item, artistName  } = route.params;
     const currentSong = useSelector(state => state.currentSong)
 
     return (
@@ -20,7 +19,7 @@ const ArtistScreen = ({ route }) => {
                 <ImageBackground
                     source={{ uri: item.artistPicture }}
                     style={[{ height: '100%', width: '100%' }, tailwind(`rounded-lg flex-1 justify-center items-center`)]}
-                    resizeMode={'cover'}
+                    resizeMode='cover'
                 >
                     <View style={ tailwind(`items-center px-12 py-5 bg-black opacity-50 rounded-lg`) }>
                         <Text style={ tailwind(`font-bold text-2xl text-white text-opacity-100`) }>{ item.artistName }</Text>
