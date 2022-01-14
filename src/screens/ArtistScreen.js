@@ -1,21 +1,18 @@
 import React from 'react'
-import { StyleSheet, Text, View, Pressable, Image, SafeAreaView, ImageBackground, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, ImageBackground } from 'react-native'
 import { useSelector } from 'react-redux'
 import tailwind from 'tailwind-rn'
-import { useNavigation } from '@react-navigation/native'
 
 //Components
 import PlayerBar from '../components/PlayerBar'
 import BackButton from '../components/BackButton'
-import PressableSelection from '../components/PressableSelection'
 import AlbumCarousel from '../components/AlbumCarousel'
 
 const ArtistScreen = ({ route }) => {
-    const navigation = useNavigation()
     const { item } = route.params;
     const artistName = item.artistName
+    const currentSong = useSelector(state => state.currentSong)
 
-    const songs = useSelector(state => state.library)
     return (
         <SafeAreaView style={ tailwind(`flex-1 bg-white`)}>
             <BackButton />
@@ -32,7 +29,11 @@ const ArtistScreen = ({ route }) => {
                 </ImageBackground>
             </View>
             <AlbumCarousel item={ item } artistName={ artistName }/>
-            <PlayerBar />
+            { currentSong ?
+                <PlayerBar />
+                :
+                null
+            }
         </SafeAreaView>
     )
 }

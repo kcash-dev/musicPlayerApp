@@ -60,7 +60,11 @@ const UserButton = () => {
                     }
                 }}
             >
-                <MaterialCommunityIcons name="account" size={32} color="gray" />
+                <Image 
+                    source={{ uri: 'https://i.imgur.com/psa0b4D.jpg' }}
+                    style={[{ width:32, height: 32 }, tailwind(`rounded-full`)]}
+                    resizeMode='cover'
+                />
             </Pressable>
             <Animated.View style={[ tailwind(`absolute bg-white bg-opacity-100`), { width: windowWidth + 10, height: windowHeight, right: '-50%', top: '-75%', zIndex: 1, }, playerBarStyles  ]}>
                 <View style={[ tailwind(`bg-white h-1/6 w-full`), styles.shadow ]}>

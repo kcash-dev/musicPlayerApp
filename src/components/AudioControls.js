@@ -20,7 +20,7 @@ const AudioControls = ({
 }) => {
     const [ Loaded, SetLoaded ] = useState(false);
     const [ Loading, SetLoading ] = useState(false);
-    const [ CurrentSong, SetCurrentSong ] = useState(currentSong)
+    const [ foundIndex, setFoundIndex ] = useState()
     const sound = useRef(new Audio.Sound());
 
     const dispatch = useDispatch()
@@ -40,11 +40,6 @@ const AudioControls = ({
         }
     }
 
-    const foundAlbum = findAlbum()
-    const findIndexOfSong = (songObj) => songObj === currentSong 
-
-    const foundIndex = foundAlbum.findIndex(findIndexOfSong)
-
     useEffect(() => {
       Audio.setAudioModeAsync({
         allowsRecordingIOS: false,
@@ -58,6 +53,9 @@ const AudioControls = ({
     }, [])
 
     useEffect(() => {
+        const foundAlbum = findAlbum()
+        const findIndexOfSong = (songObj) => songObj === currentSong 
+        setFoundIndex(foundAlbum.findIndex(findIndexOfSong))
         LoadAudio();
 
         return () => Unload();

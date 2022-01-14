@@ -14,6 +14,7 @@ import AlbumSongChoice from '../components/AlbumSongChoice';
 //Redux
 import { useSelector } from 'react-redux';
 import OtherArtistAlbums from '../components/OtherArtistAlbums';
+import ArtistPressableSelection from '../components/ArtistPressableSelection';
 
 const AlbumScreen = ({ route }) => {
     const { item, artistName } = route.params;
@@ -28,6 +29,8 @@ const AlbumScreen = ({ route }) => {
             duration = duration + item.tracks[i].duration
         }
     }
+
+    console.log(item)
    
     getAlbumDuration()
 
@@ -38,11 +41,20 @@ const AlbumScreen = ({ route }) => {
 
     const footer = () => {
         return (
-            <View style={ tailwind(`h-full`) }>
+            <View style={ tailwind(`h-full pb-10`) }>
                 <Text style={ tailwind(`text-gray-500 text-sm text-center my-1`) }>{ item.tracks.length } { item.tracks.length > 1 ? 'songs' : 'song' }, { hours < 1 ? null : `${hours} hours` }{ minutes } minutes and { seconds < 10 ? `0${seconds}` : seconds } seconds</Text>
                 <View style={ tailwind(`px-3`) }>
                     <Text style={ tailwind(`font-bold text-lg`) }>Other Albums</Text>
                     <OtherArtistAlbums item={ item } />
+                </View>
+                <View style={ tailwind(`px-3`) }>
+                    <Text style={ tailwind(`font-bold text-lg`) }>Artist</Text>
+                    <ArtistPressableSelection 
+                        item={ item } 
+                        artistName={ item.albumArtist } 
+                        artistPicture={ item.artistPicture }
+                        navigationScreen='ArtistScreen'
+                    />
                 </View>
             </View>
         )

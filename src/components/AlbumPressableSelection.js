@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Pressable, Image } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { useNavigation } from '@react-navigation/native'
 
-const AlbumPressableSelection = ({ item, artistName, navigationScreen, artistPicture, albumArt, albumName }) => {
+const AlbumPressableSelection = ({ item, artistName, navigationScreen, albumArt, albumName }) => {
     const navigation = useNavigation()
     return (
         <Pressable
