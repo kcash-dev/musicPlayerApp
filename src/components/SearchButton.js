@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, View, Pressable, TextInput, Dimensions, StatusBar, Platform } from 'react-native'
+import { StyleSheet, View, Pressable, TextInput, FlatList } from 'react-native'
 import tailwind from 'tailwind-rn';
 import { MaterialIcons } from '@expo/vector-icons';
 import Animated, { useAnimatedStyle, withTiming, useSharedValue } from 'react-native-reanimated';
+import { useSelector } from 'react-redux'
 
 const SearchButton = () => {
+    const [ search, setSearch ] = useState('')
+    const [ artistList, setArtistList ] = useState()
+    const [ albumList, setAlbumList ] = useState()
+    const [ songList, setSongList ] = useState()
     const [ expanded, setExpanded ] = useState(false)
     const barWidth = useSharedValue(0)
+    const { library } = useSelector(state => state.library)
 
     const searchConfig = {
         duration: 700
@@ -17,6 +23,10 @@ const SearchButton = () => {
             width: withTiming(barWidth.value, searchConfig)
         }
     })
+
+    const searchFilterFunction = (text) => {
+
+    }
 
     return (
         <View style={[ tailwind(`absolute top-6 left-3 self-center flex-row items-center bg-gray-100 rounded-full p-1`), styles.shadow ]}>
@@ -43,6 +53,23 @@ const SearchButton = () => {
                     <TextInput 
                         placeholder='Search'
                     />
+            </Animated.View>
+            <Animated.View>
+                <View>
+                    <FlatList 
+                        // data={}
+                    />
+                </View>
+                <View>
+                    <FlatList 
+                        // data={}
+                    />
+                </View>
+                <View>
+                    <FlatList 
+                        // data={}
+                    />
+                </View>
             </Animated.View>
         </View>
     )
