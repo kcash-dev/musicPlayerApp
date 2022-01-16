@@ -9,6 +9,7 @@ import Animated, {
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import AudioControls from '../components/AudioControls';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 
 const windowHeight = Dimensions.get('window').height
@@ -40,7 +41,7 @@ const PlayerBar = ({
     const [ isShowing, setIsShowing ] = useState(false)
     const [ statusBarHeight, setStatusBarHeight ] = useState();
 
-    const navigation = useNavigation();
+    const currentSong = useSelector(state => state.currentSong)
 
 
     const getStatusBar = () => {

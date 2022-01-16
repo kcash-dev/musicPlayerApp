@@ -24,7 +24,6 @@ const PlayAlbumButton = () => {
     }
 
     const foundAlbum = findAlbum()
-    console.log(foundAlbum)
 
     return (
         <Pressable

@@ -35,7 +35,7 @@ const HomeScreen = () => {
             <View style={[ tailwind(`bg-white`), styles.shadow ]}>
                 <SearchButton />
                 <UserButton />
-                <View style={ tailwind(`mt-20`) }>
+                <View style={[ tailwind(`mt-20`), { zIndex: -1 } ]}>
                     <Text style={ tailwind(`text-3xl font-bold text-center pb-3`) }>Listen Now</Text>
                 </View>
             </View>
@@ -45,7 +45,6 @@ const HomeScreen = () => {
                 :
                 null
             }
-
         </SafeAreaView>
     )
 }

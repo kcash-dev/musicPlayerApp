@@ -13,6 +13,7 @@ const songList = [
                 genre: 'Rock',
                 id: Math.floor(Math.random() * 1000),
                 artistPicture: 'https://i.imgur.com/QPyGClx.jpg',
+                explicit: false,
                 tracks: [
                     {
                         trackName: 'Ain\'t Got Nobody',
@@ -22,6 +23,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 1,
                         trackArt: 'https://i.imgur.com/FEMO9iT.jpg',
+                        explicit: false,
                     },
                     {
                         trackName: 'Back to the Shack',
@@ -31,6 +33,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 2,
                         trackArt: 'https://i.imgur.com/FEMO9iT.jpg',
+                        explicit: false,
                     },
                     {
                         trackName: 'Eulogy for a Rock Band',
@@ -40,6 +43,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 3,
                         trackArt: 'https://i.imgur.com/FEMO9iT.jpg',
+                        explicit: false,
                     },
                     {
                         trackName: 'Lonely Girl',
@@ -49,6 +53,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 4 ,
                         trackArt: 'https://i.imgur.com/FEMO9iT.jpg',
+                        explicit: false,
                     },
                     {
                         trackName: 'I\'ve Had It Up to Here',
@@ -58,6 +63,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 5,
                         trackArt: 'https://i.imgur.com/FEMO9iT.jpg',
+                        explicit: false,
                     },
                     {
                         trackName: 'The British Are Coming',
@@ -67,6 +73,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 6,
                         trackArt: 'https://i.imgur.com/FEMO9iT.jpg',
+                        explicit: false,
                     },
                     {
                         trackName: 'Da Vinci',
@@ -76,6 +83,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 7,
                         trackArt: 'https://i.imgur.com/FEMO9iT.jpg',
+                        explicit: false,
                     },
                     {
                         trackName: 'Go Away',
@@ -85,6 +93,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 8,
                         trackArt: 'https://i.imgur.com/FEMO9iT.jpg',
+                        explicit: false,
                     },
                     {
                         trackName: 'Cleopatra',
@@ -94,6 +103,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 9,
                         trackArt: 'https://i.imgur.com/FEMO9iT.jpg',
+                        explicit: false,
                     },
                     {
                         trackName: 'Foolish Father',
@@ -103,6 +113,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 10,
                         trackArt: 'https://i.imgur.com/FEMO9iT.jpg',
+                        explicit: false,
                     },
                     {
                         trackName: 'I. The Waste Land',
@@ -112,6 +123,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 11,
                         trackArt: 'https://i.imgur.com/FEMO9iT.jpg',
+                        explicit: false,
                     },
                     {
                         trackName: 'II. Anonymous',
@@ -121,6 +133,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 12,
                         trackArt: 'https://i.imgur.com/FEMO9iT.jpg',
+                        explicit: false,
                     },
                     {
                         trackName: 'III. Return to Ithaka',
@@ -130,6 +143,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 13,
                         trackArt: 'https://i.imgur.com/FEMO9iT.jpg',
+                        explicit: false,
                     }
                 ]
             },
@@ -141,6 +155,7 @@ const songList = [
                 genre: 'Rock',
                 id: Math.floor(Math.random() * 1000),
                 artistPicture: 'https://i.imgur.com/QPyGClx.jpg',
+                explicit: false,
                 tracks: [
                     {
                         trackName: 'Hero',
@@ -150,6 +165,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 1,
                         trackArt: 'https://i.imgur.com/AaPX1Uy.png',
+                        explicit: false,
                     },
                     {
                         trackName: 'All the Good Ones',
@@ -159,6 +175,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 2,
                         trackArt: 'https://i.imgur.com/AaPX1Uy.png',
+                        explicit: false,
                     },
                     {
                         trackName: 'The End of the Game',
@@ -168,6 +185,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 3,
                         trackArt: 'https://i.imgur.com/AaPX1Uy.png',
+                        explicit: false,
                     },
                     {
                         trackName: 'I Need Some of That',
@@ -177,6 +195,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 4 ,
                         trackArt: 'https://i.imgur.com/AaPX1Uy.png',
+                        explicit: false,
                     },
                     {
                         trackName: 'Beginning of the End',
@@ -186,6 +205,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 5,
                         trackArt: 'https://i.imgur.com/AaPX1Uy.png',
+                        explicit: false,
                     },
                     {
                         trackName: 'Blue Dream',
@@ -195,6 +215,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 6,
                         trackArt: 'https://i.imgur.com/AaPX1Uy.png',
+                        explicit: false,
                     },
                     {
                         trackName: '1 More Hit',
@@ -204,6 +225,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 7,
                         trackArt: 'https://i.imgur.com/AaPX1Uy.png',
+                        explicit: false,
                     },
                     {
                         trackName: 'Sheila Can Do It',
@@ -213,6 +235,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 8,
                         trackArt: 'https://i.imgur.com/AaPX1Uy.png',
+                        explicit: false,
                     },
                     {
                         trackName: 'She Needs Me',
@@ -222,6 +245,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 9,
                         trackArt: 'https://i.imgur.com/AaPX1Uy.png',
+                        explicit: false,
                     },
                     {
                         trackName: 'Precious Metal Girl',
@@ -231,6 +255,7 @@ const songList = [
                         id: Math.floor(Math.random() * 1000),
                         trackNumber: 10,
                         trackArt: 'https://i.imgur.com/AaPX1Uy.png',
+                        explicit: false,
                     }
                 ]
             },

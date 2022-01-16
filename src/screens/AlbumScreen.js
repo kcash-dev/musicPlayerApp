@@ -29,8 +29,6 @@ const AlbumScreen = ({ route }) => {
             duration = duration + item.tracks[i].duration
         }
     }
-
-    console.log(item)
    
     getAlbumDuration()
 
