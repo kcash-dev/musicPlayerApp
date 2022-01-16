@@ -26,17 +26,35 @@ const PressableSelection = ({ item, artistName, navigationScreen, artistPicture,
                     :
                     <Image 
                         source={{ uri: artistPicture }}
-                        style={[{ height: '90%', width: '100%' }, tailwind(`rounded-lg`) ]}
+                        style={[{ height: '110%', width: '100%' }, tailwind(`rounded-lg`) ]}
                         resizeMode='cover'
                     />
                 }
             </View>
             { albumName ? 
-                <View style={ tailwind(`justify-center mt-5`) }>
-                    <Text style={ tailwind(`text-xs font-bold`) }>{ albumName }</Text>
-                    <View style={ tailwind(`flex-row justify-start items-center`) }>
-                        { explicit ? <MaterialIcons name="explicit" size={20} color="gray" style={ tailwind(`pr-1`) }/> : null }
-                        <Text style={ tailwind(`text-xs`) }>Album · { artistName }</Text>
+                <View style={ tailwind(`items-center flex-row mt-5`) }>
+                    <View style={ tailwind(`w-3/4`) }>
+                        <Text style={ tailwind(`text-xs font-bold`) }>{ albumName }</Text>
+                        <View style={ tailwind(`flex-row justify-start items-center`) }>
+                            { explicit ? <MaterialIcons name="explicit" size={20} color="gray" style={ tailwind(`pr-1`) }/> : null }
+                            <Text style={ tailwind(`text-xs`) }>Album · { artistName }</Text>
+                        </View>
+                    </View>
+                    <View style={ tailwind(`w-1/4`) }>
+                        <Pressable 
+                        style={({ pressed }) => [
+                            { opacity: pressed ? 0.5 : 1 }
+                        ]}
+                        onPress={() => {
+                            if(menuShowing) {
+                                setMenuShowing(false)
+                            } else {
+                                setMenuShowing(true) 
+                            }
+                        }}
+                    >
+                        <MaterialIcons name="more-vert" size={18} color="black" />
+                    </Pressable>
                     </View>
                 </View>
                 :

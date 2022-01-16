@@ -8,7 +8,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import AudioControls from '../components/AudioControls';
-import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 
 
@@ -27,7 +26,7 @@ const PlayerBar = ({
     const songTitlePositionY = useSharedValue(windowHeight * -.045)
     const songTitlePositionX = useSharedValue(0)
     const songTitleAlignment = useSharedValue('')
-    const songTitleWidth = useSharedValue(windowWidth * .55)
+    const songTitleWidth = useSharedValue(windowWidth)
     const songTitleFontSize = useSharedValue(16)
     const authorNamePositionX = useSharedValue(0)
     const authorFontSize = useSharedValue(12)
@@ -146,12 +145,12 @@ const PlayerBar = ({
                         imagePositionX.value = windowWidth * .17
                         imageWidth.value = 250
                         imageHeight.value = 250
-                        songTitlePositionY.value = windowHeight * .55
-                        songTitlePositionX.value = windowWidth * .095
-                        songTitleWidth.value = windowWidth
+                        songTitlePositionY.value = windowHeight * .50
+                        songTitlePositionX.value = '50%'
                         songTitleFontSize.value = 24
+                        songTitleWidth.value = '100%'
                         authorFontSize.value = 16
-                        authorNamePositionX.value = windowWidth * .185
+                        authorNamePositionX.value = '50%'
                         controlButtonsPositionY.value = windowHeight * .70
                         controlButtonsPositionX.value = windowWidth * .04
                         playButtonSize.value = 64

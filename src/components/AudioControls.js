@@ -134,8 +134,13 @@ const AudioControls = ({
                     resizeMode='contain'
                 />
             </Animated.View>
-            <Animated.View style={[ tailwind(`w-3/6 px-3 absolute left-12`), songTitleContainerTransition ]}>
-                <Animated.Text style={[ tailwind(`font-bold`), songTitleTransition ]}>{ currentSong.trackName }</Animated.Text>
+            <Animated.View 
+                style={[ 
+                    songTitleContainerTransition, 
+                    isShowing ? styles.centeredContainer : null,
+                    isShowing ? null : styles.playerSmall 
+                ]}>
+                <Animated.Text style={[ tailwind(`font-bold text-center`), songTitleTransition]}>{ currentSong.trackName }</Animated.Text>
                 <Animated.Text style={[ tailwind(`text-sm`), authorNameTransition ]}>{ currentSong.trackArtist }</Animated.Text>
             </Animated.View>
             <Animated.View style={[ tailwind(`flex-row items-center justify-evenly absolute right-3`), controlButtonTransition ]}>
@@ -213,4 +218,18 @@ const AudioControls = ({
 
 export default AudioControls
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    centeredTitle: {
+        textAlign: 'center',
+    },
+    centeredContainer: {
+        alignSelf: 'center',
+        width: '100%'
+    },
+    playerSmall: {
+        position: 'absolute',
+        width: '50%',
+        paddingHorizontal: 12,
+        left: 48
+    }
+})
