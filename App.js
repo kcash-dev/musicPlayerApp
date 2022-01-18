@@ -4,19 +4,18 @@ import store from './src/store/store'
 import { Provider } from 'react-redux'
 const Stack = createNativeStackNavigator();
 
-//Screens
-import HomeScreen from './src/screens/HomeScreen';
-import ArtistScreen from './src/screens/ArtistScreen';
-import AlbumScreen from './src/screens/AlbumScreen';
+
+//Navs
+import HomeNav from './src/navs/HomeNav';
+import UserNav from './src/navs/UserNav';
 
 export default function App() {
   return (
     <Provider store={ store }>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home'>
-          <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="ArtistScreen" component={ ArtistScreen } options={{ headerShown: false }} />
-          <Stack.Screen name="AlbumScreen" component={ AlbumScreen } options={{ headerShown: false }} />
+        <Stack.Navigator initialRouteName='User'>
+          <Stack.Screen name="Home" component={HomeNav} options={{ headerShown: false }} />
+          <Stack.Screen name="User" component={UserNav} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
