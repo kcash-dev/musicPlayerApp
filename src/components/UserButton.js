@@ -9,9 +9,8 @@ import Animated, {
     useAnimatedStyle
 } from 'react-native-reanimated';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-
-//Components
-import UserOptions from './UserOptions';
+import { auth, signOut } from '../firebase/firebase.js' 
+import { useNavigation } from '@react-navigation/native';
 
 const windowHeight = Dimensions.get('window').height
 const windowWidth = Dimensions.get('window').width
@@ -20,6 +19,8 @@ const UserButton = () => {
     const [ isShowing, setIsShowing ] = useState(false)
     const [ statusBarHeight, setStatusBarHeight ] = useState();
     const playerHeight = useSharedValue(windowHeight + 65)
+
+    const navigation = useNavigation()
 
     const getStatusBar = () => {
         if (Platform.OS === 'ios') {
@@ -42,6 +43,13 @@ const UserButton = () => {
             transform: [{ translateY: withTiming(playerHeight.value, transitionConfig) }]
         }
     })
+
+    const signOut = () => {
+        auth.signOut()
+            .then(() => navigation.navigate('User'))
+    }
+
+    console.log(auth.currentUser)
 
     return (
         <View style={[ tailwind(`absolute top-6 right-3`), styles.shadow, { zIndex: 1 } ]}>
@@ -174,6 +182,22 @@ const UserButton = () => {
                             </View>
                             <View style={ tailwind(`w-10/12 justify-center`) }>
                                 <Text style={ tailwind(`font-bold`) }>Help</Text>
+                            </View>
+                        </Pressable>
+                    </View>
+                    <View style={ tailwind(`border-b w-full p-5`) }>
+                        <Pressable
+                            style={({ pressed }) => [
+                                { opacity: pressed ? 0.5 : 1 },
+                                tailwind(`flex-row`)
+                            ]}
+                            onPress={() => signOut()}
+                        >
+                            <View style={ tailwind(`w-2/12`) }>
+                                <MaterialCommunityIcons name="logout" size={24} color="black" />
+                            </View>
+                            <View style={ tailwind(`w-10/12 justify-center`) }>
+                                <Text style={ tailwind(`font-bold`) }>Logout</Text>
                             </View>
                         </Pressable>
                     </View>

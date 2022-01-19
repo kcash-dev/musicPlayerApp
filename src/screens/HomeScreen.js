@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, StatusBar, Platform, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Image, StatusBar, Platform, Dimensions } from 'react-native'
 import tailwind from 'tailwind-rn';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { useSelector } from 'react-redux';
@@ -34,6 +34,11 @@ const HomeScreen = () => {
         <SafeAreaView style={[ tailwind(`bg-white h-full`) ]}>
             <View style={[ tailwind(`bg-white`), styles.shadow ]}>
                 <SearchButton />
+                <Image 
+                    source={{ uri: 'https://i.imgur.com/pH6JB4O.jpg' }}
+                    style={[{ height: '35%', width: '35%' }, tailwind(`absolute top-6 left-1/3`), { zIndex: -1 } ]}
+                    resizeMode='contain'
+                />
                 <UserButton />
                 <View style={[ tailwind(`mt-20`), { zIndex: -1 } ]}>
                     <Text style={ tailwind(`text-3xl font-bold text-center pb-3`) }>Listen Now</Text>
