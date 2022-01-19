@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, View, TextInput, SafeAreaView, Pressable, Alert, Image } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { useNavigation } from '@react-navigation/native'
-import { auth, onAuthStateChanged, signInWithCredential, createUserWithEmailAndPassword } from '../firebase/firebase'
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { 
+    auth, 
+    createUserWithEmailAndPassword,
+    firestore,
+    setDoc,
+    doc 
+} from '../firebase/firebase';
 
 const RegisterScreen = () => {
     const [ name, setName ] = useState()
@@ -16,9 +21,12 @@ const RegisterScreen = () => {
     const register = () => {
         if (auth && name && email && password) {
             createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    console.log("SUCCESS!")
-                    const user = userCredential.user
+                .then((userCredentials) => {
+                    console.log(name, photoURL)
+                    console.log(userCredentials)
+                    userCredentials.user.displayName = name;
+                    userCredentials.user.photoURL = photoURL;
+                    setUserInfoFirestore()
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -31,6 +39,14 @@ const RegisterScreen = () => {
         } else if (!password) {
             Alert.alert('You must fill in a valid password.')
         }
+    }
+
+    const setUserInfoFirestore = async () => {
+        await setDoc(doc(firestore, "users", auth.currentUser.uid), {
+            name: name,
+            email: email,
+            photoURL: photoURL
+        })
     }
 
     return (
@@ -48,9 +64,10 @@ const RegisterScreen = () => {
                         value={name}
                         onChangeText={text => setName(text)}
                         style={ tailwind(`p-3`) }
-                        clearButtonMode='always'
+                        clearButtonMode='while-editing'
                         activeOutlineColor="#000"
                         placeholder="Name"
+                        autoCorrect={ false }
                     />
                 </View>
                 <View style={[ tailwind(`w-11/12 border-b border-gray-400`) ]}>
@@ -59,10 +76,11 @@ const RegisterScreen = () => {
                         value={email}
                         onChangeText={text => setEmail(text)}
                         style={ tailwind(`p-3`) }
-                        clearButtonMode='always'
+                        clearButtonMode='while-editing'
                         activeOutlineColor="#000"
                         placeholder="Email"
-                        autoCapitalize='false'
+                        autoCapitalize='none'
+                        autoCorrect={ false }
                     />
                 </View>
                 <View style={[ tailwind(`w-11/12 border-b border-gray-400`) ]}>
@@ -72,9 +90,10 @@ const RegisterScreen = () => {
                         onChangeText={text => setPassword(text)}
                         style={ tailwind(`p-3`) }
                         secureTextEntry
-                        clearButtonMode='always'
+                        clearButtonMode='while-editing'
                         activeOutlineColor="#000"
                         placeholder='Password'
+                        autoCorrect={ false }
                     />
                 </View>
                 <View style={[ tailwind(`w-11/12 border-b border-gray-400`) ]}>
@@ -83,9 +102,11 @@ const RegisterScreen = () => {
                         value={photoURL}
                         onChangeText={text => setPhotoURL(text)}
                         style={ tailwind(`p-3`) }
-                        clearButtonMode='always'
+                        clearButtonMode='while-editing'
                         activeOutlineColor="#000"
                         placeholder='Photo URL (optional)'
+                        autoCapitalize='none'
+                        autoCorrect={ false }
                     />
                 </View>
             </View>

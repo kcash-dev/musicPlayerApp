@@ -1,10 +1,22 @@
 import { initializeApp } from 'firebase/app'
 import "firebase/firestore";
-import { getAuth, onAuthStateChanged, signInWithCredential, createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { getFirestore, setDoc, doc, getDoc } from 'firebase/firestore'
 import { firebaseConfig } from '../config/config'
 
 const app = initializeApp(firebaseConfig)
 
 const auth = getAuth()
+const firestore = getFirestore()
 
-export { auth, onAuthStateChanged, signInWithCredential, createUserWithEmailAndPassword, signOut };
+export { 
+    auth, 
+    onAuthStateChanged, 
+    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword, 
+    signOut,
+    firestore,
+    setDoc,
+    getDoc,
+    doc 
+};

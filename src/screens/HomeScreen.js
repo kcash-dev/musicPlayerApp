@@ -9,6 +9,7 @@ import PlayerBar from '../components/PlayerBar';
 import SearchButton from '../components/SearchButton';
 import MusicSelectionMain from '../components/MusicSelectionMain';
 import UserButton from '../components/UserButton';
+import { auth, firestore, getDoc, doc } from '../firebase/firebase';
 
 const windowHeight = Dimensions.get('window').height
 
@@ -26,8 +27,17 @@ const HomeScreen = () => {
         }
     }
 
+    const getUserInfoFirestore = async () => {
+        const docRef = doc(firestore, "users", auth.currentUser.uid)
+        const docSnap = await getDoc(docRef)
+        const userInfo = docSnap.data()
+        auth.currentUser.displayName = userInfo.name
+        auth.currentUser.photoURL = userInfo.photoURL
+    } 
+
     useEffect(() => {
         getStatusBar()
+        getUserInfoFirestore()
     }, [])
 
     return (

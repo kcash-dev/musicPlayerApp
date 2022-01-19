@@ -9,7 +9,7 @@ import Animated, {
     useAnimatedStyle
 } from 'react-native-reanimated';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { auth, signOut } from '../firebase/firebase.js' 
+import { auth, getDoc } from '../firebase/firebase.js' 
 import { useNavigation } from '@react-navigation/native';
 
 const windowHeight = Dimensions.get('window').height
@@ -69,7 +69,7 @@ const UserButton = () => {
                 }}
             >
                 <Image 
-                    source={{ uri: 'https://i.imgur.com/psa0b4D.jpg' }}
+                    source={{ uri: auth.currentUser.photoURL }}
                     style={[{ width:32, height: 32 }, tailwind(`rounded-full`)]}
                     resizeMode='cover'
                 />
@@ -84,14 +84,14 @@ const UserButton = () => {
                                 ]}
                             >
                                 <Image 
-                                    source={{ uri: 'https://i.imgur.com/psa0b4D.jpg' }}
+                                    source={{ uri: auth.currentUser.photoURL }}
                                     style={[{ width: 90, height: 90 }, tailwind(`rounded-full`)]}
                                     resizeMode='cover'
                                 />
                             </Pressable>
                         </View>
                         <View>
-                            <Text style={ tailwind(`text-xl font-bold`) }>Hello, Kyle</Text>
+                            <Text style={ tailwind(`text-xl font-bold`) }>Hello, { auth.currentUser.displayName }</Text>
                             <Pressable
                                 style={({ pressed }) => [
                                     { opacity: pressed ? 0.7 : 1 },

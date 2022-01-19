@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, TextInput, SafeAreaView, Pressable, Image } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { useNavigation } from '@react-navigation/native'
-import { auth, signInWithCredential } from '../firebase/firebase'
+import { auth, signInWithEmailAndPassword, firestore, getDoc, doc } from '../firebase/firebase'
 
 const LoginScreen = () => {
     const [ email, setEmail ] = useState()
     const [ password, setPassword ] = useState()
+    const [ name, setName ] = useState()
+    const [ photoURL, setPhotoURL ] = useState()
 
     const navigation = useNavigation()
 
@@ -20,9 +22,13 @@ const LoginScreen = () => {
         return unsubscribe;
     }, [])
 
-    // const signIn = () => {
-    //     signInWithCredential(auth, )
-    // }
+    const signIn = async () => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredentials) => {
+                console.log("SUCCESS!")
+            })
+            .catch((error) => console.log(error))
+    }
 
     return (
         <SafeAreaView style={ [{ flex: 1 }, tailwind(`items-center bg-white`) ]}>
@@ -42,6 +48,8 @@ const LoginScreen = () => {
                         clearButtonMode='always'
                         activeOutlineColor="#000"
                         placeholder="Email"
+                        autoCapitalize='none'
+                        autoCorrect={ false }
                     />
                 </View>
                 <View style={[ tailwind(`w-11/12 border-b border-gray-400`)]}>
@@ -54,6 +62,8 @@ const LoginScreen = () => {
                         clearButtonMode='always'
                         activeOutlineColor="#000"
                         placeholder='Password'
+                        autoCapitalize='none'
+                        autoCorrect={ false }
                     />
                 </View>
             </View>
@@ -64,7 +74,7 @@ const LoginScreen = () => {
                         tailwind(`py-3 w-1/3 rounded-lg bg-red-400 items-center`),
                         styles.shadow
                     ]}
-                    // onPress={() => navigation.navigate('RegisterScreen')}
+                    onPress={() => signIn()}
                 >
                     <Text style={ tailwind(`text-white font-bold`) }>Login</Text>
                 </Pressable>
