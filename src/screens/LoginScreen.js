@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, TextInput, SafeAreaView, Pressable, Image } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { useNavigation } from '@react-navigation/native'
-import { auth, signInWithEmailAndPassword, firestore, getDoc, doc } from '../firebase/firebase'
+import { auth, signInWithEmailAndPassword } from '../firebase/firebase'
 
 const LoginScreen = () => {
     const [ email, setEmail ] = useState()
     const [ password, setPassword ] = useState()
-    const [ name, setName ] = useState()
-    const [ photoURL, setPhotoURL ] = useState()
+
 
     const navigation = useNavigation()
 
@@ -25,7 +24,7 @@ const LoginScreen = () => {
     const signIn = async () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredentials) => {
-                console.log("SUCCESS!")
+                const user = userCredentials.user
             })
             .catch((error) => console.log(error))
     }
@@ -88,7 +87,7 @@ const LoginScreen = () => {
                     ]}
                     onPress={() => navigation.navigate('RegisterScreen')}
                 >
-                    <Text style={ tailwind(`text-red-500 font-bold`) }>Register</Text>
+                    <Text style={ tailwind(`text-red-400 font-bold`) }>Register</Text>
                 </Pressable>
             </View>
         </SafeAreaView>

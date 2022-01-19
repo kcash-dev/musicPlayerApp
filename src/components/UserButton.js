@@ -9,7 +9,7 @@ import Animated, {
     useAnimatedStyle
 } from 'react-native-reanimated';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { auth, getDoc } from '../firebase/firebase.js' 
+import { auth, firestore, getDoc, doc } from '../firebase/firebase.js' 
 import { useNavigation } from '@react-navigation/native';
 
 const windowHeight = Dimensions.get('window').height
@@ -19,6 +19,7 @@ const UserButton = () => {
     const [ isShowing, setIsShowing ] = useState(false)
     const [ statusBarHeight, setStatusBarHeight ] = useState();
     const playerHeight = useSharedValue(windowHeight + 65)
+    const [ loading, setLoading ] = useState(false)
 
     const navigation = useNavigation()
 
@@ -49,7 +50,19 @@ const UserButton = () => {
             .then(() => navigation.navigate('User'))
     }
 
-    console.log(auth.currentUser)
+    useEffect(async () => {
+        try {
+            setLoading(true)
+            const docRef = doc(firestore, "users", auth.currentUser.uid)
+            const docSnap = await getDoc(docRef)
+            const userInfo = docSnap.data()
+            auth.currentUser.displayName = userInfo.name
+            auth.currentUser.photoURL = userInfo.photoURL
+            setLoading(false)
+        } catch (error) {
+            console.log(error)
+        }
+    }, [])
 
     return (
         <View style={[ tailwind(`absolute top-6 right-3`), styles.shadow, { zIndex: 1 } ]}>
@@ -137,21 +150,6 @@ const UserButton = () => {
                             </View>
                             <View style={ tailwind(`w-10/12 justify-center`) }>
                                 <Text style={ tailwind(`font-bold`) }>Favorites</Text>
-                            </View>
-                        </Pressable>
-                    </View>
-                    <View style={ tailwind(`border-b w-full p-5`) }>
-                        <Pressable
-                            style={({ pressed }) => [
-                                { opacity: pressed ? 0.5 : 1 },
-                                tailwind(`flex-row`)
-                            ]}
-                        >
-                            <View style={ tailwind(`w-2/12`) }>
-                            <MaterialCommunityIcons name="account-box-multiple" size={24} color="black" />
-                            </View>
-                            <View style={ tailwind(`w-10/12 justify-center`) }>
-                                <Text style={ tailwind(`font-bold`) }>Switch Account</Text>
                             </View>
                         </Pressable>
                     </View>

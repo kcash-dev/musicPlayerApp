@@ -3,9 +3,11 @@ import { StyleSheet, ActivityIndicator, View, Pressable, Text } from 'react-nati
 import Animated from 'react-native-reanimated';
 import tailwind from 'tailwind-rn';
 import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Audio } from 'expo-av';
 import { useSelector, useDispatch } from 'react-redux';
 import { setPlaying, pickSong } from '../store/taskAction'
+import { auth, firestore, getDoc, doc, updateDoc, arrayUnion, arrayRemove } from '../firebase/firebase'
 
 const AudioControls = ({ 
     imageTransition,
@@ -22,6 +24,8 @@ const AudioControls = ({
     const [ Loading, SetLoading ] = useState(false);
     const [ foundIndex, setFoundIndex ] = useState()
     const sound = useRef(new Audio.Sound());
+    const [ favorites, setFavorites ] = useState();
+    const [ isFavorite, setIsFavorite ] = useState(false)
 
     const dispatch = useDispatch()
     const setIsPlaying = (playStatus) => dispatch(setPlaying(playStatus))
@@ -50,6 +54,7 @@ const AudioControls = ({
         staysActiveInBackground: true,
         playThroughEarpieceAndroid: true
       })
+      getFavorites();
     }, [])
 
     useEffect(() => {
@@ -60,6 +65,10 @@ const AudioControls = ({
 
         return () => Unload();
     }, [ currentSong ]);
+
+    useEffect(() => {
+        isSongAFavorite()
+    }, [ currentSong ])
 
     const Unload = async () => {
         await sound.current.unloadAsync();
@@ -125,6 +134,30 @@ const AudioControls = ({
         }
     };
 
+    const addSongToFavorites = async (song) => {
+        const docRef = doc(firestore, "users", auth.currentUser.uid)
+        const updateFavorites = await updateDoc(docRef, {
+            favorites: arrayUnion(song)
+        })
+    }
+
+    const getFavorites = async () => {
+        const docRef = doc(firestore, "users", auth.currentUser.uid)
+        const docSnap = await getDoc(docRef)
+        const userInfo = docSnap.data()
+        setFavorites(userInfo.favorites)
+    }
+
+    const isSongAFavorite = () => {
+        if (favorites?.includes(currentSong)) {
+            setIsFavorite(true)
+        } else {
+            setIsFavorite(false)
+        }
+    }
+
+    console.log(isFavorite, "Fav")
+
     return (
         <Animated.View style={{ flex: 1 }}>
             <Animated.View style={[ tailwind(`w-1/6 h-full absolute left-1 rounded-lg`), { overflow: 'hidden' }, imageTransition ]}>
@@ -168,6 +201,29 @@ const AudioControls = ({
                                     </Pressable>
                                     :
                                     null
+                                }
+                                { isFavorite ?
+                                    <View>
+                                        <Pressable 
+                                                style={({ pressed }) => [
+                                                    { opacity: pressed ? 0.5 : 1 }
+                                                ]}
+                                                onPress={() => addSongToFavorites(currentSong)}
+                                            >
+                                                <MaterialCommunityIcons name="cards-heart" size={ playButtonSize } color="black" />
+                                        </Pressable> 
+                                    </View>
+                                    :
+                                    <View>
+                                        <Pressable 
+                                                style={({ pressed }) => [
+                                                    { opacity: pressed ? 0.5 : 1 }
+                                                ]}
+                                                onPress={() => addSongToFavorites(currentSong)}
+                                            >
+                                                <MaterialCommunityIcons name="heart-outline" size={ playButtonSize } color="black" />
+                                        </Pressable> 
+                                    </View>
                                 }
                                 <View>
                                     { isPlaying ?
