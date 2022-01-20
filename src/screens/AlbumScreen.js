@@ -89,10 +89,8 @@ const AlbumScreen = ({ route }) => {
                 </View>
             </View>
             <View style={ tailwind(`flex-row items-center justify-evenly`) }>
-                <PlayAlbumButton />
-                <ShuffleAlbumButton 
-                    album={ item }
-                />
+                <PlayAlbumButton album={ item } />
+                <ShuffleAlbumButton album={ item } />
             </View>
             <View style={{ flex: 1 }}>
                 <FlatList

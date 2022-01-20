@@ -1,10 +1,38 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import tailwind from 'tailwind-rn';
+import { useSelector, useDispatch } from 'react-redux';
+import { pickSong, setPlaylist } from '../store/taskAction'
 
 const ShuffleAlbumButton = ({ album }) => {
+    const [ shuffledList, setShuffledList ] = useState()
+    const dispatch = useDispatch()
+    const { isPlaying, currentSong, library, playlist } = useSelector(state => state)
+    const pickCurrentSong = (song) => dispatch(pickSong(song))
+    const setNewPlaylist = (playlist) => dispatch(setPlaylist(playlist))
+    
+    useEffect(() => {
+        shuffleAlbum();
+    }, [])
+    
+    const shuffleAlbum = () => {
+        const shuffled = []
+        for (let i = 0; i < album.tracks.length; i++) {
+            const number = getRandomInt(album.tracks.length)
+            shuffled.push(album.tracks[number])
+        }
+        setShuffledList(shuffled)
+        
+    }
+
+    const getRandomInt = (max) => {
+        return Math.floor(Math.random() * max);
+    }
+
+    console.log(playlist, "PLAYLIST")
+
     return (
         <Pressable
             style={({ pressed }) => [
@@ -12,6 +40,10 @@ const ShuffleAlbumButton = ({ album }) => {
                 tailwind(`flex-row justify-evenly items-center bg-gray-200 rounded-lg w-32 py-2 mb-5 mx-10`),
                 styles.shadow
             ]}
+            onPress={() => {
+                pickCurrentSong(shuffledList[0])
+                setNewPlaylist(shuffledList.slice(1, shuffledList.length + 1))
+            }}
         >
             <Ionicons name="ios-shuffle" size={32} style={ tailwind(`text-red-500`) } />
             <Text style={ tailwind(`p-2 text-red-500 font-bold`) }>Shuffle</Text>

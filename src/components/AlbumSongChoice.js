@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { MaterialIcons } from '@expo/vector-icons';
@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { pickSong } from '../store/taskAction';
 import AlbumMenu from './AlbumMenu';
 import { Entypo } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { auth, firestore, getDoc, doc } from '../firebase/firebase'
 
 const AlbumSongChoice = ({ item, album }) => {
     const dispatch = useDispatch()

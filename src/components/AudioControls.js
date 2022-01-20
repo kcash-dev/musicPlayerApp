@@ -6,7 +6,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Audio } from 'expo-av';
 import { useSelector, useDispatch } from 'react-redux';
-import { setPlaying, pickSong } from '../store/taskAction'
+import { setPlaying, pickSong, setPlaylist } from '../store/taskAction'
 import { auth, firestore, getDoc, doc, updateDoc, arrayUnion, arrayRemove } from '../firebase/firebase'
 
 const AudioControls = ({ 
@@ -31,6 +31,7 @@ const AudioControls = ({
     const setIsPlaying = (playStatus) => dispatch(setPlaying(playStatus))
     const { isPlaying, currentSong, library } = useSelector(state => state)
     const pickCurrentSong = (song) => dispatch(pickSong(song))
+    const setPlaylist = (playlist) => dispatch(setPlaylist(playlist))
 
     const findAlbum = () => {
         for (let i = 0; i < library.length; i++) {
@@ -65,10 +66,6 @@ const AudioControls = ({
 
         return () => Unload();
     }, [ currentSong ]);
-
-    useEffect(() => {
-        isSongAFavorite()
-    }, [ currentSong ])
 
     const Unload = async () => {
         await sound.current.unloadAsync();
@@ -135,10 +132,12 @@ const AudioControls = ({
     };
 
     const addSongToFavorites = async (song) => {
-        const docRef = doc(firestore, "users", auth.currentUser.uid)
-        const updateFavorites = await updateDoc(docRef, {
-            favorites: arrayUnion(song)
-        })
+        if(!favorites?.includes(song)) {
+            const docRef = doc(firestore, "users", auth.currentUser.uid)
+            const updateFavorites = await updateDoc(docRef, {
+                favorites: arrayUnion(song)
+            })
+        }
     }
 
     const getFavorites = async () => {
@@ -147,16 +146,6 @@ const AudioControls = ({
         const userInfo = docSnap.data()
         setFavorites(userInfo.favorites)
     }
-
-    const isSongAFavorite = () => {
-        if (favorites?.includes(currentSong)) {
-            setIsFavorite(true)
-        } else {
-            setIsFavorite(false)
-        }
-    }
-
-    console.log(isFavorite, "Fav")
 
     return (
         <Animated.View style={{ flex: 1 }}>

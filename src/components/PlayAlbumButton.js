@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons';
 import tailwind from 'tailwind-rn';
 import { useSelector, useDispatch } from 'react-redux';
-import { setPlaying, pickSong } from '../store/taskAction'
+import { pickSong, setPlaylist } from '../store/taskAction'
 
-const PlayAlbumButton = () => {
+
+const PlayAlbumButton = ({ album }) => {
+    const [ playlistList, setPlaylistList ] = useState()
     const dispatch = useDispatch()
-    const setIsPlaying = (playStatus) => dispatch(setPlaying(playStatus))
     const { isPlaying, currentSong, library } = useSelector(state => state)
     const pickCurrentSong = (song) => dispatch(pickSong(song))
+    const setNewPlaylist = (playlist) => dispatch(setPlaylist(playlist))
+
+    useEffect(() => {
+        splicedPlaylist()
+    }, [])
+
+    const splicedPlaylist = () => {
+        const splicedList = album.tracks.slice(1, album.tracks.length + 1)
+        setPlaylistList(splicedList)
+    }
     
     const findAlbum = () => {
         for (let i = 0; i < library.length; i++) {
@@ -32,6 +43,10 @@ const PlayAlbumButton = () => {
                 tailwind(`flex-row justify-evenly items-center bg-gray-200 rounded-lg w-32 py-2 mb-5 mx-10`),
                 styles.shadow
             ]}
+            onPress={() => {
+                pickCurrentSong(album.tracks[0])
+                setNewPlaylist(playlistList)
+            }}
         >
             <FontAwesome5 name="play" size={24} style={ tailwind(`text-red-500`) } />
             <Text style={ tailwind(`p-2 text-red-500 font-bold`) }>Play</Text>

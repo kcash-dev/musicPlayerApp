@@ -22,8 +22,6 @@ const RegisterScreen = () => {
         if (auth && name && email && password) {
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredentials) => {
-                    console.log(name, photoURL)
-                    console.log(userCredentials)
                     userCredentials.user.displayName = name;
                     userCredentials.user.photoURL = photoURL;
                     setUserInfoFirestore()

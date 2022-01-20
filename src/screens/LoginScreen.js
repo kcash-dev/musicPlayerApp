@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, TextInput, SafeAreaView, Pressable, Image } from 'react-native'
+import { StyleSheet, Text, View, TextInput, SafeAreaView, Pressable, Image, KeyboardAvoidingView, Platform } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { useNavigation } from '@react-navigation/native'
 import { auth, signInWithEmailAndPassword } from '../firebase/firebase'
@@ -31,7 +31,10 @@ const LoginScreen = () => {
 
     return (
         <SafeAreaView style={ [{ flex: 1 }, tailwind(`items-center bg-white`) ]}>
-            <View style={[ tailwind(`h-2/3 justify-evenly w-full items-center`) ]}>
+            <KeyboardAvoidingView 
+                style={[ tailwind(`h-2/3 justify-evenly w-full items-center`) ]}
+                behavior={ Platform.OS === 'ios' ? "padding" : "height" }
+            >
                 <Image 
                     source={{ uri: 'https://i.imgur.com/pH6JB4O.jpg' }}
                     style={{ height: '60%', width: '60%' }}
@@ -65,7 +68,7 @@ const LoginScreen = () => {
                         autoCorrect={ false }
                     />
                 </View>
-            </View>
+            </KeyboardAvoidingView>
             <View style={ tailwind(`w-full items-center py-4`) }>
                 <Pressable
                     style={({ pressed }) => [

@@ -1,4 +1,4 @@
-import { NEXT_SONG, PREVIOUS_SONG, PICK_SONG, SET_PLAYING, SET_SOUND } from "./taskTypes";
+import { NEXT_SONG, PREVIOUS_SONG, PICK_SONG, SET_PLAYING, SET_PLAYLIST } from "./taskTypes";
 import { songList } from "../../assets/songList";
 const initialState = { 
     library: songList,
@@ -25,6 +25,11 @@ const taskReducer = (state = initialState, action) => {
             return {}
         case PREVIOUS_SONG:
             return {}
+        case SET_PLAYLIST:
+            return {
+                ...state,
+                playlist: action.payload
+            }
         default:
             return state;
     }
