@@ -14,13 +14,8 @@ const PlayAlbumButton = ({ album }) => {
     const setNewPlaylist = (playlist) => dispatch(setPlaylist(playlist))
 
     useEffect(() => {
-        splicedPlaylist()
+        setPlaylistList(album.tracks)
     }, [])
-
-    const splicedPlaylist = () => {
-        const splicedList = album.tracks.slice(1, album.tracks.length + 1)
-        setPlaylistList(splicedList)
-    }
     
     const findAlbum = () => {
         for (let i = 0; i < library.length; i++) {

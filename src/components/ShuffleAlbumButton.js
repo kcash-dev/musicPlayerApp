@@ -31,8 +31,6 @@ const ShuffleAlbumButton = ({ album }) => {
         return Math.floor(Math.random() * max);
     }
 
-    console.log(playlist, "PLAYLIST")
-
     return (
         <Pressable
             style={({ pressed }) => [
@@ -42,7 +40,7 @@ const ShuffleAlbumButton = ({ album }) => {
             ]}
             onPress={() => {
                 pickCurrentSong(shuffledList[0])
-                setNewPlaylist(shuffledList.slice(1, shuffledList.length + 1))
+                setNewPlaylist(shuffledList)
             }}
         >
             <Ionicons name="ios-shuffle" size={32} style={ tailwind(`text-red-500`) } />

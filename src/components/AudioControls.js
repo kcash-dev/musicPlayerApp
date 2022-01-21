@@ -8,6 +8,7 @@ import { Audio } from 'expo-av';
 import { useSelector, useDispatch } from 'react-redux';
 import { setPlaying, pickSong, setPlaylist } from '../store/taskAction'
 import { auth, firestore, getDoc, doc, updateDoc, arrayUnion, arrayRemove } from '../firebase/firebase'
+import { SET_PLAYLIST } from '../store/taskTypes';
 
 const AudioControls = ({ 
     imageTransition,
@@ -26,12 +27,13 @@ const AudioControls = ({
     const sound = useRef(new Audio.Sound());
     const [ favorites, setFavorites ] = useState();
     const [ isFavorite, setIsFavorite ] = useState(false)
+    const [ playlistNumber, setPlaylistNumber ] = useState(0)
 
     const dispatch = useDispatch()
     const setIsPlaying = (playStatus) => dispatch(setPlaying(playStatus))
-    const { isPlaying, currentSong, library } = useSelector(state => state)
+    const { isPlaying, currentSong, library, playlist } = useSelector(state => state)
     const pickCurrentSong = (song) => dispatch(pickSong(song))
-    const setPlaylist = (playlist) => dispatch(setPlaylist(playlist))
+    const setPlaylistSongs = (playlist) => dispatch(setPlaylist(playlist))
 
     const findAlbum = () => {
         for (let i = 0; i < library.length; i++) {
@@ -45,6 +47,15 @@ const AudioControls = ({
         }
     }
 
+    const findSongIndex = () => {
+        for(let i = 0; i < playlist.length; i++) {
+            if (playlist[i].trackName === currentSong.trackName) {
+                setPlaylistNumber(i)
+            }
+        }
+    }
+
+
     useEffect(() => {
       Audio.setAudioModeAsync({
         allowsRecordingIOS: false,
@@ -56,6 +67,7 @@ const AudioControls = ({
         playThroughEarpieceAndroid: true
       })
       getFavorites();
+      findSongIndex()
     }, [])
 
     useEffect(() => {
@@ -116,19 +128,13 @@ const AudioControls = ({
     };
 
     const NextSong = () => {
-        if (currentSong.id === foundAlbum[foundAlbum.length - 1].id) {
-          pickCurrentSong(foundAlbum[0]);
-        } else {
-          pickCurrentSong(foundAlbum[foundIndex + 1]);
-        }
+        pickCurrentSong(playlist[playlistNumber + 1])
+        setPlaylistNumber(playlistNumber + 1)
     };
 
     const PrevSong = () => {
-        if (currentSong.id === 0) {
-          pickCurrentSong(foundAlbum[foundAlbum.length - 1]);
-        } else {
-          pickCurrentSong(foundAlbum[foundIndex - 1]);
-        }
+        pickCurrentSong(playlist[playlistNumber - 1])
+        setPlaylistNumber(playlistNumber - 1)
     };
 
     const addSongToFavorites = async (song) => {

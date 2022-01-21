@@ -189,10 +189,26 @@ const PlayerBar = ({
                     playButtonMargin={ playButtonMargin.value }
                 />
             </Pressable>
-            { isShowing ? 
-                <View style={[ tailwind(`absolute`), { right: '32%', top: '2%' } ]}>
-                    <Text style={ tailwind(`text-2xl font-bold`) }>Now Playing</Text>
-                </View>
+            { isShowing ?
+                <View style={[ tailwind(`absolute flex-row w-full justify-evenly`), { top: '5%', left: '-5%' } ]}>
+                    <Pressable 
+                        style={({ pressed }) => [
+                            { opacity: pressed ? 0.5 : 1 },
+                            tailwind(`h-full`)
+                        ]}
+                    >
+                        <Text style={ tailwind(`text-xl font-bold`) }>Now Playing</Text>
+                    </Pressable>
+                    <View style={ tailwind(`border-l h-full`) }/>
+                    <Pressable 
+                        style={({ pressed }) => [
+                            { opacity: pressed ? 0.5 : 1 },
+                            tailwind(`h-full`)
+                        ]}
+                    >
+                        <Text style={ tailwind(`text-xl font-bold`) }>Up next</Text>
+                    </Pressable>
+                </View> 
                 :
                 null
             }
