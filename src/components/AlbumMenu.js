@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Pressable } from 'react-native'
 import tailwind from 'tailwind-rn'
 const AlbumMenu = () => {
     return (
-        <View style={[ tailwind(`absolute right-5 top-8 w-1/3 items-center`), styles.shadow ]}>
+        <View style={[ tailwind(`absolute right-5 top-8 w-1/3 items-center bg-white`), styles.shadow, { zIndex: 1 } ]}>
             <Pressable 
                 style={({ pressed }) => [
                     { 

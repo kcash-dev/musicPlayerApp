@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { StyleSheet, Text, View, Pressable, Dimensions, StatusBar, Platform } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { StyleSheet, Text, View, Pressable, Dimensions, StatusBar, Platform, FlatList } from 'react-native'
 import tailwind from 'tailwind-rn';
 import Animated, {
     useSharedValue,
@@ -7,9 +7,11 @@ import Animated, {
     useAnimatedStyle
 } from 'react-native-reanimated';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import AudioControls from '../components/AudioControls';
 import { useSelector } from 'react-redux';
 
+//Components
+import PlaylistSelection from '../components/PlaylistSelection'
+import AudioControls from '../components/AudioControls';
 
 const windowHeight = Dimensions.get('window').height
 const windowWidth = Dimensions.get('window').width
@@ -36,11 +38,14 @@ const PlayerBar = ({
     const nextButtonSize = useSharedValue(24)
     const playButtonMargin = useSharedValue(0)
     const controlButtonContainerWidth = useSharedValue(windowWidth * .33)
+    const playListPosition = useSharedValue(windowHeight)
+    const selectedPosition = useSharedValue(windowWidth * -.015)
 
     const [ isShowing, setIsShowing ] = useState(false)
     const [ statusBarHeight, setStatusBarHeight ] = useState();
+    const [ nowPlayingSelected, setNowPlayingSelected ] = useState(true)
 
-    const currentSong = useSelector(state => state.currentSong)
+    const { currentSong, playlist } = useSelector(state => state)
 
 
     const getStatusBar = () => {
@@ -54,6 +59,7 @@ const PlayerBar = ({
 
     useEffect(() => {
         getStatusBar()
+        removeCurrentSongFromPlaylist()
     }, [])
 
     const searchConfig = {
@@ -126,16 +132,45 @@ const PlayerBar = ({
             width: withTiming(controlButtonContainerWidth.value, transitionConfig)
         }
     })
+
+    const playlistTransitionAnimatedStyles = useAnimatedStyle(() => {
+        return {
+            transform: [
+                { translateY: withTiming(playListPosition.value, transitionConfig) }
+            ]
+        }
+    })
+
+    const selectedTransitionAnimatedStyles = useAnimatedStyle(() => {
+        return {
+            transform: [
+                { translateX: withTiming(selectedPosition.value, transitionConfig) }
+            ]
+        }
+    })
+
+    const removeCurrentSongFromPlaylist = () => {
+        for (let i = 0; i < playlist.length; i++) {
+            if(playlist[i].id === currentSong.id) {
+                playlist.splice(i, 1)
+            }
+        }
+    }
+
+    const toFindDuplicates = (array) => array.filter((item, index) => array.indexOf(item) === index) 
+    const fixedPlaylist = toFindDuplicates(playlist)
+
     return (
-        <Animated.View style={[ tailwind(`bg-gray-100 absolute w-full`), playerBarStyles, { height: windowHeight, zIndex: 1  } ]}>
+        <Animated.View style={[ tailwind(`bg-white absolute w-full`), playerBarStyles, { height: windowHeight, zIndex: 1  } ]}>
             <Pressable
                 style={({ pressed }) => [
                     {
                         opacity: pressed ? 0.7 : 1,
-                        height: '10%'
+                        height: '10%',
+                        display: nowPlayingSelected ? 'flex' : 'none'
                     },
-                    tailwind(`w-full bg-white rounded-t-lg w-full flex-row items-center justify-evenly`),
-                    styles.shadow
+                    tailwind(`w-full bg-white rounded-t-lg flex-row items-center justify-evenly`),
+                    styles.shadow,
                 ]}
                 onPress={() => {
                     if(!isShowing) {
@@ -190,29 +225,66 @@ const PlayerBar = ({
                 />
             </Pressable>
             { isShowing ?
-                <View style={[ tailwind(`absolute flex-row w-full justify-evenly`), { top: '5%', left: '-5%' } ]}>
-                    <Pressable 
-                        style={({ pressed }) => [
-                            { opacity: pressed ? 0.5 : 1 },
-                            tailwind(`h-full`)
-                        ]}
-                    >
-                        <Text style={ tailwind(`text-xl font-bold`) }>Now Playing</Text>
-                    </Pressable>
+                <View style={[ tailwind(`absolute flex-row w-full justify-evenly bg-white`), { top: '5%', left: '-5%' } ]}>
+                    <View>
+                        <Pressable 
+                            style={({ pressed }) => [
+                                { opacity: pressed ? 0.5 : 1 },
+                                tailwind(``),
+                            ]}
+                            onPress={() => {
+                                selectedPosition.value = windowWidth * -.015
+                                setNowPlayingSelected(true)
+                                playListPosition.value = windowHeight
+                            }}
+                        >
+                            <Text style={ tailwind(`text-xl font-bold text-opacity-100`) }>Now Playing</Text>
+                        </Pressable>
+                    </View>
                     <View style={ tailwind(`border-l h-full`) }/>
-                    <Pressable 
-                        style={({ pressed }) => [
-                            { opacity: pressed ? 0.5 : 1 },
-                            tailwind(`h-full`)
+                    <View>
+                        <Pressable 
+                            style={({ pressed }) => [
+                                { opacity: pressed ? 0.5 : 1 },
+                                tailwind(``),
+                            ]}
+                            onPress={() => {
+                                selectedPosition.value = windowWidth * .51
+                                setNowPlayingSelected(false)
+                                playListPosition.value = 0
+                            }}
+                        >
+                            <Text style={ tailwind(`text-xl font-bold text-opacity-100`) }>Up next</Text>
+                        </Pressable>
+                    </View>
+                    <Animated.View
+                        style={[ 
+                            nowPlayingSelected ? tailwind(`py-4 px-16 rounded-lg absolute bg-gray-400 bg-opacity-50`) : tailwind(`py-4 px-14 absolute rounded-lg bg-gray-400 bg-opacity-50`),
+                            selectedTransitionAnimatedStyles,
+                            { zIndex: -1 }
                         ]}
-                    >
-                        <Text style={ tailwind(`text-xl font-bold`) }>Up next</Text>
-                    </Pressable>
+                    />
+                    <Animated.View style={[ 
+                        tailwind(`bg-white rounded-t-lg absolute top-10 left-5 w-full`), 
+                        {
+                            height: windowHeight
+                        }, 
+                        styles.shadow,
+                        playlistTransitionAnimatedStyles
+                    ]}>
+                        <FlatList 
+                            data={ fixedPlaylist }
+                            keyExtractor={item => item.trackName}
+                            renderItem={({ item }) => (
+                                <PlaylistSelection item={ item }/>
+                            )}
+                        />
+                    </Animated.View>
                 </View> 
                 :
                 null
             }
-            </Animated.View>
+        </Animated.View>
     )
 }
 
@@ -229,5 +301,8 @@ const styles = StyleSheet.create({
         shadowRadius: 4.65,
 
         elevation: 8,
+    },
+    selected: {
+        backgroundColor: 'rgba(163, 165, 166, 0.3)',
     }
 })

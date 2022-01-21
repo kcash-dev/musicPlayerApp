@@ -33,7 +33,6 @@ const AudioControls = ({
     const setIsPlaying = (playStatus) => dispatch(setPlaying(playStatus))
     const { isPlaying, currentSong, library, playlist } = useSelector(state => state)
     const pickCurrentSong = (song) => dispatch(pickSong(song))
-    const setPlaylistSongs = (playlist) => dispatch(setPlaylist(playlist))
 
     const findAlbum = () => {
         for (let i = 0; i < library.length; i++) {
@@ -54,7 +53,6 @@ const AudioControls = ({
             }
         }
     }
-
 
     useEffect(() => {
       Audio.setAudioModeAsync({
@@ -155,7 +153,12 @@ const AudioControls = ({
 
     return (
         <Animated.View style={{ flex: 1 }}>
-            <Animated.View style={[ tailwind(`w-1/6 h-full absolute left-1 rounded-lg`), { overflow: 'hidden' }, imageTransition ]}>
+            <Animated.View style={[ 
+                tailwind(`w-1/6 h-full absolute left-1 rounded-lg`), 
+                { overflow: 'hidden' }, 
+                imageTransition, 
+                isShowing ? [styles.shadow, { backgroundColor: 'white' }] : null 
+            ]}>
                 <Animated.Image 
                     source={{ uri: currentSong.trackArt }}
                     style={{ width: '100%', height: '100%', borderRadius: 10 }}
@@ -282,5 +285,16 @@ const styles = StyleSheet.create({
         width: '50%',
         paddingHorizontal: 12,
         left: 48
+    },
+    shadow: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.30,
+        shadowRadius: 4.65,
+
+        elevation: 8,
     }
 })
