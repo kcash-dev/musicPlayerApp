@@ -110,6 +110,7 @@ const UserButton = () => {
                                     { opacity: pressed ? 0.7 : 1 },
                                     tailwind(`mt-3`)
                                 ]}
+                                onPress={() => navigation.navigate('EditInfoScreen')}
                             >
                                 <Text style={ tailwind(``) }>Edit Info</Text>
                             </Pressable>
