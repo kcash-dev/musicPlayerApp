@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import "firebase/firestore";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateEmail, updatePassword, updateProfile } from "firebase/auth";
 import { getFirestore, setDoc, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'
 import { firebaseConfig } from '../config/config'
 
@@ -21,5 +21,8 @@ export {
     doc,
     updateDoc,
     arrayUnion,
-    arrayRemove 
+    arrayRemove,
+    updatePassword,
+    updateEmail,
+    updateProfile 
 };
