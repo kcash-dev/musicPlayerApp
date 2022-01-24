@@ -12,14 +12,34 @@ import {
 } from '../firebase/firebase.js'
 import tailwind from 'tailwind-rn';
 import { useNavigation } from '@react-navigation/native';
+import Animated, {
+  useSharedValue,
+  withTiming,
+  useAnimatedStyle
+} from 'react-native-reanimated';
+
+//Components
+import BackButton from '../components/BackButton'
+import Button from '../components/Button.js';
 
 const EditInfoScreen = () => {
   const [ name, setName ] = useState()
   const [ email, setEmail ] = useState()
   const [ photoURL, setPhotoURL ] = useState()
   const [ password, setPassword ] = useState()
+  const buttonSize = useSharedValue(1)
 
   const navigation = useNavigation()
+
+  const transitionConfig = {
+    duration: 100
+  }
+  
+  const buttonAnimatedStyles = useAnimatedStyle(() => {
+    return {
+        transform: [{ scale: withTiming(buttonSize.value, transitionConfig) }]
+    }
+  })
 
   const getUserInfo = async () => {
     const docRef = doc(firestore, "users", auth.currentUser.uid)
@@ -58,8 +78,6 @@ const EditInfoScreen = () => {
       email: email,
       photoURL: photoURL
     })
-
-    navigation.pop()
     
   }
 
@@ -69,6 +87,8 @@ const EditInfoScreen = () => {
 
   return (
     <SafeAreaView style={ tailwind(`items-center`) }>
+      <BackButton />
+      <Text style={ tailwind(`text-xl font-bold text-center mt-20`) }>Edit Info</Text>
       <View style={ tailwind(`w-5/6`) }>
         <Text style={ tailwind(`font-bold text-lg`) }>Name</Text>
         <TextInput 
@@ -125,20 +145,17 @@ const EditInfoScreen = () => {
           autoCorrect={ false }
         />
       </View>
-      <Pressable 
-        style={({ pressed }) => [
-          { opacity: pressed ? 0.5 : 1 },
-          tailwind(`items-center justify-center px-10 py-3 bg-red-400 rounded-lg mt-10`)
-        ]}
-        onPress={() => saveUserInfo()}
-      >
-        <Text>Save</Text>
-      </Pressable>
-
+      <Button 
+        text="Save"
+        pressOutFunction={saveUserInfo}
+        color="red"
+      />
     </SafeAreaView>
   );
 };
 
 export default EditInfoScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+
+});

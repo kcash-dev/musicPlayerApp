@@ -4,6 +4,7 @@ import tailwind from 'tailwind-rn'
 
 //Components
 import PressableSelection from './PressableSelection'
+import PressableWrapper from './PressableWrapper'
 
 const AlbumCarousel = ({ item }) => {
     return (

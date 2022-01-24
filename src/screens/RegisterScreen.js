@@ -10,6 +10,9 @@ import {
     doc 
 } from '../firebase/firebase';
 
+//Components
+import Button from '../components/Button';
+
 const RegisterScreen = () => {
     const [ name, setName ] = useState()
     const [ email, setEmail ] = useState()
@@ -49,10 +52,10 @@ const RegisterScreen = () => {
 
     return (
         <SafeAreaView style={ [{ flex: 1 }, tailwind(`items-center bg-white`) ]}>
-            <View style={[ tailwind(`justify-evenly h-5/6 w-full items-center`) ]}>
+            <View style={[ tailwind(`justify-evenly h-4/6 w-full items-center`) ]}>
                 <Image 
                     source={{ uri: 'https://i.imgur.com/pH6JB4O.jpg' }}
-                    style={{ height: '60%', width: '60%' }}
+                    style={{ height: '40%', width: '40%' }}
                     resizeMode='contain'
                 />
                 <Text style={ tailwind(`text-center text-3xl font-bold`) }>Register</Text>
@@ -108,29 +111,11 @@ const RegisterScreen = () => {
                     />
                 </View>
             </View>
-            <View style={ tailwind(`w-full items-center py-4`) }>
-                <Pressable
-                    style={({ pressed }) => [
-                        { opacity: pressed ? 0.5 : 1 },
-                        tailwind(`py-3 w-1/3 rounded-lg bg-red-400 items-center`),
-                        styles.shadow
-                    ]}
-                    onPress={() => register()}
-                >
-                    <Text style={ tailwind(`text-white font-bold`) }>Register</Text>
-                </Pressable>
+            <View style={ tailwind(`w-full items-center`) }>
+                <Button text="Register" pressOutFunction={register} color="red" />
             </View>
             <View style={ tailwind(`w-full items-center`) }>
-                <Pressable
-                    style={({ pressed }) => [
-                        { opacity: pressed ? 0.5 : 1 },
-                        tailwind(`py-3 w-1/3 rounded-lg bg-gray-200 items-center`),
-                        styles.shadow
-                    ]}
-                    onPress={() => navigation.navigate('LoginScreen')}
-                >
-                    <Text style={ tailwind(`text-red-400 font-bold`) }>Login</Text>
-                </Pressable>
+                <Button text="Login" pressOutFunction={() => navigation.navigate('LoginScreen')} color="gray" />
             </View>
         </SafeAreaView>
     )

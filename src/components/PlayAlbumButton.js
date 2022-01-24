@@ -5,6 +5,9 @@ import tailwind from 'tailwind-rn';
 import { useSelector, useDispatch } from 'react-redux';
 import { pickSong, setPlaylist } from '../store/taskAction'
 
+//Components
+import PressableWrapper from './PressableWrapper';
+
 
 const PlayAlbumButton = ({ album }) => {
     const [ playlistList, setPlaylistList ] = useState()
@@ -31,21 +34,23 @@ const PlayAlbumButton = ({ album }) => {
 
     const foundAlbum = findAlbum()
 
+    const playAlbumPress = () => {
+        pickCurrentSong(album.tracks[0])
+        setNewPlaylist(playlistList)
+    }
+
     return (
-        <Pressable
-            style={({ pressed }) => [
-                { opacity: pressed ? 0.7 : 1 },
-                tailwind(`flex-row justify-evenly items-center bg-gray-200 rounded-lg w-32 py-2 mb-5 mx-10`),
-                styles.shadow
-            ]}
-            onPress={() => {
-                pickCurrentSong(album.tracks[0])
-                setNewPlaylist(playlistList)
-            }}
-        >
-            <FontAwesome5 name="play" size={24} style={ tailwind(`text-red-500`) } />
-            <Text style={ tailwind(`p-2 text-red-500 font-bold`) }>Play</Text>
-        </Pressable>
+        <PressableWrapper pressOut={ playAlbumPress }>
+            <View
+                style={[
+                    tailwind(`flex-row justify-evenly items-center bg-gray-200 rounded-lg w-32 py-2 mb-5 mx-10`),
+                    styles.shadow
+                ]}
+            >
+                <FontAwesome5 name="play" size={24} style={ tailwind(`text-red-500`) } />
+                <Text style={ tailwind(`p-2 text-red-500 font-bold`) }>Play</Text>
+            </View>
+        </PressableWrapper>
     )
 }
 

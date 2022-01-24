@@ -4,6 +4,9 @@ import tailwind from 'tailwind-rn'
 import { useNavigation } from '@react-navigation/native'
 import { auth, signInWithEmailAndPassword } from '../firebase/firebase'
 
+//Components
+import Button from '../components/Button'
+
 const LoginScreen = () => {
     const [ email, setEmail ] = useState()
     const [ password, setPassword ] = useState()
@@ -70,28 +73,10 @@ const LoginScreen = () => {
                 </View>
             </KeyboardAvoidingView>
             <View style={ tailwind(`w-full items-center py-4`) }>
-                <Pressable
-                    style={({ pressed }) => [
-                        { opacity: pressed ? 0.5 : 1 },
-                        tailwind(`py-3 w-1/3 rounded-lg bg-red-400 items-center`),
-                        styles.shadow
-                    ]}
-                    onPress={() => signIn()}
-                >
-                    <Text style={ tailwind(`text-white font-bold`) }>Login</Text>
-                </Pressable>
+                <Button text="Login" pressOutFunction={signIn} color="red"/>
             </View>
             <View style={ tailwind(`w-full items-center`) }>
-                <Pressable
-                    style={({ pressed }) => [
-                        { opacity: pressed ? 0.5 : 1 },
-                        tailwind(`py-3 w-1/3 rounded-lg bg-gray-200 items-center`),
-                        styles.shadow
-                    ]}
-                    onPress={() => navigation.navigate('RegisterScreen')}
-                >
-                    <Text style={ tailwind(`text-red-400 font-bold`) }>Register</Text>
-                </Pressable>
+                <Button text="Register" pressOutFunction={() => navigation.navigate('RegisterScreen')} color="gray"/>
             </View>
         </SafeAreaView>
     )
