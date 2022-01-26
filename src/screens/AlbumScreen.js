@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View, FlatList, SafeAreaView, Image, Pressable } from 'react-native'
 import tailwind from 'tailwind-rn';
 import { useNavigation } from '@react-navigation/native';
@@ -10,6 +10,7 @@ import PlayAlbumButton from '../components/PlayAlbumButton';
 import ShuffleAlbumButton from '../components/ShuffleAlbumButton';
 import BackButton from '../components/BackButton';
 import AlbumSongChoice from '../components/AlbumSongChoice';
+import AlbumMenu from '../components/AlbumMenu';
 
 //Redux
 import { useSelector } from 'react-redux';
@@ -17,9 +18,12 @@ import OtherArtistAlbums from '../components/OtherArtistAlbums';
 import ArtistPressableSelection from '../components/ArtistPressableSelection';
 
 const AlbumScreen = ({ route }) => {
+    const [ menuShowing, setMenuShowing ] = useState(false)
     const { item, artistName } = route.params;
     let duration = 0
     const navigation = useNavigation()
+
+    console.log(item, "THIS IS THE ITEM")
 
     const currentSong = useSelector(state => state.currentSong)
     const album = item.albumName
@@ -97,7 +101,7 @@ const AlbumScreen = ({ route }) => {
                     data={ item.tracks }
                     style={ tailwind(`h-full`) }
                     renderItem={({ item }) => (
-                        <AlbumSongChoice item={ item } album={ album }/>
+                        <AlbumSongChoice item={ item } album={ album } showing={ menuShowing } setShowing={ setMenuShowing } />
                     )}
                     keyExtractor={(item) => item.trackName}
                     ListFooterComponent={ footer }
@@ -105,6 +109,11 @@ const AlbumScreen = ({ route }) => {
             </View>
             { currentSong ?
                 <PlayerBar />
+                :
+                null
+            }
+            { menuShowing ?
+                <AlbumMenu artist={ item.artistPicture } />
                 :
                 null
             }

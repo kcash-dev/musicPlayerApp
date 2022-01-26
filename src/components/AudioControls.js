@@ -70,7 +70,8 @@ const AudioControls = ({
 
     useEffect(() => {
         const foundAlbum = findAlbum()
-        const findIndexOfSong = (songObj) => songObj === currentSong 
+        const findIndexOfSong = (songObj) => songObj.id === currentSong.id
+        console.log(findIndexOfSong, "INDEX") 
         setFoundIndex(foundAlbum.findIndex(findIndexOfSong))
         LoadAudio();
 

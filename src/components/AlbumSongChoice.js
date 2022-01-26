@@ -7,14 +7,22 @@ import { pickSong } from '../store/taskAction';
 import AlbumMenu from './AlbumMenu';
 import { Entypo } from '@expo/vector-icons';
 
-const AlbumSongChoice = ({ item, album }) => {
+const AlbumSongChoice = ({ item, album, setShowing, showing }) => {
     const dispatch = useDispatch()
     const pickCurrentSong = (song) => dispatch(pickSong(song))
     const { currentSong } = useSelector(state => state)
-    const [ menuShowing, setMenuShowing ] = useState(false)
+    // const [ menuShowing, setMenuShowing ] = useState(false)
 
     let minutes = Math.floor(item.duration / 60)
     let seconds = item.duration - minutes * 60
+
+    const setMenuShowing = () => {
+        if (showing) {
+            setShowing(false)
+        } else {
+            setShowing(true)
+        }
+    }
 
     return (
         <Pressable
@@ -51,7 +59,7 @@ const AlbumSongChoice = ({ item, album }) => {
                         { opacity: pressed ? 0.5 : 1 }
                     ]}
                     onPress={() => {
-                        if(menuShowing) {
+                        if(showing) {
                             setMenuShowing(false)
                         } else {
                             setMenuShowing(true) 
@@ -61,11 +69,7 @@ const AlbumSongChoice = ({ item, album }) => {
                     <MaterialIcons name="more-vert" size={24} color="black" />
                 </Pressable>
             </View>
-            { menuShowing ?
-                <AlbumMenu />
-                :
-                null
-            }
+
         </Pressable>
     )
 }

@@ -6,6 +6,9 @@ import tailwind from 'tailwind-rn';
 import { useSelector, useDispatch } from 'react-redux';
 import { pickSong, setPlaylist } from '../store/taskAction'
 
+//Components
+import PressableWrapper from './PressableWrapper';
+
 const ShuffleAlbumButton = ({ album }) => {
     const [ shuffledList, setShuffledList ] = useState()
     const dispatch = useDispatch()
@@ -31,21 +34,23 @@ const ShuffleAlbumButton = ({ album }) => {
         return Math.floor(Math.random() * max);
     }
 
+    const runShuffledAlbum = () => {
+        pickCurrentSong(shuffledList[0])
+        setNewPlaylist(shuffledList)
+    }
+
     return (
-        <Pressable
-            style={({ pressed }) => [
-                { opacity: pressed ? 0.7 : 1 },
-                tailwind(`flex-row justify-evenly items-center bg-gray-200 rounded-lg w-32 py-2 mb-5 mx-10`),
-                styles.shadow
-            ]}
-            onPress={() => {
-                pickCurrentSong(shuffledList[0])
-                setNewPlaylist(shuffledList)
-            }}
-        >
-            <Ionicons name="ios-shuffle" size={32} style={ tailwind(`text-red-500`) } />
-            <Text style={ tailwind(`p-2 text-red-500 font-bold`) }>Shuffle</Text>
-        </Pressable>
+        <PressableWrapper pressOut={ runShuffledAlbum }>
+            <View
+                style={[
+                    tailwind(`flex-row justify-evenly items-center bg-gray-200 rounded-lg w-32 py-2 mb-5 mx-10`),
+                    styles.shadow
+                ]}
+            >
+                <Ionicons name="ios-shuffle" size={32} style={ tailwind(`text-red-500`) } />
+                <Text style={ tailwind(`p-2 text-red-500 font-bold`) }>Shuffle</Text>
+            </View>
+        </PressableWrapper>
     )
 }
 

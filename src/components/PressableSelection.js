@@ -36,6 +36,7 @@ const PressableSelection = ({ item, artistName, navigationScreen, artistPicture,
     return (
         <PressableWrapper
             pressOut={navigationFunction}
+            style={ tailwind(`w-11/12`) }
         >
             <Animated.View style={[ tailwind(`h-full`), buttonAnimatedStyles ]}>
                 <View style={[ styles.shadow, tailwind(`h-full`) ]}>

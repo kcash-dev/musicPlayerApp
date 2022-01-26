@@ -7,7 +7,7 @@ import Animated, {
     useAnimatedStyle
   } from 'react-native-reanimated';
 
-const PressableWrapper = ({ children, pressIn, pressOut }) => {
+const PressableWrapper = ({ children, pressIn, pressOut, style }) => {
     const buttonSize = useSharedValue(1)
 
     const transitionConfig = {
@@ -29,7 +29,7 @@ const PressableWrapper = ({ children, pressIn, pressOut }) => {
     }
 
   return (
-    <Animated.View style={[ tailwind(``), buttonAnimatedStyles ]}>
+    <Animated.View style={[ style, buttonAnimatedStyles ]}>
         <Pressable
             style={tailwind(``)}
             onPressIn={() => {

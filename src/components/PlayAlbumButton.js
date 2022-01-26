@@ -16,6 +16,8 @@ const PlayAlbumButton = ({ album }) => {
     const pickCurrentSong = (song) => dispatch(pickSong(song))
     const setNewPlaylist = (playlist) => dispatch(setPlaylist(playlist))
 
+    console.log(album, 'album')
+
     useEffect(() => {
         setPlaylistList(album.tracks)
     }, [])
