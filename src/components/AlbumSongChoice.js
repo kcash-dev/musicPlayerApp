@@ -7,7 +7,7 @@ import { pickSong } from '../store/taskAction';
 import AlbumMenu from './AlbumMenu';
 import { Entypo } from '@expo/vector-icons';
 
-const AlbumSongChoice = ({ item, album, setShowing, showing }) => {
+const AlbumSongChoice = ({ item, album, setShowing, showing, songMenuPosition }) => {
     const dispatch = useDispatch()
     const pickCurrentSong = (song) => dispatch(pickSong(song))
     const { currentSong } = useSelector(state => state)
@@ -60,8 +60,10 @@ const AlbumSongChoice = ({ item, album, setShowing, showing }) => {
                     ]}
                     onPress={() => {
                         if(showing) {
+                            songMenuPosition.value = 100
                             setMenuShowing(false)
                         } else {
+                            songMenuPosition.value = 0
                             setMenuShowing(true) 
                         }
                     }}

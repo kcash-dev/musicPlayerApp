@@ -3,9 +3,18 @@ import { StyleSheet, Text, View, Pressable, Image } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-const AlbumMenu = ({ artist }) => {
+
+//Components
+import PressableWrapper from './PressableWrapper';
+
+const AlbumMenu = ({ artist, close }) => {
     return (
-        <View style={[ tailwind(`absolute w-full bottom-0 items-center`), styles.shadow, { zIndex: 1 } ]}>
+        <View style={[ tailwind(`absolute w-full bottom-0 items-center bg-white`), styles.shadow, { zIndex: 1 } ]}>
+            <View style={ tailwind(`h-10 w-full bg-white border-b justify-center items-end px-3`) }>
+                <PressableWrapper pressOut={() => close.value = 0}>
+                    <MaterialCommunityIcons name="close" size={28} color="black" />
+                </PressableWrapper>
+            </View>
             <Pressable 
                 style={({ pressed }) => [
                     { 

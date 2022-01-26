@@ -3,6 +3,11 @@ import { StyleSheet, Text, View, FlatList, SafeAreaView, Image, Pressable } from
 import tailwind from 'tailwind-rn';
 import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
+import Animated, {
+    useSharedValue,
+    withTiming,
+    useAnimatedStyle
+  } from 'react-native-reanimated';
 
 //Components
 import PlayerBar from '../components/PlayerBar';
@@ -23,7 +28,7 @@ const AlbumScreen = ({ route }) => {
     let duration = 0
     const navigation = useNavigation()
 
-    console.log(item, "THIS IS THE ITEM")
+    const songMenuPosition = useSharedValue(-100)
 
     const currentSong = useSelector(state => state.currentSong)
     const album = item.albumName
@@ -35,6 +40,16 @@ const AlbumScreen = ({ route }) => {
     }
    
     getAlbumDuration()
+
+    const transitionConfig = {
+        duration: 200
+    }
+
+    const songMenuSettingsStyles = useAnimatedStyle(() => {
+        return {
+            transform: [{ translateY: withTiming(songMenuPosition.value, transitionConfig) }]
+        }
+    })
 
     const hours = Math.floor(duration / 3600)
     const remaining = duration % 3600
@@ -101,7 +116,7 @@ const AlbumScreen = ({ route }) => {
                     data={ item.tracks }
                     style={ tailwind(`h-full`) }
                     renderItem={({ item }) => (
-                        <AlbumSongChoice item={ item } album={ album } showing={ menuShowing } setShowing={ setMenuShowing } />
+                        <AlbumSongChoice item={ item } album={ album } showing={ menuShowing } setShowing={ setMenuShowing } songMenuPosition={ songMenuPosition }/>
                     )}
                     keyExtractor={(item) => item.trackName}
                     ListFooterComponent={ footer }
@@ -112,11 +127,7 @@ const AlbumScreen = ({ route }) => {
                 :
                 null
             }
-            { menuShowing ?
-                <AlbumMenu artist={ item.artistPicture } />
-                :
-                null
-            }
+            {/* <AlbumMenu artist={ item.artistPicture } style={ songMenuSettingsStyles } close={ songMenuPosition }/> */}
         </SafeAreaView>
     )
 }
