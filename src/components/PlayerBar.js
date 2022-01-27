@@ -16,9 +16,7 @@ import AudioControls from '../components/AudioControls';
 const windowHeight = Dimensions.get('window').height
 const windowWidth = Dimensions.get('window').width
 
-const PlayerBar = ({
-
-}) => {
+const PlayerBar = () => {
     const barWidth = useSharedValue(0)
     const playerHeight = useSharedValue(windowHeight - 65)
     const imagePositionY = useSharedValue(windowHeight * -.045)
@@ -159,6 +157,8 @@ const PlayerBar = ({
 
     const toFindDuplicates = (array) => array.filter((item, index) => array.indexOf(item) === index) 
     const fixedPlaylist = toFindDuplicates(playlist)
+
+    console.log("render")
 
     return (
         <Animated.View style={[ tailwind(`bg-white absolute w-full`), playerBarStyles, { height: windowHeight, zIndex: 1  } ]}>

@@ -535,7 +535,7 @@ const songList = [
                 tracks: [
                     {
                         trackName: 'Keep the Family Close',
-                        trackUrl: require('./songs/drake/views/keepTheFamilyClose.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1jDzkocP_rG9Nf0OG-S0MMco-Or7i_0CT',
                         duration: 201,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -546,7 +546,7 @@ const songList = [
                     },
                     {
                         trackName: '9',
-                        trackUrl: require('./songs/drake/views/9.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=120FoBCG4wOFvHFcfS1IwsuCEmHbrKBau',
                         duration: 185,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -557,7 +557,7 @@ const songList = [
                     },
                     {
                         trackName: 'U With Me?',
-                        trackUrl: require('./songs/drake/views/uWithMe.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1Y_fuKuBjf3_VraG_eajhaOvngD6z-286',
                         duration: 205,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -568,7 +568,7 @@ const songList = [
                     },
                     {
                         trackName: 'Feel No Ways',
-                        trackUrl: require('./songs/drake/views/feelNoWays.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1D9h5txq9TEu-Z7wpPgiM-u5XBhtUIHaU',
                         duration: 170,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -579,7 +579,7 @@ const songList = [
                     },
                     {
                         trackName: 'Hype',
-                        trackUrl: require('./songs/drake/views/hype.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1UgXRttIfuErJqtUJsbNa2u3HCfBv7jtQ',
                         duration: 169,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -590,7 +590,7 @@ const songList = [
                     },
                     {
                         trackName: 'Weston Road Flows',
-                        trackUrl: require('./songs/drake/views/westonRoadFlows.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=11CdUIVWTIu143h8XvKrgxCLOo4V7n1oB',
                         duration: 249,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -601,7 +601,7 @@ const songList = [
                     },
                     {
                         trackName: 'Redemption',
-                        trackUrl: require('./songs/drake/views/redemption.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1-rL7WbU1AitSLm2bpREpxFApASPcO5GK',
                         duration: 246,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -612,7 +612,7 @@ const songList = [
                     },
                     {
                         trackName: 'With You (feat. PARTYNEXTDOOR)',
-                        trackUrl: require('./songs/drake/views/withYou.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1k5l7lOniL4So2hD_Tz0bUVwa9W69nT7d',
                         duration: 194,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -623,7 +623,7 @@ const songList = [
                     },
                     {
                         trackName: 'Faithful (feat. Pimp C & dvsn',
-                        trackUrl: require('./songs/drake/views/faithful.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1-IcZmZKq84uaCjRZidLzdWDBj2m_A-5M',
                         duration: 192,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -634,7 +634,7 @@ const songList = [
                     },
                     {
                         trackName: 'Still Here',
-                        trackUrl: require('./songs/drake/views/stillHere.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1lTjW7cwR0QB2kncgO6KEgxPoPHneBL7L',
                         duration: 272,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -645,7 +645,7 @@ const songList = [
                     },
                     {
                         trackName: 'Controlla',
-                        trackUrl: require('./songs/drake/views/controlla.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=13W2d9iJ0B_KHby4GUXKToZG8ImMRbw9n',
                         duration: 116,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -656,7 +656,7 @@ const songList = [
                     },
                     {
                         trackName: 'One Dance (feat. WizKid & Kyla)',
-                        trackUrl: require('./songs/drake/views/oneDance.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1ppiR5oHzhNNXeeqcKDKBPotT2sMh3q3S',
                         duration: 116,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -667,7 +667,7 @@ const songList = [
                     },
                     {
                         trackName: 'Grammys (feat. Future)',
-                        trackUrl: require('./songs/drake/views/grammys.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1mn4gNGzR0L9L6gFwvTlTwjqRzv-iN9LL',
                         duration: 200,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -678,7 +678,7 @@ const songList = [
                     },
                     {
                         trackName: 'Child\'s Play',
-                        trackUrl: require('./songs/drake/views/childsPlay.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1YgEeUsaSe3thWRzEcwS0-ZjlB7iWUi7A',
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -689,7 +689,7 @@ const songList = [
                     },
                     {
                         trackName: 'Pop Style',
-                        trackUrl: require('./songs/drake/views/popStyle.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=16tAkerIvDFLrYJjImqgdVWsFUa9VpyTh',
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -700,7 +700,7 @@ const songList = [
                     },
                     {
                         trackName: 'Too Good (feat. Rihanna)',
-                        trackUrl: require('./songs/drake/views/tooGood.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1NYid7pluMija1XidoeW_jNWV_1UnibIT',
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -711,7 +711,7 @@ const songList = [
                     },
                     {
                         trackName: 'Summers Over Interlude (feat. Majid Jordan)',
-                        trackUrl: require('./songs/drake/views/summersOverInterlude.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1Rk_KDNsYuOMnGA2CSmCHslnbMwpmOsWl',
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -722,7 +722,7 @@ const songList = [
                     },
                     {
                         trackName: 'Fire & Desire',
-                        trackUrl: require('./songs/drake/views/fireAndDesire.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1lqDzmDsdDus7co1D0svSciQEImEtaOvj',
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -733,7 +733,7 @@ const songList = [
                     },
                     {
                         trackName: 'Views',
-                        trackUrl: require('./songs/drake/views/views.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1NjQPu_bKKMeYyEjG-kqnXLrnTICM9uhN',
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -744,7 +744,7 @@ const songList = [
                     },
                     {
                         trackName: 'Hotline Bling',
-                        trackUrl: require('./songs/drake/views/hotlineBling.mp3'),
+                        trackUrl: 'https://docs.google.com/uc?export=open&id=1lSxhF46A80CT0U55oq5LqnA-wiFOfdNs',
                         duration: 116,
                         trackArtist: 'Drake',
                         albumName: 'Views',

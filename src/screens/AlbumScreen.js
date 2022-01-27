@@ -31,7 +31,8 @@ const AlbumScreen = ({ route }) => {
     const songMenuPosition = useSharedValue(-100)
 
     const currentSong = useSelector(state => state.currentSong)
-    const album = item.albumName
+    const albumName = item.albumName
+    const albumTracks = item.tracks
 
     const getAlbumDuration = () => {
         for (let i = 0; i < item.tracks.length; i++) {
@@ -116,7 +117,7 @@ const AlbumScreen = ({ route }) => {
                     data={ item.tracks }
                     style={ tailwind(`h-full`) }
                     renderItem={({ item }) => (
-                        <AlbumSongChoice item={ item } album={ album } showing={ menuShowing } setShowing={ setMenuShowing } songMenuPosition={ songMenuPosition }/>
+                        <AlbumSongChoice item={ item } albumTracks={ albumTracks } albumName={ albumName } showing={ menuShowing } setShowing={ setMenuShowing } songMenuPosition={ songMenuPosition }/>
                     )}
                     keyExtractor={(item) => item.trackName}
                     ListFooterComponent={ footer }

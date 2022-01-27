@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { StyleSheet, ActivityIndicator, View, Pressable, Text } from 'react-native'
+import { StyleSheet, ActivityIndicator, View, Pressable, Text, Alert } from 'react-native'
 import Animated from 'react-native-reanimated';
 import tailwind from 'tailwind-rn';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -8,7 +8,6 @@ import { Audio } from 'expo-av';
 import { useSelector, useDispatch } from 'react-redux';
 import { setPlaying, pickSong, setPlaylist } from '../store/taskAction'
 import { auth, firestore, getDoc, doc, updateDoc, arrayUnion, arrayRemove } from '../firebase/firebase'
-import { SET_PLAYLIST } from '../store/taskTypes';
 
 const AudioControls = ({ 
     imageTransition,
@@ -33,6 +32,7 @@ const AudioControls = ({
     const setIsPlaying = (playStatus) => dispatch(setPlaying(playStatus))
     const { isPlaying, currentSong, library, playlist } = useSelector(state => state)
     const pickCurrentSong = (song) => dispatch(pickSong(song))
+    const setNewPlaylist = (playlist) => dispatch(setPlaylist(playlist))
 
     const findAlbum = () => {
         for (let i = 0; i < library.length; i++) {
@@ -65,15 +65,17 @@ const AudioControls = ({
         playThroughEarpieceAndroid: true
       })
       getFavorites();
-      findSongIndex()
     }, [])
 
     useEffect(() => {
         const foundAlbum = findAlbum()
         const findIndexOfSong = (songObj) => songObj.id === currentSong.id
-        console.log(findIndexOfSong, "INDEX") 
         setFoundIndex(foundAlbum.findIndex(findIndexOfSong))
+        if(playlist.length === 0) {
+            setNewPlaylist(foundAlbum)
+        }
         LoadAudio();
+        findSongIndex()
 
         return () => Unload();
     }, [ currentSong ]);
@@ -86,21 +88,21 @@ const AudioControls = ({
         SetLoading(true);
         const checkLoading = await sound.current.getStatusAsync();
         if (checkLoading.isLoaded === false) {
-        try {
-            const result = await sound.current.loadAsync(currentSong.trackUrl, {}, true);
-            if (result.isLoaded === false) {
-            SetLoading(false);
-            console.log('Error in Loading Audio');
-            } else {
-            SetLoading(false);
-            SetLoaded(true);
+            try {
+                const result = await sound.current.loadAsync({ uri: currentSong.trackUrl }, {}, true);
+                if (result.isLoaded === false) {
+                    SetLoading(false);
+                    Alert.alert('Something went wrong.')
+                } else {
+                    SetLoading(false);
+                    SetLoaded(true);
+                }
+            } catch (error) {
+                console.log(error);
+                SetLoading(false);
             }
-        } catch (error) {
-            console.log(error);
-            SetLoading(false);
-        }
         } else {
-        SetLoading(false);
+            SetLoading(false);
         }
     };
 
@@ -109,7 +111,7 @@ const AudioControls = ({
         const result = await sound.current.getStatusAsync();
         if (result.isLoaded) {
             if (result.isPlaying === false) {
-            sound.current.playAsync();
+                sound.current.playAsync();
             }
         }
         } catch (error) {}
@@ -128,12 +130,12 @@ const AudioControls = ({
 
     const NextSong = () => {
         pickCurrentSong(playlist[playlistNumber + 1])
-        setPlaylistNumber(playlistNumber + 1)
+        LoadAudio();
     };
 
     const PrevSong = () => {
         pickCurrentSong(playlist[playlistNumber - 1])
-        setPlaylistNumber(playlistNumber - 1)
+        LoadAudio();
     };
 
     const addSongToFavorites = async (song) => {
