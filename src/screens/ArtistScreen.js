@@ -27,7 +27,7 @@ const ArtistScreen = ({ route }) => {
                     </View>
                 </ImageBackground>
             </View>
-            <AlbumCarousel item={ item } artistName={ artistName }/>
+            <AlbumCarousel item={ item } />
             { currentSong ?
                 <PlayerBar />
                 :

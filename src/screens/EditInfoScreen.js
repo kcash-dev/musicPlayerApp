@@ -55,14 +55,12 @@ const EditInfoScreen = () => {
     if(password) {
       updatePassword(auth.currentUser, password)
         .then(() => {
-          console.log('Password updated successfully')
         })
         .catch((error) => console.log(error))
     }
 
     updateEmail(auth.currentUser, email)
       .then(() => {
-        console.log("Email successfully updated.")
       })
       .catch((error) => console.log(error))
 
@@ -70,7 +68,7 @@ const EditInfoScreen = () => {
       displayName: name,
       photoURL: photoURL
     })
-      .then(() => console.log('Profile updated successfully'))
+      .then(() => null)
       .catch((error) => console.log(error))
 
     await setDoc(doc(firestore, "users", auth.currentUser.uid), {

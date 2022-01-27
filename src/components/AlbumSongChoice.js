@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { pickSong } from '../store/taskAction';
-import AlbumMenu from './AlbumMenu';
 import { Entypo } from '@expo/vector-icons';
+import { auth, getDoc, doc, firestore } from '../firebase/firebase.js'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 const AlbumSongChoice = ({ item, album, setShowing, showing, songMenuPosition }) => {
     const dispatch = useDispatch()
     const pickCurrentSong = (song) => dispatch(pickSong(song))
     const { currentSong } = useSelector(state => state)
-    // const [ menuShowing, setMenuShowing ] = useState(false)
+    const [ isFavorite, setIsFavorite ] = useState(false)
 
     let minutes = Math.floor(item.duration / 60)
     let seconds = item.duration - minutes * 60
@@ -23,6 +25,24 @@ const AlbumSongChoice = ({ item, album, setShowing, showing, songMenuPosition })
             setShowing(true)
         }
     }
+
+    const getIsSongAFavorite = async () => {
+        const docRef = doc(firestore, "users", auth.currentUser.uid)
+        const docSnap = await getDoc(docRef)
+        const userInfo = docSnap.data()
+        const favorites = userInfo.favorites
+        for (let i = 0; i < favorites.length; i++) {
+            console.log(favorites[i].trackName, "fav")
+            console.log(item.trackName, "item")
+            if(favorites[i].trackName === item.trackName) {
+                setIsFavorite(true)
+            }
+        }
+    }
+
+    useEffect(() => {
+        getIsSongAFavorite()
+    }, [])
 
     return (
         <Pressable
@@ -41,18 +61,25 @@ const AlbumSongChoice = ({ item, album, setShowing, showing, songMenuPosition })
                     <Text style={ tailwind(`font-bold`) }>{ item.trackNumber }</Text>
                 </View>
             }
-            <View style={ tailwind(`justify-start flex-row w-10/12 items-center`) }>
-                <View style={ tailwind(`justify-center w-2/3`) }>
+            <View style={ tailwind(`justify-start flex-row w-9/12 items-center`) }>
+                <View style={ tailwind(`justify-center`) }>
                     <Text style={ tailwind(`font-bold`) }>{ item.trackName }</Text>
                     <View style={ tailwind(`items-center justify-start flex-row`) }>
                         { item.explicit ? <MaterialIcons name="explicit" size={20} color="gray" style={ tailwind(`pr-1`) }/> : null }
                         <Text style={ tailwind(`text-xs italic`) }>{ item.trackArtist } — { album }</Text>
                     </View>
                 </View>
-                <View style={ tailwind(`justify-center w-1/3`) }>
+                <View style={ tailwind(`justify-center pl-5`) }>
                     <Text style={ tailwind(`font-bold text-gray-600`) }>{ minutes }:{ seconds < 10 ? `0${seconds}` : seconds }</Text>
                 </View>
             </View>
+            { isFavorite ?
+                <View style={ tailwind(`absolute right-14`) }>
+                    <MaterialCommunityIcons name="heart" size={22} color="black" />
+                </View>
+                :
+                null
+            }
             <View style={ tailwind(`w-1/12`) }>
                 <Pressable 
                     style={({ pressed }) => [

@@ -1,10 +1,9 @@
-import React, { useMemo } from 'react'
-import { StyleSheet, View, Dimensions, FlatList } from 'react-native'
+import React from 'react'
+import { StyleSheet, View, FlatList } from 'react-native'
 import tailwind from 'tailwind-rn'
 
 //Components
 import PressableSelection from './PressableSelection'
-import PressableWrapper from './PressableWrapper'
 
 const AlbumCarousel = ({ item }) => {
     return (

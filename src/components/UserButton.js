@@ -145,6 +145,7 @@ const UserButton = () => {
                                 { opacity: pressed ? 0.5 : 1 },
                                 tailwind(`flex-row`)
                             ]}
+                            onPress={() => navigation.navigate('FavoritesScreen')}
                         >
                             <View style={ tailwind(`w-2/12`) }>
                                 <MaterialCommunityIcons name="heart-multiple" size={24} color="black" />

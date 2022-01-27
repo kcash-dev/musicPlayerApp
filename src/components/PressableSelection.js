@@ -63,7 +63,7 @@ const PressableSelection = ({ item, artistName, navigationScreen, artistPicture,
                                 <Text style={ tailwind(`text-xs`) }>Album · { artistName }</Text>
                             </View>
                         </View>
-                        <View style={ tailwind(`w-1/4`) }>
+                        <View style={ tailwind(`absolute top-1 right-1`) }>
                             <Pressable 
                             style={({ pressed }) => [
                                 { opacity: pressed ? 0.5 : 1 }
@@ -76,7 +76,7 @@ const PressableSelection = ({ item, artistName, navigationScreen, artistPicture,
                                 }
                             }}
                         >
-                            <MaterialIcons name="more-vert" size={18} color="black" />
+                            <MaterialIcons name="more-vert" size={20} color="black" />
                         </Pressable>
                         </View>
                     </View>
