@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { StyleSheet, Text, View, Pressable, Dimensions, StatusBar, Platform, FlatList } from 'react-native'
 import tailwind from 'tailwind-rn';
 import Animated, {
@@ -155,10 +155,8 @@ const PlayerBar = () => {
         }
     }
 
-    const toFindDuplicates = (array) => array.filter((item, index) => array.indexOf(item) === index) 
+    const toFindDuplicates = (array) => array.filter(item => item.trackName !== currentSong.trackName) 
     const fixedPlaylist = toFindDuplicates(playlist)
-
-    console.log("render")
 
     return (
         <Animated.View style={[ tailwind(`bg-white absolute w-full`), playerBarStyles, { height: windowHeight, zIndex: 1  } ]}>
@@ -288,7 +286,7 @@ const PlayerBar = () => {
     )
 }
 
-export default PlayerBar
+export default React.memo(PlayerBar)
 
 const styles = StyleSheet.create({
     shadow: {

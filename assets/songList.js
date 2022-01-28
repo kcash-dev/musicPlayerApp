@@ -17,7 +17,7 @@ const songList = [
                 tracks: [
                     {
                         trackName: 'Ain\'t Got Nobody',
-                        trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/aintGotNobody.mp3'),
+                        uri: require('./songs/weezer/everythingWillBeAlrightInTheEnd/aintGotNobody.mp3'),
                         duration: 201,
                         trackArtist: 'Weezer',
                         albumName: 'Everything Will Be Alright In The End',
@@ -28,7 +28,7 @@ const songList = [
                     },
                     {
                         trackName: 'Back to the Shack',
-                        trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/backToTheShack.mp3'),
+                        uri: require('./songs/weezer/everythingWillBeAlrightInTheEnd/backToTheShack.mp3'),
                         duration: 185,
                         trackArtist: 'Weezer',
                         albumName: 'Everything Will Be Alright In The End',
@@ -39,7 +39,7 @@ const songList = [
                     },
                     {
                         trackName: 'Eulogy for a Rock Band',
-                        trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/eulogyForARockBand.mp3'),
+                        uri: require('./songs/weezer/everythingWillBeAlrightInTheEnd/eulogyForARockBand.mp3'),
                         duration: 205,
                         trackArtist: 'Weezer',
                         albumName: 'Everything Will Be Alright In The End',
@@ -51,7 +51,7 @@ const songList = [
                     {
                         trackName: 'Lonely Girl',
                         albumName: 'Everything Will Be Alright In The End',
-                        trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/lonelyGirl.mp3'),
+                        uri: require('./songs/weezer/everythingWillBeAlrightInTheEnd/lonelyGirl.mp3'),
                         duration: 170,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
@@ -61,7 +61,7 @@ const songList = [
                     },
                     {
                         trackName: 'I\'ve Had It Up to Here',
-                        trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/iveHadItUpToHere.mp3'),
+                        uri: require('./songs/weezer/everythingWillBeAlrightInTheEnd/iveHadItUpToHere.mp3'),
                         duration: 169,
                         trackArtist: 'Weezer',
                         albumName: 'Everything Will Be Alright In The End',
@@ -72,7 +72,7 @@ const songList = [
                     },
                     {
                         trackName: 'The British Are Coming',
-                        trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/theBritishAreComing.mp3'),
+                        uri: require('./songs/weezer/everythingWillBeAlrightInTheEnd/theBritishAreComing.mp3'),
                         duration: 249,
                         trackArtist: 'Weezer',
                         albumName: 'Everything Will Be Alright In The End',
@@ -83,7 +83,7 @@ const songList = [
                     },
                     {
                         trackName: 'Da Vinci',
-                        trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/daVinci.mp3'),
+                        uri: require('./songs/weezer/everythingWillBeAlrightInTheEnd/daVinci.mp3'),
                         duration: 246,
                         trackArtist: 'Weezer',
                         albumName: 'Everything Will Be Alright In The End',
@@ -94,7 +94,7 @@ const songList = [
                     },
                     {
                         trackName: 'Go Away',
-                        trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/goAway.mp3'),
+                        uri: require('./songs/weezer/everythingWillBeAlrightInTheEnd/goAway.mp3'),
                         duration: 194,
                         trackArtist: 'Weezer',
                         albumName: 'Everything Will Be Alright In The End',
@@ -106,7 +106,7 @@ const songList = [
                     {
                         trackName: 'Cleopatra',
                         albumName: 'Everything Will Be Alright In The End',
-                        trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/cleopatra.mp3'),
+                        uri: require('./songs/weezer/everythingWillBeAlrightInTheEnd/cleopatra.mp3'),
                         duration: 192,
                         trackArtist: 'Weezer',
                         id: Math.floor(Math.random() * 1000),
@@ -116,7 +116,7 @@ const songList = [
                     },
                     {
                         trackName: 'Foolish Father',
-                        trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/foolishFather.mp3'),
+                        uri: require('./songs/weezer/everythingWillBeAlrightInTheEnd/foolishFather.mp3'),
                         duration: 272,
                         trackArtist: 'Weezer',
                         albumName: 'Everything Will Be Alright In The End',
@@ -127,7 +127,7 @@ const songList = [
                     },
                     {
                         trackName: 'I. The Waste Land',
-                        trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/theWasteLand.mp3'),
+                        uri: require('./songs/weezer/everythingWillBeAlrightInTheEnd/theWasteLand.mp3'),
                         duration: 116,
                         trackArtist: 'Weezer',
                         albumName: 'Everything Will Be Alright In The End',
@@ -138,7 +138,7 @@ const songList = [
                     },
                     {
                         trackName: 'II. Anonymous',
-                        trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/anonymous.mp3'),
+                        uri: require('./songs/weezer/everythingWillBeAlrightInTheEnd/anonymous.mp3'),
                         duration: 200,
                         trackArtist: 'Weezer',
                         albumName: 'Everything Will Be Alright In The End',
@@ -149,7 +149,7 @@ const songList = [
                     },
                     {
                         trackName: 'III. Return to Ithaka',
-                        trackUrl: require('./songs/weezer/everythingWillBeAlrightInTheEnd/returnToIthaka.mp3'),
+                        uri: require('./songs/weezer/everythingWillBeAlrightInTheEnd/returnToIthaka.mp3'),
                         duration: 138,
                         trackArtist: 'Weezer',
                         albumName: 'Everything Will Be Alright In The End',
@@ -172,7 +172,7 @@ const songList = [
                 tracks: [
                     {
                         trackName: 'Hero',
-                        trackUrl: require('./songs/weezer/vanWeezer/hero.mp3'),
+                        uri: require('./songs/weezer/vanWeezer/hero.mp3'),
                         duration: 236,
                         trackArtist: 'Weezer',
                         albumName: 'Van Weezer',
@@ -183,7 +183,7 @@ const songList = [
                     },
                     {
                         trackName: 'All the Good Ones',
-                        trackUrl: require('./songs/weezer/vanWeezer/allTheGoodOnes.mp3'),
+                        uri: require('./songs/weezer/vanWeezer/allTheGoodOnes.mp3'),
                         duration: 164,
                         trackArtist: 'Weezer',
                         albumName: 'Van Weezer',
@@ -194,7 +194,7 @@ const songList = [
                     },
                     {
                         trackName: 'The End of the Game',
-                        trackUrl: require('./songs/weezer/vanWeezer/theEndOfTheGame.mp3'),
+                        uri: require('./songs/weezer/vanWeezer/theEndOfTheGame.mp3'),
                         duration: 182,
                         trackArtist: 'Weezer',
                         albumName: 'Van Weezer',
@@ -205,7 +205,7 @@ const songList = [
                     },
                     {
                         trackName: 'I Need Some of That',
-                        trackUrl: require('./songs/weezer/vanWeezer/iNeedSomeOfThat.mp3'),
+                        uri: require('./songs/weezer/vanWeezer/iNeedSomeOfThat.mp3'),
                         duration: 199,
                         trackArtist: 'Weezer',
                         albumName: 'Van Weezer',
@@ -216,7 +216,7 @@ const songList = [
                     },
                     {
                         trackName: 'Beginning of the End',
-                        trackUrl: require('./songs/weezer/vanWeezer/beginningOfTheEnd.mp3'),
+                        uri: require('./songs/weezer/vanWeezer/beginningOfTheEnd.mp3'),
                         duration: 195,
                         trackArtist: 'Weezer',
                         albumName: 'Van Weezer',
@@ -227,7 +227,7 @@ const songList = [
                     },
                     {
                         trackName: 'Blue Dream',
-                        trackUrl: require('./songs/weezer/vanWeezer/blueDream.mp3'),
+                        uri: require('./songs/weezer/vanWeezer/blueDream.mp3'),
                         duration: 170,
                         trackArtist: 'Weezer',
                         albumName: 'Van Weezer',
@@ -238,7 +238,7 @@ const songList = [
                     },
                     {
                         trackName: '1 More Hit',
-                        trackUrl: require('./songs/weezer/vanWeezer/oneMoreHit.mp3'),
+                        uri: require('./songs/weezer/vanWeezer/oneMoreHit.mp3'),
                         duration: 185,
                         trackArtist: 'Weezer',
                         albumName: 'Van Weezer',
@@ -249,7 +249,7 @@ const songList = [
                     },
                     {
                         trackName: 'Sheila Can Do It',
-                        trackUrl: require('./songs/weezer/vanWeezer/sheilaCanDoIt.mp3'),
+                        uri: require('./songs/weezer/vanWeezer/sheilaCanDoIt.mp3'),
                         duration: 177,
                         trackArtist: 'Weezer',
                         albumName: 'Van Weezer',
@@ -260,7 +260,7 @@ const songList = [
                     },
                     {
                         trackName: 'She Needs Me',
-                        trackUrl: require('./songs/weezer/vanWeezer/sheNeedsMe.mp3'),
+                        uri: require('./songs/weezer/vanWeezer/sheNeedsMe.mp3'),
                         duration: 172,
                         trackArtist: 'Weezer',
                         albumName: 'Van Weezer',
@@ -271,7 +271,7 @@ const songList = [
                     },
                     {
                         trackName: 'Precious Metal Girl',
-                        trackUrl: require('./songs/weezer/vanWeezer/preciousMetalGirl.mp3'),
+                        uri: require('./songs/weezer/vanWeezer/preciousMetalGirl.mp3'),
                         duration: 170,
                         trackArtist: 'Weezer',
                         albumName: 'Van Weezer',
@@ -303,7 +303,7 @@ const songList = [
                 tracks: [
                     {
                         trackName: 'Champagne Poetry',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/champagnePoetry.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/champagnePoetry.mp3'),
                         duration: 201,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -314,7 +314,7 @@ const songList = [
                     },
                     {
                         trackName: 'Papi\'s Home',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/papisHome.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/papisHome.mp3'),
                         duration: 185,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -325,7 +325,7 @@ const songList = [
                     },
                     {
                         trackName: 'Girls Want Girls',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/girlsWantGirls.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/girlsWantGirls.mp3'),
                         duration: 205,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -337,7 +337,7 @@ const songList = [
                     {
                         trackName: 'Love All',
                         albumName: 'Certified Lover Boy',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/loveAll.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/loveAll.mp3'),
                         duration: 170,
                         trackArtist: 'Drake',
                         id: Math.floor(Math.random() * 1000),
@@ -348,7 +348,7 @@ const songList = [
                     {
                         trackName: 'Fair Trade',
                         albumName: 'Certified Lover Boy',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/fairTrade.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/fairTrade.mp3'),
                         duration: 169,
                         trackArtist: 'Drake',
                         id: Math.floor(Math.random() * 1000),
@@ -359,7 +359,7 @@ const songList = [
                     {
                         trackName: 'Way 2 Sexy',
                         albumName: 'Certified Lover Boy',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/way2Sexy.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/way2Sexy.mp3'),
                         duration: 249,
                         trackArtist: 'Drake',
                         id: Math.floor(Math.random() * 1000),
@@ -369,7 +369,7 @@ const songList = [
                     },
                     {
                         trackName: 'TSU',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/tsu.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/tsu.mp3'),
                         duration: 246,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -380,7 +380,7 @@ const songList = [
                     },
                     {
                         trackName: 'N 2 Deep',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/n2Deep.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/n2Deep.mp3'),
                         duration: 194,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -391,7 +391,7 @@ const songList = [
                     },
                     {
                         trackName: 'Pipe Down',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/pipeDown.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/pipeDown.mp3'),
                         duration: 192,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -402,7 +402,7 @@ const songList = [
                     },
                     {
                         trackName: 'Yebba\'s Heartbreak',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/yebbasHeartbreak.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/yebbasHeartbreak.mp3'),
                         duration: 272,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -413,7 +413,7 @@ const songList = [
                     },
                     {
                         trackName: 'No Friends in the Industry',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/noFriendsInTheIndustry.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/noFriendsInTheIndustry.mp3'),
                         duration: 116,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -424,7 +424,7 @@ const songList = [
                     },
                     {
                         trackName: 'Knife Talk',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/knifeTalk.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/knifeTalk.mp3'),
                         duration: 200,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -435,7 +435,7 @@ const songList = [
                     },
                     {
                         trackName: '7AM on Bridle Path',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/7amOnBridlePath.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/7amOnBridlePath.mp3'),
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -446,7 +446,7 @@ const songList = [
                     },
                     {
                         trackName: 'Race My Mind',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/raceMyMind.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/raceMyMind.mp3'),
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -457,7 +457,7 @@ const songList = [
                     },
                     {
                         trackName: 'Fountains',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/fountains.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/fountains.mp3'),
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -468,7 +468,7 @@ const songList = [
                     },
                     {
                         trackName: 'Get Along Better',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/getAlongBetter.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/getAlongBetter.mp3'),
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -479,7 +479,7 @@ const songList = [
                     },
                     {
                         trackName: 'You Only Live Twice',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/youOnlyLiveTwice.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/youOnlyLiveTwice.mp3'),
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -490,7 +490,7 @@ const songList = [
                     },
                     {
                         trackName: 'IMY2',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/imy2.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/imy2.mp3'),
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -501,7 +501,7 @@ const songList = [
                     },
                     {
                         trackName: 'Fucking Fans',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/fuckingFans.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/fuckingFans.mp3'),
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -512,7 +512,7 @@ const songList = [
                     },
                     {
                         trackName: 'The Remorse',
-                        trackUrl: require('./songs/drake/certifiedLoverBoy/theRemorse.mp3'),
+                        uri: require('./songs/drake/certifiedLoverBoy/theRemorse.mp3'),
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Certified Lover Boy',
@@ -535,7 +535,7 @@ const songList = [
                 tracks: [
                     {
                         trackName: 'Keep the Family Close',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1jDzkocP_rG9Nf0OG-S0MMco-Or7i_0CT',
+                        uri: 'https://docs.google.com/uc?export=open&id=1jDzkocP_rG9Nf0OG-S0MMco-Or7i_0CT',
                         duration: 201,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -546,7 +546,7 @@ const songList = [
                     },
                     {
                         trackName: '9',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=120FoBCG4wOFvHFcfS1IwsuCEmHbrKBau',
+                        uri: {uri: 'http://www.filefactory.com/stream/4fj7r93ofhq6/9.mp3'},
                         duration: 185,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -557,7 +557,7 @@ const songList = [
                     },
                     {
                         trackName: 'U With Me?',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1Y_fuKuBjf3_VraG_eajhaOvngD6z-286',
+                        uri: 'https://docs.google.com/uc?export=open&id=1Y_fuKuBjf3_VraG_eajhaOvngD6z-286',
                         duration: 205,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -568,7 +568,7 @@ const songList = [
                     },
                     {
                         trackName: 'Feel No Ways',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1D9h5txq9TEu-Z7wpPgiM-u5XBhtUIHaU',
+                        uri: 'https://docs.google.com/uc?export=open&id=1D9h5txq9TEu-Z7wpPgiM-u5XBhtUIHaU',
                         duration: 170,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -579,7 +579,7 @@ const songList = [
                     },
                     {
                         trackName: 'Hype',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1UgXRttIfuErJqtUJsbNa2u3HCfBv7jtQ',
+                        uri: {uri: 'https://docs.google.com/uc?export=open&id=1UgXRttIfuErJqtUJsbNa2u3HCfBv7jtQ'},
                         duration: 169,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -590,7 +590,7 @@ const songList = [
                     },
                     {
                         trackName: 'Weston Road Flows',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=11CdUIVWTIu143h8XvKrgxCLOo4V7n1oB',
+                        uri: 'https://docs.google.com/uc?export=open&id=11CdUIVWTIu143h8XvKrgxCLOo4V7n1oB',
                         duration: 249,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -601,7 +601,7 @@ const songList = [
                     },
                     {
                         trackName: 'Redemption',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1-rL7WbU1AitSLm2bpREpxFApASPcO5GK',
+                        uri: 'https://docs.google.com/uc?export=open&id=1-rL7WbU1AitSLm2bpREpxFApASPcO5GK',
                         duration: 246,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -612,7 +612,7 @@ const songList = [
                     },
                     {
                         trackName: 'With You (feat. PARTYNEXTDOOR)',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1k5l7lOniL4So2hD_Tz0bUVwa9W69nT7d',
+                        uri: 'https://docs.google.com/uc?export=open&id=1k5l7lOniL4So2hD_Tz0bUVwa9W69nT7d',
                         duration: 194,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -623,7 +623,7 @@ const songList = [
                     },
                     {
                         trackName: 'Faithful (feat. Pimp C & dvsn',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1-IcZmZKq84uaCjRZidLzdWDBj2m_A-5M',
+                        uri: 'https://docs.google.com/uc?export=open&id=1-IcZmZKq84uaCjRZidLzdWDBj2m_A-5M',
                         duration: 192,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -634,7 +634,7 @@ const songList = [
                     },
                     {
                         trackName: 'Still Here',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1lTjW7cwR0QB2kncgO6KEgxPoPHneBL7L',
+                        uri: 'https://docs.google.com/uc?export=open&id=1lTjW7cwR0QB2kncgO6KEgxPoPHneBL7L',
                         duration: 272,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -645,7 +645,7 @@ const songList = [
                     },
                     {
                         trackName: 'Controlla',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=13W2d9iJ0B_KHby4GUXKToZG8ImMRbw9n',
+                        uri: 'https://docs.google.com/uc?export=open&id=13W2d9iJ0B_KHby4GUXKToZG8ImMRbw9n',
                         duration: 116,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -656,7 +656,7 @@ const songList = [
                     },
                     {
                         trackName: 'One Dance (feat. WizKid & Kyla)',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1ppiR5oHzhNNXeeqcKDKBPotT2sMh3q3S',
+                        uri: 'https://docs.google.com/uc?export=open&id=1ppiR5oHzhNNXeeqcKDKBPotT2sMh3q3S',
                         duration: 116,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -667,7 +667,7 @@ const songList = [
                     },
                     {
                         trackName: 'Grammys (feat. Future)',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1mn4gNGzR0L9L6gFwvTlTwjqRzv-iN9LL',
+                        uri: 'https://docs.google.com/uc?export=open&id=1mn4gNGzR0L9L6gFwvTlTwjqRzv-iN9LL',
                         duration: 200,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -678,7 +678,7 @@ const songList = [
                     },
                     {
                         trackName: 'Child\'s Play',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1YgEeUsaSe3thWRzEcwS0-ZjlB7iWUi7A',
+                        uri: 'https://docs.google.com/uc?export=open&id=1YgEeUsaSe3thWRzEcwS0-ZjlB7iWUi7A',
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -689,7 +689,7 @@ const songList = [
                     },
                     {
                         trackName: 'Pop Style',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=16tAkerIvDFLrYJjImqgdVWsFUa9VpyTh',
+                        uri: 'https://docs.google.com/uc?export=open&id=16tAkerIvDFLrYJjImqgdVWsFUa9VpyTh',
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -700,7 +700,7 @@ const songList = [
                     },
                     {
                         trackName: 'Too Good (feat. Rihanna)',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1NYid7pluMija1XidoeW_jNWV_1UnibIT',
+                        uri: 'https://docs.google.com/uc?export=open&id=1NYid7pluMija1XidoeW_jNWV_1UnibIT',
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -711,7 +711,7 @@ const songList = [
                     },
                     {
                         trackName: 'Summers Over Interlude (feat. Majid Jordan)',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1Rk_KDNsYuOMnGA2CSmCHslnbMwpmOsWl',
+                        uri: 'https://docs.google.com/uc?export=open&id=1Rk_KDNsYuOMnGA2CSmCHslnbMwpmOsWl',
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -722,7 +722,7 @@ const songList = [
                     },
                     {
                         trackName: 'Fire & Desire',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1lqDzmDsdDus7co1D0svSciQEImEtaOvj',
+                        uri: 'https://docs.google.com/uc?export=open&id=1lqDzmDsdDus7co1D0svSciQEImEtaOvj',
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -733,7 +733,7 @@ const songList = [
                     },
                     {
                         trackName: 'Views',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1NjQPu_bKKMeYyEjG-kqnXLrnTICM9uhN',
+                        uri: 'https://docs.google.com/uc?export=open&id=1NjQPu_bKKMeYyEjG-kqnXLrnTICM9uhN',
                         duration: 138,
                         trackArtist: 'Drake',
                         albumName: 'Views',
@@ -744,7 +744,7 @@ const songList = [
                     },
                     {
                         trackName: 'Hotline Bling',
-                        trackUrl: 'https://docs.google.com/uc?export=open&id=1lSxhF46A80CT0U55oq5LqnA-wiFOfdNs',
+                        uri: 'https://docs.google.com/uc?export=open&id=1lSxhF46A80CT0U55oq5LqnA-wiFOfdNs',
                         duration: 116,
                         trackArtist: 'Drake',
                         albumName: 'Views',

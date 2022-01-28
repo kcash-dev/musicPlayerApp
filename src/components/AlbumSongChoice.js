@@ -49,7 +49,7 @@ const AlbumSongChoice = ({ item, albumTracks, albumName, setShowing, showing, so
                 tailwind(`rounded-lg w-full flex-row items-center px-3 justify-between py-2 border-t border-gray-300`)
             ]}
             onPress={() => {
-                // setNewPlaylist(albumTracks)
+                console.log(item, "ITEM")
                 pickCurrentSong(item)
             }}
         >

@@ -9,6 +9,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setPlaying, pickSong, setPlaylist } from '../store/taskAction'
 import { auth, firestore, getDoc, doc, updateDoc, arrayUnion, arrayRemove } from '../firebase/firebase'
 
+//Components
+import Seekbar from './Seekbar';
+
 const AudioControls = ({ 
     imageTransition,
     songTitleContainerTransition,
@@ -27,6 +30,19 @@ const AudioControls = ({
     const [ favorites, setFavorites ] = useState();
     const [ isFavorite, setIsFavorite ] = useState(false)
     const [ playlistNumber, setPlaylistNumber ] = useState(0)
+    const [ trackState, setTrackState ] = useState(
+        {
+            playbackObject: null,
+            volume: 1.0,
+            isBuffering: false,
+            paused: true,
+            currentIndex: 0,
+            durationMillis: 1,
+            positionMillis:0,
+            sliderValue:0,
+            isSeeking:false,
+        }
+    )
 
     const dispatch = useDispatch()
     const setIsPlaying = (playStatus) => dispatch(setPlaying(playStatus))
@@ -84,12 +100,34 @@ const AudioControls = ({
         await sound.current.unloadAsync();
     };
 
+    const onPlaybackStatusUpdate = status => {
+        setTrackState({
+            ...trackState,
+            isBuffering: status.isBuffering,
+            durationMillis: status.durationMillis,
+            positionMillis: status.positionMillis
+        })
+    }
+
     const LoadAudio = async () => {
         SetLoading(true);
         const checkLoading = await sound.current.getStatusAsync();
         if (checkLoading.isLoaded === false) {
             try {
-                const result = await sound.current.loadAsync({ uri: currentSong.trackUrl }, {}, true);
+                const status = {
+                    shouldPlay: isPlaying,
+                    volume: trackState.volume,
+                }
+                const result = await sound.current.loadAsync(currentSong.uri, status, true);
+                setTrackState({
+                    ...trackState,
+                    playbackObject: sound
+                })
+                const sliderValue = trackState.positionMillis/trackState.durationMillis
+                // setTrackState({
+                //     ...trackState,
+                //     sliderValue: sliderValue
+                // })
                 if (result.isLoaded === false) {
                     SetLoading(false);
                     Alert.alert('Something went wrong.')
@@ -106,36 +144,26 @@ const AudioControls = ({
         }
     };
 
-    const PlayAudio = async () => {
+    const handlePlayPause = async () => {
         try {
-        const result = await sound.current.getStatusAsync();
-        if (result.isLoaded) {
-            if (result.isPlaying === false) {
-                sound.current.playAsync();
+            const result = await sound.current.getStatusAsync();
+            if (result.isLoaded) {
+                if (result.isPlaying === false) {
+                    sound.current.playAsync();
+                } else {
+                    sound.current.pauseAsync()
+                }
+                setIsPlaying(!isPlaying)
             }
-        }
-        } catch (error) {}
-    };
-
-    const PauseAudio = async () => {
-        try {
-        const result = await sound.current.getStatusAsync();
-        if (result.isLoaded) {
-            if (result.isPlaying === true) {
-            sound.current.pauseAsync();
-            }
-        }
         } catch (error) {}
     };
 
     const NextSong = () => {
         pickCurrentSong(playlist[playlistNumber + 1])
-        LoadAudio();
     };
 
     const PrevSong = () => {
         pickCurrentSong(playlist[playlistNumber - 1])
-        LoadAudio();
     };
 
     const addSongToFavorites = async (song) => {
@@ -190,6 +218,17 @@ const AudioControls = ({
                         ) : (
                             <>
                                 { isShowing ?
+                                    <View style={ tailwind(`absolute bottom-24 w-10/12`) }>
+                                        <Seekbar 
+                                            durationMillis={ trackState.durationMillis }
+                                            positionMillis={ trackState.positionMillis }
+                                            sliderValue={ trackState.sliderValue }
+                                        />
+                                    </View>
+                                    :
+                                    null
+                                }
+                                { isShowing ?
                                     <Pressable
                                         style={({ pressed }) => [
                                             { opacity: pressed ? 0.5 : 1 }
@@ -233,8 +272,7 @@ const AudioControls = ({
                                                 { opacity: pressed ? 0.5 : 1 }
                                             ]}
                                             onPress={() => {
-                                                setIsPlaying(false)
-                                                PauseAudio()
+                                                handlePlayPause()
                                             }}
                                         >
                                             <MaterialIcons name="pause-circle-filled" size={ playButtonSize } color="black" />
@@ -245,8 +283,7 @@ const AudioControls = ({
                                                 { opacity: pressed ? 0.5 : 1 }
                                             ]}
                                             onPress={() => {
-                                                setIsPlaying(true)
-                                                PlayAudio()
+                                                handlePlayPause()
                                             }}
                                         >
                                             <MaterialIcons name="play-circle-filled" size={ playButtonSize } color="black" style={{ marginHorizontal: playButtonMargin }} />
