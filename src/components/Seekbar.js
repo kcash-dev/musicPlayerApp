@@ -23,6 +23,7 @@ const Seekbar = ({
             value={newSliderValue}
             minimumTrackTintColor='#000'
             maximumTrackTintColor='rgba(255, 255, 255, 0.14)'
+            style={ tailwind(`w-full`) }
         />
     </View>
   );
