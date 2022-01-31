@@ -118,6 +118,7 @@ const AudioControls = ({
                     shouldPlay: isPlaying,
                     volume: trackState.volume,
                 }
+                sound.current.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate)
                 const result = await sound.current.loadAsync(currentSong.uri, status, true);
                 setTrackState({
                     ...trackState,
@@ -187,23 +188,21 @@ const AudioControls = ({
             <Animated.View style={[ 
                 tailwind(`w-1/6 h-full absolute left-1 rounded-lg`), 
                 { overflow: 'hidden' }, 
-                imageTransition, 
-                isShowing ? [styles.shadow, { backgroundColor: 'white' }] : null 
+                imageTransition
             ]}>
                 <Animated.Image 
                     source={{ uri: currentSong.trackArt }}
-                    style={{ width: '100%', height: '100%', borderRadius: 10 }}
+                    style={[{ width: '100%', height: '100%', borderRadius: 10 } ]}
                     resizeMode='contain'
                 />
             </Animated.View>
             <Animated.View 
                 style={[ 
-                    songTitleContainerTransition, 
-                    isShowing ? styles.centeredContainer : null,
-                    isShowing ? null : styles.playerSmall 
-                ]}>
-                <Animated.Text style={[ tailwind(`font-bold text-center`), songTitleTransition]}>{ currentSong.trackName }</Animated.Text>
-                <Animated.Text style={[ tailwind(`text-sm`), authorNameTransition ]}>{ currentSong.trackArtist }</Animated.Text>
+                    songTitleContainerTransition
+                ]}
+            >
+                <Animated.Text style={[ tailwind(`font-bold`), songTitleTransition, isShowing ? tailwind(`self-center`) : null ]}>{ currentSong.trackName }</Animated.Text>
+                <Animated.Text style={[ tailwind(`text-sm`), authorNameTransition, isShowing ? tailwind(`self-center`) : null ]}>{ currentSong.trackArtist }</Animated.Text>
             </Animated.View>
             <Animated.View style={[ tailwind(`flex-row items-center justify-evenly absolute right-3`), controlButtonTransition ]}>
                 { Loading ? (
@@ -216,9 +215,9 @@ const AudioControls = ({
                             <Text>Loading Song</Text>
                         </>
                         ) : (
-                            <>
+                            <View>
                                 { isShowing ?
-                                    <View style={ tailwind(`absolute bottom-24 w-10/12`) }>
+                                    <View style={ tailwind(`w-10/12 self-center`) }>
                                         <Seekbar 
                                             durationMillis={ trackState.durationMillis }
                                             positionMillis={ trackState.positionMillis }
@@ -228,79 +227,81 @@ const AudioControls = ({
                                     :
                                     null
                                 }
-                                { isShowing ?
+                                <View style={ tailwind(`flex-row items-center justify-evenly`) }>
+                                    { isShowing ?
+                                        <Pressable
+                                            style={({ pressed }) => [
+                                                { opacity: pressed ? 0.5 : 1 }
+                                            ]}
+                                            onPress={() => {
+                                                PrevSong()
+                                            }}
+                                        >
+                                            <MaterialIcons name="skip-previous" size={nextButtonSize} color="black" />
+                                        </Pressable>
+                                        :
+                                        null
+                                    }
+                                    {/* { isFavorite ?
+                                        <View>
+                                            <Pressable 
+                                                    style={({ pressed }) => [
+                                                        { opacity: pressed ? 0.5 : 1 }
+                                                    ]}
+                                                    onPress={() => addSongToFavorites(currentSong)}
+                                                >
+                                                    <MaterialCommunityIcons name="cards-heart" size={ playButtonSize } color="black" />
+                                            </Pressable> 
+                                        </View>
+                                        :
+                                        <View>
+                                            <Pressable 
+                                                    style={({ pressed }) => [
+                                                        { opacity: pressed ? 0.5 : 1 }
+                                                    ]}
+                                                    onPress={() => addSongToFavorites(currentSong)}
+                                                >
+                                                    <MaterialCommunityIcons name="heart-outline" size={ playButtonSize } color="black" />
+                                            </Pressable> 
+                                        </View>
+                                    } */}
+                                    <View>
+                                        { isPlaying ?
+                                            <Pressable 
+                                                style={({ pressed }) => [
+                                                    { opacity: pressed ? 0.5 : 1 }
+                                                ]}
+                                                onPress={() => {
+                                                    handlePlayPause()
+                                                }}
+                                            >
+                                                <MaterialIcons name="pause-circle-filled" size={ playButtonSize } color="black" />
+                                            </Pressable> 
+                                            :
+                                            <Pressable 
+                                                style={({ pressed }) => [
+                                                    { opacity: pressed ? 0.5 : 1 }
+                                                ]}
+                                                onPress={() => {
+                                                    handlePlayPause()
+                                                }}
+                                            >
+                                                <MaterialIcons name="play-circle-filled" size={ playButtonSize } color="black" style={{ marginHorizontal: playButtonMargin }} />
+                                            </Pressable>
+                                        }
+                                    </View>
                                     <Pressable
                                         style={({ pressed }) => [
                                             { opacity: pressed ? 0.5 : 1 }
                                         ]}
                                         onPress={() => {
-                                            PrevSong()
+                                            NextSong()
                                         }}
                                     >
-                                        <MaterialIcons name="skip-previous" size={32} color="black" />
+                                        <MaterialIcons name="skip-next" size={ nextButtonSize } color="black" />
                                     </Pressable>
-                                    :
-                                    null
-                                }
-                                { isFavorite ?
-                                    <View>
-                                        <Pressable 
-                                                style={({ pressed }) => [
-                                                    { opacity: pressed ? 0.5 : 1 }
-                                                ]}
-                                                onPress={() => addSongToFavorites(currentSong)}
-                                            >
-                                                <MaterialCommunityIcons name="cards-heart" size={ playButtonSize } color="black" />
-                                        </Pressable> 
-                                    </View>
-                                    :
-                                    <View>
-                                        <Pressable 
-                                                style={({ pressed }) => [
-                                                    { opacity: pressed ? 0.5 : 1 }
-                                                ]}
-                                                onPress={() => addSongToFavorites(currentSong)}
-                                            >
-                                                <MaterialCommunityIcons name="heart-outline" size={ playButtonSize } color="black" />
-                                        </Pressable> 
-                                    </View>
-                                }
-                                <View>
-                                    { isPlaying ?
-                                        <Pressable 
-                                            style={({ pressed }) => [
-                                                { opacity: pressed ? 0.5 : 1 }
-                                            ]}
-                                            onPress={() => {
-                                                handlePlayPause()
-                                            }}
-                                        >
-                                            <MaterialIcons name="pause-circle-filled" size={ playButtonSize } color="black" />
-                                        </Pressable> 
-                                        :
-                                        <Pressable 
-                                            style={({ pressed }) => [
-                                                { opacity: pressed ? 0.5 : 1 }
-                                            ]}
-                                            onPress={() => {
-                                                handlePlayPause()
-                                            }}
-                                        >
-                                            <MaterialIcons name="play-circle-filled" size={ playButtonSize } color="black" style={{ marginHorizontal: playButtonMargin }} />
-                                        </Pressable>
-                                    }
                                 </View>
-                                <Pressable
-                                    style={({ pressed }) => [
-                                        { opacity: pressed ? 0.5 : 1 }
-                                    ]}
-                                    onPress={() => {
-                                        NextSong()
-                                    }}
-                                >
-                                    <MaterialIcons name="skip-next" size={ nextButtonSize } color="black" />
-                                </Pressable>
-                            </>
+                            </View>
                         )
                     }
                     </>

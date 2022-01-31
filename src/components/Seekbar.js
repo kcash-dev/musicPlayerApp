@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from '@react-native-community/slider';
 import tailwind from 'tailwind-rn';
 
@@ -9,12 +9,20 @@ const Seekbar = ({
     sliderValue
 }) => {
     const newSliderValue = positionMillis/durationMillis
+    function millisToMinutesAndSeconds(millis) {
+        const minutes = Math.floor(millis / 60000);
+        const seconds = ((millis % 60000) / 1000).toFixed(0);
+        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    }
+
+    const positionTime = millisToMinutesAndSeconds(positionMillis)
+    const durationTime = millisToMinutesAndSeconds(durationMillis)
   return (
     <View>
        <View style={{ flexDirection: 'row' }}>
-        <View style={{ flex: 1 }, tailwind(`items-center`)} />
-            <Text style={{ width: 40 }}>
-                {positionMillis + ' / ' + durationMillis}
+        <View style={{ flex: 1 }, tailwind(`self-center`)} />
+            <Text style={ tailwind(`w-full text-center`) }>
+                {positionTime + ' / ' + durationTime}
             </Text>
         </View>
         <Slider

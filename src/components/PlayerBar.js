@@ -19,18 +19,18 @@ const windowWidth = Dimensions.get('window').width
 const PlayerBar = () => {
     const barWidth = useSharedValue(0)
     const playerHeight = useSharedValue(windowHeight - 65)
-    const imagePositionY = useSharedValue(windowHeight * -.045)
-    const imagePositionX = useSharedValue(0)
-    const imageHeight = useSharedValue(50)
-    const imageWidth = useSharedValue(50)
-    const songTitlePositionY = useSharedValue(windowHeight * -.045)
-    const songTitlePositionX = useSharedValue(0)
+    const imagePositionY = useSharedValue('-20%')
+    const imagePositionX = useSharedValue('10%')
+    const imageHeight = useSharedValue('15%')
+    const imageWidth = useSharedValue('15%')
+    const songTitlePositionY = useSharedValue('-15%')
+    const songTitlePositionX = useSharedValue('70%')
     const songTitleAlignment = useSharedValue('')
-    const songTitleWidth = useSharedValue(windowWidth)
+    const songTitleWidth = useSharedValue('100%')
     const songTitleFontSize = useSharedValue(16)
     const authorNamePositionX = useSharedValue(0)
     const authorFontSize = useSharedValue(12)
-    const controlButtonsPositionY = useSharedValue(windowHeight * -.033)
+    const controlButtonsPositionY = useSharedValue('-10%')
     const controlButtonsPositionX = useSharedValue(0)
     const playButtonSize = useSharedValue(32)
     const nextButtonSize = useSharedValue(24)
@@ -174,35 +174,37 @@ const PlayerBar = () => {
                     if(!isShowing) {
                         setIsShowing(true)
                         playerHeight.value = 0 + statusBarHeight
-                        imagePositionY.value = windowHeight * .1
-                        imagePositionX.value = windowWidth * .17
-                        imageWidth.value = 250
-                        imageHeight.value = 250
-                        songTitlePositionY.value = windowHeight * .50
-                        songTitlePositionX.value = '50%'
+                        imagePositionY.value = '90%'
+                        imagePositionX.value = 0
+                        imageWidth.value = '100%'
+                        imageHeight.value = 300
+                        songTitlePositionY.value = '400%'
+                        songTitlePositionX.value = 0
                         songTitleFontSize.value = 24
                         songTitleWidth.value = '100%'
                         authorFontSize.value = 16
-                        authorNamePositionX.value = '50%'
-                        controlButtonsPositionY.value = windowHeight * .70
-                        controlButtonsPositionX.value = windowWidth * .04
+                        authorNamePositionX.value = 0
+                        controlButtonsPositionY.value = '550%'
+                        controlButtonsPositionX.value = '10%'
                         playButtonSize.value = 64
-                        nextButtonSize.value = 32
+                        nextButtonSize.value = 40
                         controlButtonContainerWidth.value = windowWidth
                     } else {
                         setIsShowing(false)
                         playerHeight.value = windowHeight - 65
-                        imagePositionY.value = windowHeight * -.045
-                        imagePositionX.value = 0
+                        imageWidth.value = '15%'
+                        imageHeight.value = '15%'
+                        imagePositionY.value = '-20%'
+                        imagePositionX.value = '-60%'
                         imageHeight.value = 50
                         imageWidth.value = 50
-                        songTitlePositionY.value = windowHeight * -.045
-                        songTitlePositionX.value = 0
+                        songTitlePositionY.value = '-15%'
+                        songTitlePositionX.value = '70%'
                         songTitleFontSize.value = 16
                         songTitleWidth.value = windowWidth
                         authorFontSize.value = 12
                         authorNamePositionX.value = 0
-                        controlButtonsPositionY.value = windowHeight * -.027
+                        controlButtonsPositionY.value = '-10%'
                         controlButtonsPositionX.value = 0
                         playButtonSize.value = 32
                         nextButtonSize.value = 24
@@ -286,7 +288,7 @@ const PlayerBar = () => {
     )
 }
 
-export default React.memo(PlayerBar)
+export default PlayerBar
 
 const styles = StyleSheet.create({
     shadow: {
