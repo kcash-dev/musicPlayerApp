@@ -80,7 +80,6 @@ const AlbumScreen = ({ route }) => {
 
     return (
         <SafeAreaView style={ tailwind(`flex-1 bg-white`) }>
-            <BackButton />
             <View style={ tailwind(`h-2/6 w-full flex-row rounded-lg mt-5`) }>
                 <View style={[ tailwind(`w-2/5 h-full justify-center mx-5`), styles.shadow ]}>
                     <Image
@@ -122,6 +121,9 @@ const AlbumScreen = ({ route }) => {
                     keyExtractor={(item) => item.trackName}
                     ListFooterComponent={ footer }
                 />
+            </View>
+            <View style={ tailwind(`absolute top-12 left-5`) }>
+                <BackButton />
             </View>
             { currentSong ?
                 <PlayerBar />

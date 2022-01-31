@@ -19,18 +19,18 @@ const windowWidth = Dimensions.get('window').width
 const PlayerBar = () => {
     const barWidth = useSharedValue(0)
     const playerHeight = useSharedValue(windowHeight - 65)
-    const imagePositionY = useSharedValue('-20%')
-    const imagePositionX = useSharedValue('10%')
-    const imageHeight = useSharedValue('15%')
+    const imagePositionY = useSharedValue(windowWidth * -.02)
+    const imagePositionX = useSharedValue(windowWidth * .02)
+    const imageHeight = useSharedValue(windowHeight * .07)
     const imageWidth = useSharedValue('15%')
-    const songTitlePositionY = useSharedValue('-15%')
-    const songTitlePositionX = useSharedValue('70%')
+    const songTitlePositionY = useSharedValue(windowHeight * -.01)
+    const songTitlePositionX = useSharedValue(windowWidth * .17)
     const songTitleAlignment = useSharedValue('')
     const songTitleWidth = useSharedValue('100%')
     const songTitleFontSize = useSharedValue(16)
     const authorNamePositionX = useSharedValue(0)
     const authorFontSize = useSharedValue(12)
-    const controlButtonsPositionY = useSharedValue('-10%')
+    const controlButtonsPositionY = useSharedValue(windowHeight * -.01)
     const controlButtonsPositionX = useSharedValue(0)
     const playButtonSize = useSharedValue(32)
     const nextButtonSize = useSharedValue(24)
@@ -177,14 +177,14 @@ const PlayerBar = () => {
                         imagePositionY.value = '90%'
                         imagePositionX.value = 0
                         imageWidth.value = '100%'
-                        imageHeight.value = 300
-                        songTitlePositionY.value = '400%'
+                        imageHeight.value = windowHeight * .35
+                        songTitlePositionY.value = windowHeight * .5
                         songTitlePositionX.value = 0
                         songTitleFontSize.value = 24
                         songTitleWidth.value = '100%'
                         authorFontSize.value = 16
                         authorNamePositionX.value = 0
-                        controlButtonsPositionY.value = '550%'
+                        controlButtonsPositionY.value = windowHeight * .65
                         controlButtonsPositionX.value = '10%'
                         playButtonSize.value = 64
                         nextButtonSize.value = 40
@@ -193,18 +193,16 @@ const PlayerBar = () => {
                         setIsShowing(false)
                         playerHeight.value = windowHeight - 65
                         imageWidth.value = '15%'
-                        imageHeight.value = '15%'
-                        imagePositionY.value = '-20%'
-                        imagePositionX.value = '-60%'
-                        imageHeight.value = 50
-                        imageWidth.value = 50
-                        songTitlePositionY.value = '-15%'
-                        songTitlePositionX.value = '70%'
+                        imageHeight.value = windowHeight * .07
+                        imagePositionY.value = windowHeight * -.02
+                        imagePositionX.value = windowWidth * .02
+                        songTitlePositionY.value = windowHeight * -.01
+                        songTitlePositionX.value = windowWidth * .17
                         songTitleFontSize.value = 16
                         songTitleWidth.value = windowWidth
                         authorFontSize.value = 12
                         authorNamePositionX.value = 0
-                        controlButtonsPositionY.value = '-10%'
+                        controlButtonsPositionY.value = windowHeight * -.01
                         controlButtonsPositionX.value = 0
                         playButtonSize.value = 32
                         nextButtonSize.value = 24
@@ -288,7 +286,7 @@ const PlayerBar = () => {
     )
 }
 
-export default PlayerBar
+export default React.memo(PlayerBar)
 
 const styles = StyleSheet.create({
     shadow: {

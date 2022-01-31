@@ -93,7 +93,7 @@ const AudioControls = ({
         LoadAudio();
         findSongIndex()
 
-        return () => Unload();
+        // return () => Unload();
     }, [ currentSong ]);
 
     const Unload = async () => {
@@ -119,7 +119,8 @@ const AudioControls = ({
                     volume: trackState.volume,
                 }
                 sound.current.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate)
-                const result = await sound.current.loadAsync(currentSong.uri, status, true);
+                console.log(currentSong.uri, "RENDER")
+                const result = await sound.current.loadAsync( currentSong.uri, status, true);
                 setTrackState({
                     ...trackState,
                     playbackObject: sound
@@ -131,7 +132,7 @@ const AudioControls = ({
                 // })
                 if (result.isLoaded === false) {
                     SetLoading(false);
-                    Alert.alert('Something went wrong.')
+                    console.log('Something went wrong.')
                 } else {
                     SetLoading(false);
                     SetLoaded(true);
@@ -292,7 +293,8 @@ const AudioControls = ({
                                     </View>
                                     <Pressable
                                         style={({ pressed }) => [
-                                            { opacity: pressed ? 0.5 : 1 }
+                                            { opacity: pressed ? 0.5 : 1 },
+                                            isShowing ? null : tailwind(`pl-4`)
                                         ]}
                                         onPress={() => {
                                             NextSong()

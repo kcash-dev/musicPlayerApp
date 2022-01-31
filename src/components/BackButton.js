@@ -10,10 +10,9 @@ const BackButton = () => {
         <Pressable
             style={({ pressed }) => [
                 { 
-                    opacity: pressed ? 0.5 : 1,
+                    opacity: pressed ? 0.7 : 1,
                     zIndex: 10
-                },
-                    tailwind(`absolute top-16 left-6`)
+                }
             ]}
             onPress={() => navigation.pop()}
         >

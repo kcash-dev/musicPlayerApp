@@ -11,7 +11,7 @@ import FavoritesScreen from '../screens/FavoritesScreen';
 export default function HomeNav() {
   return (
     <Stack.Navigator initialRouteName='HomeScreen'>
-        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="HomeScreen" component={ HomeScreen } options={{ headerShown: false }} />
         <Stack.Screen name="ArtistScreen" component={ ArtistScreen } options={{ headerShown: false }} />
         <Stack.Screen name="AlbumScreen" component={ AlbumScreen } options={{ headerShown: false }} />
         <Stack.Screen name="EditInfoScreen" component={ EditInfoScreen } options={{ headerShown: false }} />

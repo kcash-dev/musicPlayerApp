@@ -546,7 +546,7 @@ const songList = [
                     },
                     {
                         trackName: '9',
-                        uri: {uri: 'http://www.filefactory.com/stream/4fj7r93ofhq6/9.mp3'},
+                        uri: "https://www.filefactory.com/stream/4fj7r93ofhq6/9.mp3",
                         duration: 185,
                         trackArtist: 'Drake',
                         albumName: 'Views',
