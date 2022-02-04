@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, Pressable } from 'react-native';
 import React from 'react';
 import tailwind from 'tailwind-rn';
 import Animated, {
@@ -38,7 +38,7 @@ const PressableWrapper = ({ children, pressIn, pressOut, style }) => {
                 }
                 buttonSize.value = 0.95
             }}
-            onPressOut={() => {
+            onPress={() => {
                 if(pressOut) {
                     runPressOutFunction()
                 }
