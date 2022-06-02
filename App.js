@@ -4,6 +4,10 @@ import store from './src/store/store'
 import { Provider } from 'react-redux'
 const Stack = createNativeStackNavigator();
 
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
+
 
 //Navs
 import HomeNav from './src/navs/HomeNav';

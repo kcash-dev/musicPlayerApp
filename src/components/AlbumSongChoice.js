@@ -62,25 +62,25 @@ const AlbumSongChoice = ({ item, albumTracks, albumName, setShowing, showing, so
                     <Text style={ tailwind(`font-bold`) }>{ item.trackNumber }</Text>
                 </View>
             }
-            <View style={ tailwind(`justify-start flex-row w-9/12 items-center`) }>
-                <View style={ tailwind(`justify-center`) }>
+            <View style={ tailwind(`justify-start flex-row w-10/12 items-center`) }>
+                <View style={ tailwind(`justify-center w-9/12`) }>
                     <Text style={ tailwind(`font-bold`) }>{ item.trackName }</Text>
                     <View style={ tailwind(`items-center justify-start flex-row`) }>
                         { item.explicit ? <MaterialIcons name="explicit" size={20} color="gray" style={ tailwind(`pr-1`) }/> : null }
                         <Text style={ tailwind(`text-xs italic`) }>{ item.trackArtist } — { albumName }</Text>
                     </View>
                 </View>
-                <View style={ tailwind(`justify-center pl-5 items-center`) }>
+                <View style={ tailwind(`justify-center pl-2 items-center w-3/12`) }>
                     <Text style={ tailwind(`font-bold text-gray-600`) }>{ minutes }:{ seconds < 10 ? `0${seconds}` : seconds }</Text>
                 </View>
             </View>
-            { isFavorite ?
-                <View style={ tailwind(`absolute right-14`) }>
+            {/* { isFavorite ?
+                <View style={ tailwind(`absolute right-32`) }>
                     <MaterialCommunityIcons name="heart" size={22} color="black" />
                 </View>
                 :
                 null
-            }
+            } */}
             <View style={ tailwind(`w-1/12`) }>
                 <Pressable 
                     style={({ pressed }) => [
@@ -96,7 +96,7 @@ const AlbumSongChoice = ({ item, albumTracks, albumName, setShowing, showing, so
                         }
                     }}
                 >
-                    <MaterialIcons name="more-vert" size={24} color="black" />
+                    <MaterialIcons name="more-vert" size={20} color="black" />
                 </Pressable>
             </View>
 
